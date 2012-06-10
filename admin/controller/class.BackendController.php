@@ -7,7 +7,7 @@
  *
  */
 require_once(HACKADEMIC_PATH."model/common/class.Session.php");
-require_once(HACKADEMIC_PATH."admin/controller/class.BackendController.php");
+require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.LoginController.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.DashboardController.php");
 

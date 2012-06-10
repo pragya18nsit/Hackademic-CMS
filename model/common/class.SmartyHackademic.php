@@ -34,8 +34,8 @@ class SmartyHackademic extends Smarty {
         $src_root_path = SOURCE_ROOT_PATH;
         $site_root_path = SITE_ROOT_PATH;
         $app_title = APP_TITLE;
-	$debug=DEBUG;
-	$cache_pages=CACHE_PAGES;
+	    $debug=DEBUG;
+	    $cache_pages=CACHE_PAGES;
         
         Smarty::__construct();
         $this->template_dir = array( HACKADEMIC_PATH.'view', HACKADEMIC_PATH.'admin/view/');

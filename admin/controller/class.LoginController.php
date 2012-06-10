@@ -23,18 +23,17 @@ class LoginController extends HackademicBackendController {
 	  if ($this->isLoggedIn()) {
             $controller = new DashboardController();
             return $controller->go();
-        } else  {
-            if (isset($_POST['submit']) && $_POST['submit']=='Login'
-            && isset($_POST['username']) && isset($_POST['pwd']) ) {
-                if ( $_POST['username']=='' || $_POST['pwd']=='') {
-                    if ( $_POST['username']=='') {
+       } else  {
+               if (isset($_POST['submit']) && $_POST['submit']=='Login'  && isset($_POST['username']) && isset($_POST['pwd']) ) {
+                     if ( $_POST['username']=='' || $_POST['pwd']=='') {
+                        if ( $_POST['username']=='') {
                         $this->addErrorMessage("Username must not be empty");
                         return $this->generateView();
-                    } else {
+                      } else {
                         $this->addErrorMessage("Password must not be empty");
                         return $this->generateView();
-                    }
-                } else {
+                     }
+                   } else {
                     $session = new Session();
                     $username = $_POST['username'];
 					
@@ -44,8 +43,7 @@ class LoginController extends HackademicBackendController {
                     if (!$user) {
                         $this->addErrorMessage("Incorrect username");
                         return $this->generateView();
-                    } elseif (!$session->pwdCheck
-					($_POST['pwd'], $user->password)) {
+                    } elseif (!$session->pwdCheck($_POST['pwd'], $user->password)) {
                         $this->addErrorMessage("Incorrect password");
                         return $this->generateView();
                     } else {
@@ -57,9 +55,9 @@ class LoginController extends HackademicBackendController {
                 }
             } else  {
                     $this->setViewTemplate('test.tpl');
-                    return $this->generateView();
                     $this->addPageTitle('Log in');
-                }
+                    return $this->generateView();
+					}
             }
         }
     }

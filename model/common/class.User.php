@@ -14,21 +14,8 @@ class User {
 		$result_array=self::findBySQL($sql);
         return !empty($result_array)?array_shift($result_array):false;
     }
-	
-	 public function getDetails($username) {
-        $q = "SELECT * FROM #prefix#users u WHERE u.username = :username ";
-     }
     
-
-    public function fullName() {
-        if(isset($this->first_name)& isset($this->last_name)) {
-            return $this->first_name." ".$this->last_name;
-        } else {
-            return " ";
-        }
-    }
-    
-    private static function findBySQL($sql="") {
+    private static function findBySQL($sql) {
         global $db;
         $result_set=$db->query($sql);
         $object_array=array();
