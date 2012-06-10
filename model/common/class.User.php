@@ -7,6 +7,7 @@ class User {
     public $password;
     public $first_name;
     public $last_name;
+	public $is_admin;
     
     public static function findByUserName($username) {
         global $db;

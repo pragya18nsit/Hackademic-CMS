@@ -14,7 +14,7 @@ class LoginController extends HackademicBackendController {
      
     
     public function go() {
-	       
+	          $this->setViewTemplate('admin_login.tpl');
 	          $this->addPageTitle('Log in');
             
 			// echo $record;
@@ -46,15 +46,19 @@ class LoginController extends HackademicBackendController {
                     } elseif (!$session->pwdCheck($_POST['pwd'], $user->password)) {
                         $this->addErrorMessage("Incorrect password");
                         return $this->generateView();
-                    } else {
+                    } elseif(!$user->is_admin){
+						  $this->addErrorMessage("You are not an administrator");
+						  return $this->generateView();
+						}
+					else {
                         // this sets variables in the session
-                        $session->completeLogin($user);
-                        $controller = new DashboardController(true);
-                        return $controller->go();
-                    }
+						 $session->completeLogin($user);
+                         $controller = new DashboardController(true);
+                         return $controller->go();
+                       }
+					    
                 }
             } else  {
-                    $this->setViewTemplate('test.tpl');
                     $this->addPageTitle('Log in');
                     return $this->generateView();
 					}

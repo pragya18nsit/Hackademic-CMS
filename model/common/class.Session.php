@@ -38,7 +38,7 @@ class Session {
     */
     public static function completeLogin($owner) {
 	$_SESSION['hackademic_user'] = $owner->username;
-        $_SESSION['hackademic_user_is_admin'] = 0;
+        $_SESSION['hackademic_user_is_admin'] = $owner->is_admin;
     }
 	   /**
      * Check password
