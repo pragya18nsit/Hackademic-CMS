@@ -1,0 +1,21 @@
+html {background: #E6E6E6;}
+body {font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+#main {background: white;}
+img {border:none;}
+
+.successmsg {
+  background-color: #BFDFBF;
+  margin: 10px 0px;
+  padding: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.errormsg {
+  background-color: #ff9494;
+  margin: 10px 0px;
+  padding: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+.text_center{text-align:center;}

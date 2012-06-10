@@ -1,0 +1,74 @@
+html {height: 100%; background: #E6E6E6;}
+body {height:95%;}
+#main {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 95%;
+    min-height:620px;
+   -webkit-border-radius: 30px;
+}
+.left {float: left;}
+.right {float: right;}
+.center {text-align: center}
+.pad_25 {padding-top: 25px;}
+.pad_top_5 {padding-top:5px;}
+.margin_left_25{margin-left:25px;}
+#logo{height:68px;}
+#orglogo{height:30px;}
+
+#login {
+text-align: center;
+background: #e3e3e3 ;
+border: 1px solid #CFCFCF;
+min-height: 250px;
+height: 250px;
+width: 705px;
+margin:auto;
+margin-top:75px;
+-moz-border-radius-bottomright: 30px;
+-webkit-border-bottom-right-radius: 30px;
+_height: 100%; /* IE FIX */
+	}
+
+
+#login h2 {
+padding: 15px 0 15px 75px;
+margin-top: 25px;
+font-size: 26px;
+background: #BFBFBF;
+color:#2F2F2F;
+border-top: 1px solid #9F9F9F;
+width: 676px;
+height: 30px;
+position: relative;
+left: -23px;
+text-align:center;
+}
+	
+#login label {
+	font-size: 14px;
+	}
+
+
+
+#login input{
+width: 40%;
+height: 20px;
+position: relative;
+font-size: 14px;
+padding: 0 .3em;
+color: #555555;
+}
+
+#login input#submit {
+width: 15%;
+font-size: 14px;
+}
+
+#login small {
+font-size: 14px;
+position: relative;
+top: -4px;
+}
+
