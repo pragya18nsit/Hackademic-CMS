@@ -11,12 +11,10 @@ require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController
 require_once(HACKADEMIC_PATH."model/common/class.User.php");
 
 class LoginController extends HackademicBackendController {
-     
-    
+                         
     public function go() {
 	          $this->setViewTemplate('admin_login.tpl');
 	          $this->addPageTitle('Log in');
-            
 			// echo $record;
     
 	// $this->disableCaching();
