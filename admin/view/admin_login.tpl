@@ -3,7 +3,7 @@
 <div id="login">
  
 	<form method="post" action="">
-    	<h2>Login <small>enter your credentials</small></h2>
+    	<h2>Login enter your credentials </h2>
         <p>
         	<label for="name">Username: </label>
             <input type="text" name="username" />

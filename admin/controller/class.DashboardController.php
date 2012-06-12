@@ -13,7 +13,7 @@ require_once(HACKADEMIC_PATH."controller/class.HackademicController.php");
 class DashboardController extends HackademicBackendController {
     
 	          public function go() {
-               $this->setViewTemplate('admin_logout.tpl');
+                       $this->setViewTemplate('dashboard.tpl');
 		       $this->generateView();
 		  
     }

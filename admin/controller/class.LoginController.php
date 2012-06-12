@@ -50,7 +50,7 @@ class LoginController extends HackademicBackendController {
 						}
 					else {
                         // this sets variables in the session
-						 $session->completeLogin($user);
+		         $session->completeLogin($user);
                          $controller = new DashboardController(true);
                          return $controller->go();
                        }

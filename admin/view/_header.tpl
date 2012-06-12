@@ -6,6 +6,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="{$site_root_path}admin/assets/images/favicon.png">
   <link rel="stylesheet" type="text/css" href="{$site_root_path}admin/assets/css/style.css" />
   <link rel="stylesheet" type="text/css" href="{$site_root_path}admin/assets/css/base.css" />
+
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 </head>
@@ -24,10 +25,11 @@
                 <a href="{$site_root_path}">
                     <img id="logo" src="{$site_root_path}assets/images/logo.png">
                 </a>
-            </div><hr/>         
+            </div>     
 	</div>	
             <div id="content">
 			{if isset($main_menu)}
+				<div id="username" class="right">Hi {$logged_in_user},<br/></div>
                 <!-- Main Menu -->
                 <div id="menuHeader"> 
                     <ul id="mainMenu">
@@ -37,7 +39,7 @@
                             {if isset($is_logged_in)}<div style="float:right">{include file="status.tpl"}</div>
                             {else} <a href="{$site_root_path}session/login.php">Login</a>{/if}
                         </li>
-                        {else}<li><a href="{$site_root_path}{$foo['url']|urlencode}">{$foo['title']}</a></li>{/if}
+                        {else}<li><a href="{$site_root_path}{$foo['url']}">{$foo['title']}</a></li>{/if}
                         {/foreach}
                     </ul>
                 </div>{/if}<br></div>

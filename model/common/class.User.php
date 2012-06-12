@@ -7,7 +7,8 @@ class User {
     public $password;
     public $first_name;
     public $last_name;
-	public $is_admin;
+    public $is_admin;
+    public $email;
     
     public static function findByUserName($username) {
         global $db;
@@ -25,7 +26,47 @@ class User {
         }
         return $object_array;
     }
+    
+    public static function addUser($username,$password,$first_name,$last_name,$is_admin,$email){
 	
+        global $db;
+        $password = md5($password);
+	$sql="INSERT INTO users (username, password, first_name, last_name, is_admin,email)";
+	$sql .= "VALUES ('$username','$password','$first_name','$last_name','$is_admin','$email')";
+        $query = $db->query($sql);
+        if ($db->affectedRows()) {
+	    return true;
+        } else {
+	    return false;
+	}
+    }
+    
+     public static function getNumberOfUsers() {
+        global $db;
+        $sql = "SELECT COUNT(*) as num FROM users";
+        $query = $db->query($sql);
+        $result = $db->fetchArray($query);
+        return $result['num'];
+    }
+    
+    public static function getNUsers ($start, $limit) {
+        global $db;
+        $sql= "SELECT * FROM users LIMIT $start, $limit";
+        $result_array=self::findBySQL($sql);
+        return $result_array;
+    }
+
+    public function doesUserExist($username){
+	global $db;
+	$sql = "SELECT * FROM users WHERE username='$username'";
+	$query = $db->query($sql);
+	$result = $db->numRows($query);
+	if ($result) {
+	    return true;
+	} else {
+	    return false;
+	}
+    }	
     
     public static function instantiate($record) {
         $object=new self;

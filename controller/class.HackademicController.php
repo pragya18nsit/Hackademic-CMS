@@ -101,7 +101,7 @@ abstract class HackademicController {
      * @param str $msg
      */
     public function addErrorMessage($msg) {
-       // $this->disableCaching();
+        $this->disableCaching();
         $this->addToView('errormsg', $msg );
     }
 
@@ -112,6 +112,14 @@ abstract class HackademicController {
     public function addSuccessMessage($msg) {
         $this->disableCaching();
         $this->addToView('successmsg', $msg );
+    }
+    
+    
+    /**
+     * Disable Caching
+     */
+    protected function disableCaching() {
+        $this->smarty->disableCaching();
     }
     
     /**

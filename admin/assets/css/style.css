@@ -5,18 +5,24 @@ img {border:none;}
 
 .successmsg {
   background-color: #BFDFBF;
-  margin: 10px 0px;
-  padding: 10px;
+  margin: 20px 0px;
+  padding: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  font-family:"Courier New", Courier, monospace;
+  font-stretch:extra-condensed;
+  font-size:18px;
 }
 
 .errormsg {
   background-color: #ff9494;
-  margin: 10px 0px;
-  padding: 10px;
+  margin: 20px 0px;
+  padding: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  font-family:"Courier New", Courier, monospace;
+  font-stretch:extra-condensed;
+  font-size:18px;
 }
 .text_center{text-align:center;}
 #mainMenu {list-style:none; float:left; font-family: 'Cuprum', arial, serif; margin-left:auto; margin-right:auto;}

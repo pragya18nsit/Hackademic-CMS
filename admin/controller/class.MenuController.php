@@ -19,16 +19,17 @@
      * Create Main Menu
      */
     protected function createMainMenu() {
-
-        $link1 = array ('title'=>'Link 1', 'url'=>'');
-        $link2 = array ('title'=>'Link 2', 'url'=>'');
-        $link3 = array ('title'=>'Link 3', 'url'=>'');
-        $link4 = array ('title'=>'Link 4', 'url'=>'');
-        $link5 = array ('title'=>'Link 5', 'url'=>'');
-        $link6 = array ('title'=>'Link 6', 'url'=>'');
-        $link7 = array ('title'=>'Link 7', 'url'=>'');
-        $link8 = array ('title'=>'Link 8', 'url'=>'');
-
+        
+        $link1 = array ('title'=>'Add a new article', 'url'=>'admin/pages/AddArticle.php');
+        $link2 = array ('title'=>'Article Manager', 'url'=>'admin/pages/ArticleManager.php');
+        $link3 = array ('title'=>'User Manager', 'url'=>'admin/pages/UserManager.php');
+	  	
+        $link4 = array ('title'=>'Add a new challenge', 'url'=>'admin/pages/AddChallange.php');
+        $link5 = array ('title'=>'Challenge Manager', 'url'=>'admin/pages/ChallengeManager.php');
+        $link6 = array ('title'=>'Global Configuration', 'url'=>'admin/pages/GlobalConfiguration.php');
+        $link7 = array ('title'=>'Add User', 'url'=>'admin/pages/AddUser.php');
+        $link8 = array ('title'=>'Logout', 'url'=>'admin/pages/logout.php');
+        
         $menu = array(
             $link1,
             $link2,

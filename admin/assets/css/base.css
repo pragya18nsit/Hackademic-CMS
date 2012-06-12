@@ -1,10 +1,10 @@
-html {height: 100%; background: #E6E6E6;}
+html {height: 100%; background-color:#33CCCC;}
 body {height:95%;}
 #main {
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
-    width: 95%;
+    width: 85%;
     min-height:620px;
    -webkit-border-radius: 30px;
 }
@@ -19,11 +19,9 @@ body {height:95%;}
 
 #login {
 text-align: center;
-background: #e3e3e3 ;
-border: 1px solid #CFCFCF;
-min-height: 250px;
-height: 250px;
-width: 705px;
+background:#33CCFF;
+min-height: 150px;
+width: 400px;
 margin:auto;
 margin-top:75px;
 -moz-border-radius-bottomright: 30px;
@@ -33,16 +31,15 @@ _height: 100%; /* IE FIX */
 
 
 #login h2 {
-padding: 15px 0 15px 75px;
+padding: 15px 15px 0px 75px;
 margin-top: 25px;
-font-size: 26px;
-background: #BFBFBF;
-color:#2F2F2F;
-border-top: 1px solid #9F9F9F;
-width: 676px;
+font-size: 16px;
+background:#0066FF;
+border-top: 0px solid;
+width: 310px;
 height: 30px;
 position: relative;
-left: -23px;
+left: 0px;
 text-align:center;
 }
 	
@@ -62,13 +59,18 @@ color: #555555;
 }
 
 #login input#submit {
-width: 15%;
+width: 25%;
 font-size: 14px;
+height:auto;}
+
+fieldset p{
+font-size: 14px;
+clear:both;
+list-style:none;
+padding-bottom:20px;
 }
 
-#login small {
-font-size: 14px;
-position: relative;
-top: -4px;
+#username {
+	float: left;
+	margin-left: 20px;
 }
-
