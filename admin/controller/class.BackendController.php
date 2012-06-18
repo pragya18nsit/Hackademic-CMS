@@ -14,7 +14,7 @@ require_once(HACKADEMIC_PATH."admin/controller/class.DashboardController.php");
 class BackendController extends HackademicBackendController {
     
     public function go() {
-        if (Session::isLoggedIn()) {
+        if ($this->isLoggedIn()) {
             // If logged in, we go to DashboardController
             $controller = new DashboardController;
             echo $controller->go();

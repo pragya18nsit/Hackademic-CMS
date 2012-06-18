@@ -1,13 +1,15 @@
-html {height: 100%; background-color:#33CCCC;}
+html {height: 100%; background-color:#E6E6E6;}
 body {height:95%;}
 #main {
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
-    width: 85%;
+    width: 95%;
     min-height:620px;
    -webkit-border-radius: 30px;
 }
+#usermessage {width: 60%; margin: auto;}
+
 .left {float: left;}
 .right {float: right;}
 .center {text-align: center}
@@ -17,60 +19,7 @@ body {height:95%;}
 #logo{height:68px;}
 #orglogo{height:30px;}
 
-#login {
-text-align: center;
-background:#33CCFF;
-min-height: 150px;
-width: 400px;
-margin:auto;
-margin-top:75px;
--moz-border-radius-bottomright: 30px;
--webkit-border-bottom-right-radius: 30px;
-_height: 100%; /* IE FIX */
-	}
-
-
-#login h2 {
-padding: 15px 15px 0px 75px;
-margin-top: 25px;
-font-size: 16px;
-background:#0066FF;
-border-top: 0px solid;
-width: 310px;
-height: 30px;
-position: relative;
-left: 0px;
-text-align:center;
-}
-	
-#login label {
-	font-size: 14px;
-	}
-
-
-
-#login input{
-width: 40%;
-height: 20px;
-position: relative;
-font-size: 14px;
-padding: 0 .3em;
-color: #555555;
-}
-
-#login input#submit {
-width: 25%;
-font-size: 14px;
-height:auto;}
-
-fieldset p{
-font-size: 14px;
-clear:both;
-list-style:none;
-padding-bottom:20px;
-}
-
 #username {
-	float: left;
-	margin-left: 20px;
+    float: left;
+    margin-left: 20px;
 }

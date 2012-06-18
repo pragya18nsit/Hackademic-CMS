@@ -1,28 +1,40 @@
 <?php
 require_once(HACKADEMIC_PATH."model/common/class.HackademicDB.php");
-class Article {
+class Challenge {
       public $id;
       public $title;
-      public $content;
       public $date_posted;
-      public $created_by;
-      public $last_modified;
-      public $last_modified_by;
-      public $ordering;
-      public $is_published;
+    
+     
        
-     public static function getArticle($id) {
+     public function doesChallengeExist($name){
+	global $db;
+	$sql = "SELECT * FROM challenges WHERE title='$name'";
+	$query = $db->query($sql);
+	$result = $db->numRows($query);
+	if ($result) {
+	    return true;
+	} else {
+	    return false;
+	}
+    } 
+       
+     public static function getChallenge($id) {
         
 	global $db;
-        $sql = "SELECT * FROM articles WHERE id='{$id}' LIMIT 1";
+        $sql = "SELECT * FROM challenges WHERE id='{$id}' LIMIT 1";
         $result_array=self::findBySQL($sql);
        // return !empty($result_array)?array_shift($result_array):false;
         return $result_array;
        }
+       
+    public static function insertId() {
+        global $db;
+        return $db->insertId();
+    }
     
      private static function findBySQL($sql) {
-	  
-         global $db;
+	   global $db;
          $result_set=$db->query($sql);
          $object_array=array();
          while($row=$db->fetchArray($result_set)) {
@@ -30,17 +42,18 @@ class Article {
         }
          return $object_array;
     }
-     public static function getNarticles ($start, $limit) {
+       
+     public static function getNchallenges($start, $limit) {
 	  
           global $db;
-          $sql= "SELECT * FROM articles LIMIT $start, $limit";
+          $sql= "SELECT * FROM challenges LIMIT $start, $limit";
           $result_array=self::findBySQL($sql);
           return $result_array;
 	}
-     public static function getNumberOfArticles() {
+     public static function getNumberOfChallenges() {
 	  
           global $db;
-          $sql = "SELECT COUNT(*) as num FROM articles";
+          $sql = "SELECT COUNT(*) as num FROM challenges";
           $query = $db->query($sql);
           $result = $db->fetchArray($query);
           return $result['num'];

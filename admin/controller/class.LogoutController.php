@@ -1,11 +1,19 @@
 <?php
-require_once(HACKADEMIC_PATH."admin/controller/class.BackendController.php");
+/**
+ *
+ * hackademic/admin/controller/class.LogoutController.php
+ *
+ * Controller for logging out of backend.
+ *
+ */
 require_once(HACKADEMIC_PATH."model/common/class.Session.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
+
 class LogoutController extends HackademicBackendController{
-              public function go(){
-			     Session::logout();
-			     $controller = new BackendController();
-                 return $controller->go();
-     }
-	 }
+
+    public function go() {
+        Session::logout();
+	header('Location:'.SOURCE_ROOT_PATH);
+    }
+
+}

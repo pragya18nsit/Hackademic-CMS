@@ -8,6 +8,7 @@
  * The object that manages logged-in Hackademic users' sessions via the web.
  *
  */
+require_once(HACKADEMIC_PATH."/model/common/class.User.php");
 class Session {
     
     /**
@@ -37,6 +38,7 @@ class Session {
      * @param Owner $owner
     */
     public static function completeLogin($owner) {
+	User::updateLastVisit($owner->username);
 	$_SESSION['hackademic_user'] = $owner->username;
         $_SESSION['hackademic_user_is_admin'] = $owner->is_admin;
     }

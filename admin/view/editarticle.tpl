@@ -1,5 +1,4 @@
 {include file="_header.tpl"}
-<div>{include file="_usermessage.tpl"}</div>
 <script type="text/javascript" src="{$site_root_path}extlib/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript">
 tinyMCE.init({
@@ -38,14 +37,22 @@ tinyMCE.init({
         }
 });
 </script>
-<form method="post" action="{$site_root_path}admin/pages/addarticle.php">
-         TITLE OF THE ARTICLE :<input type="text" name="title" /><br/>
-		 <label>IS PUBLISHED?:
-         Do you want to publish this article?</label>
-         <div class="input_field">  	<input type="radio" name="is_published" value="1"  /> yes
-			<input type="radio" name="is_published" value="0" /> no
-			</div>
-        <textarea name="content" style="width:100%"></textarea>
-        <button type="submit" name="submit" id="submit">Submit</button>
+<div>{include file="_usermessage.tpl"}</div>
+<form method="post" action="{$site_root_path}admin/pages/editarticle.php?id={$article->id}">
+         TITLE OF THE ARTICLE :<input type="text" name="title" value="{$article->title}"/><br>o
+		 <label>IS PUBLISHED?<br/>
+         Do you want to publish this article or not?</label>
+		 <div class="input_field">
+          {if $article->is_published}
+          <input type="radio" name="is_published" value="1" checked="true" /> yes
+          <input type="radio" name="is_published" value="0" /> no
+         {else}
+          <input type="radio" name="is_published" value="1"  /> yes
+          <input type="radio" name="is_published" value="0" checked="true" /> no
+          {/if}
+         </div>
+        <textarea name="content" style="width:100%">{$article->content}</textarea>
+        <button type="submit" name="submit" id="submit">Submit to update</button>
+        <button type="submit" name="deletesubmit" id="submit">Submit to delete article</button>
 </form>
 {include file="_footer.tpl"}

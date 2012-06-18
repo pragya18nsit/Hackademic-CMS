@@ -10,26 +10,27 @@
 <span class="small">Enter the name of user</span>
 </label>
 <input type="text" name="username" class="input_field"  />
-<label>Firstname:
-<span class="small">Enter the firstname</span>
+<label>Fullname:
+<span class="small">Enter your fullname</span>
 </label>
-<input type="text" name="first_name" class="input_field" />
-<label>Lastname:
-<span class="small">Enter the lastname</span>
-</label>
-<input type="text" name="last_name" class="input_field"  />
-
-<label>Email
+<input type="text" name="full_name" class="input_field" />
+<label>Email:
 <span class="small">Enter a valid address</span>
 </label>
 <input type="text" name="email" id="email" class="input_field" />
-
-
-
 <label>Password
 <span class="small">Min. size 6 chars</span>
 </label>
 <input type="password" name="password" id="password" class="input_field" />
+<label>Confirm Password
+<span class="small">Min. size 6 chars</span>
+</label>
+<input type="password" name="confirmpassword" id="password" class="input_field" />
+<label>Is activated?
+<span class="small">Is the user activated??</span></label>
+      <div class="input_field">  	<input type="radio" name="is_activated" value="1"  /> yes
+			<input type="radio" name="is_activated" value="0" /> no
+			</div>
 <label>Is administrator?
 <span class="small">Do you want to make this user an administrator?</span></label>
       <div class="input_field">  	<input type="radio" name="is_admin" value="1"  /> yes

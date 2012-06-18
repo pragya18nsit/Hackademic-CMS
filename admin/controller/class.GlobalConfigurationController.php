@@ -1,16 +1,17 @@
 <?php
 /**
  *
- * GlobalConfigurationController
+ * hackademic/admin/controller/class.GlobalConfigurationController.php
  *
- * Create Hackademic Main Menu
+ * Global Configuration Controller
  *
  */
- 
- require_once(HACKADEMIC_PATH."/controller/class.HackademicController.php");
- class GlobalConfigurationController extends HackademicController {
-    
-    public function go() {
-       
-    }
-    
+require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
+
+class GlobalConfigurationController extends HackademicBackendController {
+
+   public function go() {
+      
+   }
+   
+}

@@ -1,22 +1,16 @@
 {include file="_header.tpl"}
-  <div>{include file="_usermessage.tpl"}</div>
+<link rel="stylesheet" type="text/css" href="{$site_root_path}admin/assets/css/login.css" />
+<div id="usermessage">{include file="_usermessage.tpl"}</div>
 <div id="login">
- 
-	<form method="post" action="">
-    	<h2>Login enter your credentials </h2>
-        <p>
-        	<label for="name">Username: </label>
-            <input type="text" name="username" />
-        </p>
-        
-        <p>
-        	<label for="pwd">Password: </label>
-            <input type="password" name="pwd" />
-        </p>
-        
-        <p>
-        	<input type="submit" id="submit" value="Login" name="submit" />
-        </p>
+    <form method="post" action="{$site_root_path}admin/pages/login.php">
+    	<h1>Log In</h1>
+	<fieldset id="inputs">
+	    <input name="username" id="username" type="text" placeholder="Username" autofocus required>   
+	    <input name="pwd" id="password" type="password" placeholder="Password" required>
+	</fieldset>
+	<fieldset id="actions">
+            <input name="submit" type="submit" id="submit" value="Login">
+        </fieldset>
     </form>
-</div><!--end login-->
+</div>
 {include file="_footer.tpl"}

@@ -6,27 +6,27 @@
       <tr>
         <th width="93" height="117" scope="col">
 		
-		<a href="{$site_root_path}admin/pages/AddArticle.php"  title="add article">
+		<a href="{$site_root_path}admin/pages/addarticle.php"  title="add article">
 		<img src="{$site_root_path}admin/assets/images/addarticle.PNG" width="70" height="69" />addarticle</a></th>
         <th width="80" scope="col">
-          <p><a href="../pages/ArticleManager.php" title="articlemanager" target="_self">
+          <p><a href="{$site_root_path}admin/pages/articlemanager.php" title="articlemanager" target="_self">
 		  <p><img src="{$site_root_path}admin/assets/images/articlemanager.PNG" width="69" height="55"/></p>
 		  articlemanager</a></p></th>
         <th width="80" scope="col">
-         <p><a href="{$site_root_path}admin/pages/UserManager.php" title="add user">
+         <p><a href="{$site_root_path}admin/pages/usermanager.php" title="add user">
 		  <p><img src="{$site_root_path}admin/assets/images/usermanager.PNG" width="44" height="55" /></p>
 		  usermanager</a></p></th>
       </tr>
       <tr>
         <td height="83">
-          <p><a href="../pages/AddChallenge.php" title="add challenge">
+          <p><a href="{$site_root_path}admin/pages/addchallenge.php" title="add challenge">
 		  <p><img src="{$site_root_path}admin/assets/images/addchallenge.PNG" width="65" height="61" /></p>
 		  add challenge</a></p></td>
         <td> 
-		<a href="../pages/GlobalConfiguration.php" title="configuration">
+		<a href="{$site_root_path}admin/pages/globalconfiguration.php" title="configuration">
 		<img src="{$site_root_path}admin/assets/images/configuration.PNG" width="86" height="88" />
 		configuration</a></td>
-		<td><p><a href="../pages/ChallengeManager.php" title="challenge manager"> 
+		<td><p><a href="{$site_root_path}admin/pages/challengemanager.php" title="challenge manager"> 
 		 <img src="{$site_root_path}admin/assets/images/challengemanager.PNG" width="47" height="84"/>
 		 challengemanager</a></p></td>
       </tr>
