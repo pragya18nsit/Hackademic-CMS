@@ -10,5 +10,7 @@ if ($version[0] < 5) {
 }
 require_once('init.php');
 // This is only temporary as we are working on our first feature
-$location_to_redirect = SOURCE_ROOT_PATH."admin/";
-header("Location: $location_to_redirect");
+require_once(HACKADEMIC_PATH."controller/class.LoginController.php");
+
+$controller = new LoginController();
+ $controller->go();

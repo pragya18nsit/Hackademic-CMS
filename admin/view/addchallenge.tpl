@@ -1,24 +1,19 @@
-<html>
 {include file="_header.tpl"}
-<title>Upload a new challenge</title>
-<div>{include file="_usermessage.tpl"}</div>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-        <link rel="stylesheet" href="css/addchallenge.css" />
-<body>		
+<div class="main_content">
+<div class="header_bar">
+    <div class="page_title"><h3 class="left">Add Challenge</h3></div>
+</div><br/>
+<div id="usermessage">{include file="_usermessage.tpl"}</div>
 
-    <div id="container">
-	<h1>Upload A Zip File</h1>
-
-	<form enctype="multipart/form-data" action="" method="post">
-		<input type="file" name="fupload" /><br />
-		<input type="submit" value="Upload Zip File" />
-		<button type="submit" name="submit" id="submit">Submit</button>
+    <div id="upload_container">
+	<form id="input_form" enctype="multipart/form-data" action="" method="post">
+            <label>Select a zip file to upload</label><br/><br/>
+	    <input type="file" name="fupload" />
+	    <p class="submit"><input type="submit" value="Upload Zip File" /></p>
 	</form>
     </div>
-  </body>
+</div>
 {include file="_footer.tpl"}
-</html>
 
   
     

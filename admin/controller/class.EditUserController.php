@@ -48,7 +48,6 @@
                             User::deleteUser($id);
                             $this->addSuccessMessage("User has been deleted succesfully");
 
-
 			     header('Location:'.SOURCE_ROOT_PATH."admin/pages/usermanager.php?source=del");
 	                    }  
         

@@ -15,10 +15,10 @@ class ArticleBackend extends Article {
 	    return false;
 	}
        }
-     public static function updateArticle($id,$title,$content,$date_modified,$modified_by){
+     public static function updateArticle($id,$title,$content,$date_modified,$last_modified_by){
 	  
 	  global $db;
-	  $sql="UPDATE articles SET title='$title',content='$content',last_modified='$date_modified',last_modified_by='$modified_by'";
+	  $sql="UPDATE articles SET title='$title',content='$content',last_modified='$date_modified',last_modified_by='$last_modified_by'";
 	  $sql .= "WHERE id='$id'";
           $query = $db->query($sql);
           if ($db->affectedRows()) {

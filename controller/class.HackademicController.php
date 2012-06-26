@@ -8,6 +8,7 @@
  */
 require_once(HACKADEMIC_PATH."model/common/class.SmartyHackademic.php");
 require_once(HACKADEMIC_PATH."model/common/class.Session.php");
+require_once(HACKADEMIC_PATH."controller/class.FrontendMenuController.php");
 
 abstract class HackademicController {
     
@@ -58,6 +59,15 @@ abstract class HackademicController {
         }
         if ($this->isAdmin()) {
             $this->addToView('user_is_admin', true);
+        }
+	if (get_class($this) == 'LoginController');
+        elseif (!$this->isLoggedIn()) {
+            // Else if not logged in, go to login page
+            header('Location: '.SOURCE_ROOT_PATH."pages/login.php");
+        } else {
+            $menu=FrontendMenuController::go();
+	    $this->addToView('main_menu',$menu);   
+	    
         }
     }
     

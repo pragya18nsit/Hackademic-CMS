@@ -6,13 +6,13 @@
  * Create Hackademic Main Menu
  *
  */
-require_once(HACKADEMIC_PATH."/controller/class.HackademicController.php");
 
-class MenuController extends HackademicController {
+class FrontendMenuController{
     
     public function go() {
         $menu = self::createMainMenu();
-        self::generateMenu($menu);
+	return $menu;
+       // self::generateMenu($menu);
     }
     
     /**
@@ -20,14 +20,14 @@ class MenuController extends HackademicController {
      */
     protected function createMainMenu() {
         
-        $link1 = array ('title'=>'Add New Article', 'url'=>'admin/pages/addarticle.php');
-        $link2 = array ('title'=>'Article Manager', 'url'=>'admin/pages/articlemanager.php');
+        $link1 = array ('title'=>'user Article', 'url'=>'admin/pages/addarticle.php');
+        $link2 = array ('title'=>'user Article Manager', 'url'=>'admin/pages/articlemanager.php');
         $link3 = array ('title'=>'User Manager', 'url'=>'admin/pages/usermanager.php');
 	  	
         $link4 = array ('title'=>'Add New Challenge', 'url'=>'admin/pages/addchallenge.php');
         $link5 = array ('title'=>'Challenge Manager', 'url'=>'admin/pages/challengemanager.php');
         $link6 = array ('title'=>'Global Configuration', 'url'=>'admin/pages/globalconfiguration.php');
-        $link7 = array ('title'=>'Logout', 'url'=>'admin/pages/logout.php');
+        $link7 = array ('title'=>'Logout', 'url'=>'pages/logout.php');
         
         $menu = array(
             $link1,
@@ -44,7 +44,7 @@ class MenuController extends HackademicController {
     /**
      * Generate Menu
      */
-    protected function generateMenu($menu) {
+  /*  protected function generateMenu($menu) {
         $this->addToView('main_menu',$menu);        
-    }
+    }*/
 }

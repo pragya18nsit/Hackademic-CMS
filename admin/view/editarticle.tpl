@@ -37,22 +37,51 @@ tinyMCE.init({
         }
 });
 </script>
-<div>{include file="_usermessage.tpl"}</div>
+
+<div class="main_content">
+<div class="header_bar">
+    <div class="page_title"><h3 class="left">Edit Article</h3></div>
+</div><br/>
+<div id="usermessage">{include file="_usermessage.tpl"}</div>
+
+<div id="input_form">
 <form method="post" action="{$site_root_path}admin/pages/editarticle.php?id={$article->id}">
-         TITLE OF THE ARTICLE :<input type="text" name="title" value="{$article->title}"/><br>o
-		 <label>IS PUBLISHED?<br/>
-         Do you want to publish this article or not?</label>
-		 <div class="input_field">
-          {if $article->is_published}
-          <input type="radio" name="is_published" value="1" checked="true" /> yes
-          <input type="radio" name="is_published" value="0" /> no
-         {else}
-          <input type="radio" name="is_published" value="1"  /> yes
-          <input type="radio" name="is_published" value="0" checked="true" /> no
-          {/if}
-         </div>
-        <textarea name="content" style="width:100%">{$article->content}</textarea>
-        <button type="submit" name="submit" id="submit">Submit to update</button>
-        <button type="submit" name="deletesubmit" id="submit">Submit to delete article</button>
+    <table class="article_main">
+        <tr>
+            <td class="bottom"><label>Title</label></td>
+            <td class="bottom"><input type="text"name="title" value="{$article->title}"/></td>
+        </tr>
+        <tr>
+            <td><label>Publish Article</label></td>
+            <td class="radio">
+                {if $article->is_published}
+                    <input type="radio" name="is_published" value="1" checked="true" /> yes
+                    <input type="radio" name="is_published" value="0" /> no
+                {else}
+                    <input type="radio" name="is_published" value="1"  /> yes
+                    <input type="radio" name="is_published" value="0" checked="true" /> no
+                {/if}
+            </td>
+        </tr>
+        <tr>
+            <td colspan=2"><label>Write your Article</label></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea name="content" style="width:100%">{$article->content}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p class="submit">
+                    <input type="submit" name="submit"/>
+                    <input type="submit" name="deletesubmit" value="Delete Article"/>
+                </p>
+            </td>
+        </tr>
+    </table>
 </form>
+</div>
+
+</div>
 {include file="_footer.tpl"}

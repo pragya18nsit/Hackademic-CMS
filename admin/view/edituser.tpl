@@ -1,56 +1,68 @@
 {include file="_header.tpl"}
-<link rel="stylesheet" type="text/css" href="{$site_root_path}admin/assets/css/adduser.css"/>
-<div>{include file="_usermessage.tpl"}</div>
-<div id="stylized" class="myform">
-<form id="form" name="form" method="post" action="{$site_root_path}admin/pages/edituser.php?id={$user->id}">
-<h1>EDIT USER</h1>
-<label>Username:
-<span class="small">Enter the name of user</span>
-</label>
-<input type="text" name="username" class="input_field" value="{$user->username}" />
-<label>Fullname:
-<span class="small">Enter the fullname</span>
-</label>
-<input type="text" name="full_name" class="input_field" value="{$user->full_name}"/>
-<label>Email
-<span class="small">Enter a valid address</span>
-</label>
-<input type="text" name="email" id="email" class="input_field" value="{$user->email}" />
-<label>Password
-<span class="small">Min. size 6 chars</span>
-</label>
-<input type="password" name="password" id="password" class="input_field" />
 
-<label>Is activated?
-<span class="small">Do you want to activate this user or not?</span></label>
-<div class="input_field">
-    {if $user->is_activated}
-    <input type="radio" name="is_activated" value="1" checked="true" /> yes
-    <input type="radio" name="is_activated" value="0" /> no
-    {else}
-    <input type="radio" name="is_activated" value="1"  /> yes
-    <input type="radio" name="is_activated" value="0" checked="true" /> no
-    {/if}
-    
-</div>
+<div class="main_content">
+<div class="header_bar">
+    <div class="page_title"><h3 class="left">Edit User</h3></div>
+</div><br/>
+<div id="usermessage">{include file="_usermessage.tpl"}</div>
 
-<label>Is administrator?
-<span class="small">Do you want to make this user an administrator?</span></label>
-<div class="input_field">
-    {if $user->is_admin}
-    <input type="radio" name="is_admin" value="1" checked="true" /> yes
-    <input type="radio" name="is_admin" value="0" /> no
-    {else}
-    <input type="radio" name="is_admin" value="1"  /> yes
-    <input type="radio" name="is_admin" value="0" checked="true" /> no
-    {/if}
-    
-</div>
-
-<button type="submit" name="submit" id="submit">Edit user</button><hr/>
-<button type="submit" name="deletesubmit" delete="submit">Submit to delete user</button>
-<div class="spacer"></div>
-
+<div id="input_form">
+<form id="form" name="form" method="post">
+    <table class="user_add">
+	<tr>
+	    <td><label for="name">Username</label></td>
+	    <td><input type="text" name="username" value="{$user->username}"/></td>
+	</tr>
+	
+	<tr>
+	    <td><label>Full Name</label></td>
+	    <td><input type="text" name="full_name" value="{$user->full_name}"/></td>
+	</tr>
+	
+	<tr>
+	    <td><label>Email</label></td>
+	    <td><input type="text" name="email" id="email" value="{$user->email}"/></td>
+	</tr>
+	
+	<tr>
+	    <td><label>Password</label></td>
+	    <td><input type="password" name="password" id="password"/></td>
+	</tr>
+		
+	<tr>
+	    <td><label>Activate User</label></td>
+	    <td class="radio">
+		{if $user->is_activated}
+		    <input type="radio" name="is_activated" value="1" checked="true" />Yes
+		    <input type="radio" name="is_activated" value="0" />No
+		{else}
+		    <input type="radio" name="is_activated" value="1"  />Yes
+		    <input type="radio" name="is_activated" value="0" checked="true" />No
+		{/if}
+	    </td>
+	</tr>
+	
+	<tr>
+	    <td><label>Make the user an administrator</label></td>
+	    <td class="radio">
+		{if $user->is_admin}
+		    <input type="radio" name="is_admin" value="1" checked="true" />Yes
+		    <input type="radio" name="is_admin" value="0" />No
+		{else}
+		    <input type="radio" name="is_admin" value="1"  />Yes
+		    <input type="radio" name="is_admin" value="0" checked="true" />No
+		{/if}
+	    </td>
+	</tr>
+	
+	<tr class="submit_btn">
+	    <td colspan="2">
+		<p class="submit"><input type="submit" name="submit" id="submit" value="Add User" /></p>
+	    </td>
+	</tr>
+    </table>
 </form>
+</div>
+
 </div>
 {include file="_footer.tpl"}

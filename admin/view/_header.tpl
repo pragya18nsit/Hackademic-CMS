@@ -22,25 +22,20 @@
             </div>
         </div>
             <div class="center pad_25">
-                <a href="{$site_root_path}">
+                <a href="{$site_root_path}admin/">
                     <img id="logo" src="{$site_root_path}assets/images/logo.png">
                 </a>
             </div>     
 	</div>	
             <div id="content">
-			{if isset($main_menu)}
-				<div id="username" class="right">Hi {$logged_in_user},<br/></div>
+		{if isset($main_menu)}
+		<div id="username">Hi {$logged_in_user},</div><br/>
                 <!-- Main Menu -->
                 <div id="menuHeader"> 
                     <ul id="mainMenu">
-                        {foreach from=$main_menu item=foo}                        
-                        {if $foo['title']=='Login'}
-                        <li>
-                            {if isset($is_logged_in)}<div style="float:right">{include file="status.tpl"}</div>
-                            {else} <a href="{$site_root_path}session/login.php">Login</a>{/if}
-                        </li>
-                        {else}<li><a href="{$site_root_path}{$foo['url']}">{$foo['title']}</a></li>{/if}
+                        {foreach from=$main_menu item=foo}
+                        <li><a href="{$site_root_path}{$foo['url']}">{$foo['title']}</a></li>
                         {/foreach}
                     </ul>
-                </div>{/if}<br></div>
+                </div><br/>{/if}<br/>
  

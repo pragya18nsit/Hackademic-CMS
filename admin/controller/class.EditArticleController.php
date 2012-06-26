@@ -6,8 +6,8 @@
  * Create Hackademic Main Menu
  *
  */
- require_once(HACKADEMIC_PATH."model/common/class.Session.php");
-require_once(HACKADEMIC_PATH."admin/model/class.ArticleBackend.php");
+ require_once(HACKADEMIC_PATH."model/common/class.HackademicDB.php");
+ require_once(HACKADEMIC_PATH."admin/model/class.ArticleBackend.php");
  require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
  class EditArticleController extends HackademicBackendController {
     
@@ -31,12 +31,12 @@ require_once(HACKADEMIC_PATH."admin/model/class.ArticleBackend.php");
                             $this->title =$_POST['title'];
 			    $this->is_published=$_POST['is_published'];
                             $this->content = $_POST['content'];
-	                    $this->date_modified=date("Y-m-d H-i-s");
-			    $this->modified_by=Session::getLoggedInUser();
+	                    $this->last_modified=date("Y-m-d H-i-s");
+			    $this->last_modified_by=Session::getLoggedInUser();
 			    
 			    
                             
-                            ArticleBackend::updateArticle($id,$this->title,$this->content,$this->date_modified,$this->modified_by);
+                            ArticleBackend::updateArticle($id,$this->title,$this->content,$this->last_modified,$this->last_modified_by);
                             $this->addSuccessMessage("Article has been updated succesfully");
 			   }
                       }
