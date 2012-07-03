@@ -65,12 +65,12 @@ class AddUserController extends HackademicBackendController {
 		if (User::doesUserExist($username)) {
 	            $this->addErrorMessage("Username already exists");
 	        }
-		elseif(!($password==$confirmpassword)){
-			     $this->addErrorMessage("The two passwords dont match!");
+		elseif(!($password==$confirmpassword)) {
+		    $this->addErrorMessage("The two passwords dont match!");
 		}
-		/*elseif(!Utils::validate_email($email)){
-	            $this->addErroressage("Incorrect email id");
-	        }*/ else {
+		elseif(!Utils::validateEmail($email)) {
+	            $this->addErrorMessage("Please enter a valid email id");
+	        } else {
 	            $subject="Hackademic new account";
 		    $message="Hackademic account created succesfully";
 		    //Mailer::mail($email,$subject,$message);

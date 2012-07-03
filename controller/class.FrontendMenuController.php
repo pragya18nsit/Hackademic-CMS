@@ -35,7 +35,6 @@ class FrontendMenuController{
     public function go() {
         $menu = self::createMainMenu();
 	return $menu;
-       // self::generateMenu($menu);
     }
     
     /**
@@ -63,11 +62,4 @@ class FrontendMenuController{
         );
         return $menu;
     }
-    
-    /**
-     * Generate Menu
-     */
-  /*  protected function generateMenu($menu) {
-        $this->addToView('main_menu',$menu);        
-    }*/
 }

@@ -17,15 +17,15 @@ img {border:none;}
 }
 
 .errormsg {
-  background-color: #ff9494;
-  margin: 0px;
-  margin-bottom: 20px;
-  padding: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  font-family:"Courier New", Courier, monospace;
-  font-stretch:extra-condensed;
-  font-size:18px;
+    background-color: #ff9494;
+    margin: 0px;
+    margin-bottom: 20px;
+    padding: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font-family:"Courier New", Courier, monospace;
+    font-stretch:extra-condensed;
+    font-size:18px;
 }
 .text_center{text-align:center;}
 

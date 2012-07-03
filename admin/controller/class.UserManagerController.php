@@ -36,10 +36,10 @@ require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController
 class UserManagerController extends HackademicBackendController {
 	
     public function go() {
-	if (isset($_GET['source']) && $_GET['source']=="del"){
-        $this->addSuccessMessage("User has been deleted succesfully");
-        } elseif (isset($_GET['source']) && $_GET['source']=="add"){
-        $this->addSuccessMessage("User has been added succesfully");
+	if (isset($_GET['source']) && $_GET['source']=="del") {
+	    $this->addSuccessMessage("User has been deleted succesfully");
+        } elseif (isset($_GET['source']) && $_GET['source']=="add") {
+	    $this->addSuccessMessage("User has been added succesfully");
         }
 	
 	$limit = 3; 

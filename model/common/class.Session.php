@@ -87,14 +87,14 @@ class Session {
     }
 
     /**
-     *
      * @param str $pwd Password
      * @return str SHA1-hashed password
      */
     private function sha1pwd($pwd) {
         return sha1($pwd);
     }
-/**
+    
+    /**
      * @return str Currently logged-in SocialCalc username (email address)
      */
     public static function getLoggedInUser() {

@@ -34,8 +34,8 @@ require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController
 
 class GlobalConfigurationController extends HackademicBackendController {
 
-   public function go() {
-      
-   }
+    public function go() {
+       
+    }
    
 }

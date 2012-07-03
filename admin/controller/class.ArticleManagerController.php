@@ -36,9 +36,9 @@ require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController
 class ArticleManagerController extends HackademicBackendController {
     
     public function go() {
-	if (isset($_GET['source']) && $_GET['source']=="del"){
-        $this->addSuccessMessage("Article has been deleted succesfully");
-       }
+	if (isset($_GET['source']) && $_GET['source']=="del") {
+            $this->addSuccessMessage("Article has been deleted succesfully");
+        }
         $limit = 3; 
 	$total_pages = ArticleBackend::getNumberOfArticles();
 	$targetpage = "http://localhost/hackademic/admin/pages/articlemanager.php";

@@ -51,14 +51,13 @@ class User {
         return !empty($result_array)?array_shift($result_array):false;
     }
     
-     public static function getUser($id) {
-     
+    public static function getUser($id) {
 	global $db;
-               $sql = "SELECT * FROM users WHERE id='{$id}' LIMIT 1";
-               $result_array=self::findBySQL($sql);
-               // return !empty($result_array)?array_shift($result_array):false;
-               return $result_array;
-     }   
+	$sql = "SELECT * FROM users WHERE id='{$id}' LIMIT 1";
+	$result_array=self::findBySQL($sql);
+	// return !empty($result_array)?array_shift($result_array):false;
+	return $result_array;
+    }   
     
     private static function findBySQL($sql) {
         global $db;
@@ -71,7 +70,6 @@ class User {
     }
     
     public static function addUser($username,$full_name,$email,$password,$joined,$is_activated,$is_admin){
-	
         global $db;
         $password = md5($password);
 	$sql="INSERT INTO users (username,full_name,email,password,joined,is_activated,is_admin)";
@@ -124,37 +122,34 @@ class User {
 	}
     }
     
-     public static function updateUser($id,$username,$full_name,$email,$password,$is_activated,$is_admin){
-	  
-	  global $db;
-	  if($password==''){
-	  $sql="UPDATE users SET username='$username',full_name='$full_name',email='$email',is_activated='$is_activated',is_admin='$is_admin'";
-	  $sql .= " WHERE id=$id";
-     }
-     else{
-	  $password=md5($password);
-	  $sql="UPDATE users SET username='$username',full_name='$full_name',email='$email',password='$password',is_activated='$is_activated',is_admin='$is_admin'";
-	  $sql .= " WHERE id=$id";
-     }
-          $query = $db->query($sql);
-          if ($db->affectedRows()) {
-	    return true;
-          } else {
-	    return false;
+    public static function updateUser($id,$username,$full_name,$email,$password,$is_activated,$is_admin){
+	global $db;
+	if($password=='') {
+	$sql="UPDATE users SET username='$username',full_name='$full_name',email='$email',is_activated='$is_activated',is_admin='$is_admin'";
+	$sql .= " WHERE id=$id";
+	} else {
+	    $password=md5($password);
+	    $sql="UPDATE users SET username='$username',full_name='$full_name',email='$email',password='$password',is_activated='$is_activated',is_admin='$is_admin'";
+	    $sql .= " WHERE id=$id";
 	}
-       }
+	$query = $db->query($sql);
+	if ($db->affectedRows()) {
+	  return true;
+	} else {
+	  return false;
+	}
+    }
        
-      public static function deleteUser($id){
-	  
-	  global $db;
-	  $sql="DELETE FROM users WHERE id='$id'";
-          $query = $db->query($sql);
-          if ($db->affectedRows()) {
-	    return true;
-          } else {
-	    return false;
+    public static function deleteUser($id){
+	global $db;
+	$sql="DELETE FROM users WHERE id='$id'";
+	$query = $db->query($sql);
+	if ($db->affectedRows()) {
+	  return true;
+	} else {
+	  return false;
 	}
-       }
+    }
        
     public static function instantiate($record) {
         $object=new self;
