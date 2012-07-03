@@ -31,18 +31,18 @@
  *
  */
 require_once(HACKADEMIC_PATH."model/common/class.Session.php");
-require_once(HACKADEMIC_PATH."controller/class.DashboardController.php");
+require_once(HACKADEMIC_PATH."controller/class.LandingPageController.php");
 require_once(HACKADEMIC_PATH."controller/class.HackademicController.php");
 require_once(HACKADEMIC_PATH."model/common/class.User.php");
 
 class LoginController extends HackademicController {
 
     public function go() {
-	$this->setViewTemplate('user_login.tpl');
+	$this->setViewTemplate('landingpage.tpl');
 	$this->addPageTitle('Log in');
         
 	if ($this->isLoggedIn()) {
-            $controller = new DashboardController();
+            $controller = new LandingPageController();
             return $controller->go();
         } else  {
             if (isset($_POST['submit']) && $_POST['submit']=='Login'
@@ -69,7 +69,7 @@ class LoginController extends HackademicController {
                     }  else {
                         // this sets variables in the session
 		        $session->completeLogin($user);
-                        $controller = new DashboardController(true);
+                        $controller = new LandingPageController(true);
                         return $controller->go();
                     }
                 }

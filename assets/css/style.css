@@ -1,0 +1,30 @@
+html {background: #E6E6E6;}
+body {font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+#main {background: white;}
+img {border:none;}
+.small {font-size: 0.7em;}
+
+.successmsg {
+    background-color: #BFDFBF;
+    margin: 0px;
+    margin-bottom: 20px;
+    padding: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font-family:"Courier New", Courier, monospace;
+    font-stretch:extra-condensed;
+    font-size:18px;
+}
+
+.errormsg {
+    background-color: #ff9494;
+    margin: 0px;
+    margin-bottom: 20px;
+    padding: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font-family:"Courier New", Courier, monospace;
+    font-stretch:extra-condensed;
+    font-size:18px;
+}
+.text_center{text-align:center;}

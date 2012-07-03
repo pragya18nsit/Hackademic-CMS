@@ -34,5 +34,19 @@ CREATE TABLE hackademic.challenges (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     title varchar(255),
     date_posted datetime NOT NULL
-)
+);
 
+CREATE TABLE hackademic.groups (
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
+    name varchar(255) NOT NULL,
+    date_created datetime NOT NULL,
+    archive int(1) DEFAULT 0
+);
+
+CREATE TABLE hackademic.group_memberships (
+    id int(11) UNIQUE,
+    user_id int(11) NOT NULL ,
+    group_id int(11) NOT NULL ,
+    date_created datetime NOT NULL,
+    PRIMARY KEY (user_id,group_id)
+)

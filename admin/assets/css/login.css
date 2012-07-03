@@ -7,7 +7,7 @@
     background-image: -ms-linear-gradient(top, #fff, #eee);
     background-image: -o-linear-gradient(top, #fff, #eee);
     background-image: linear-gradient(top, #fff, #eee);  
-    height: 240px;
+    min-height: 240px;
     width: 400px;
     margin: -120px 0 0 -230px;
     padding: 30px;

@@ -39,11 +39,16 @@ class ArticleManagerController extends HackademicBackendController {
 	if (isset($_GET['source']) && $_GET['source']=="del") {
             $this->addSuccessMessage("Article has been deleted succesfully");
         }
-        $limit = 3; 
+        $limit = 3;
+	if (isset($_GET['search']) && isset($_GET['category']) && $_GET['search']!='' && $_GET['category']!='') {
+             $total_pages = ArticleBackend::getNumberofArticles($_GET['search'], $_GET['category']);
+        } else {
 	$total_pages = ArticleBackend::getNumberOfArticles();
+	}
 	$targetpage = "http://localhost/hackademic/admin/pages/articlemanager.php";
 	$stages = 3;
 	$page=0;
+	
 	if(isset($_GET['page'])) {
 	    $page=$_GET['page'];
 	}
@@ -69,8 +74,11 @@ class ArticleManagerController extends HackademicBackendController {
             'stages' => $stages,
             'last_page_m1' => $LastPagem1
         );
-        
-        $articles = ArticleBackend::getNarticles($start, $limit);
+        if (isset($_GET['search']) && isset($_GET['category']) && $_GET['search']!='' && $_GET['category']!='') {
+             $articles = ArticleBackend::getNArticles($start,$limit,$_GET['search'],$_GET['category']);
+        } else {
+        $articles = ArticleBackend::getNarticles($start,$limit);
+	}
 	$this->addToView('articles', $articles);
 	$this->addToView('total_pages', $total_pages);
         $this->addToView('pagination', $pagination);

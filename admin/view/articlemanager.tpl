@@ -5,9 +5,29 @@
     <div class="header_bar">
 	<div class="page_title"><h3 class="left">Article Manager</h3></div>
     </div><br/>
+    
+    <div id="input_form">
+	<form method ="get">
+	    <table class="add_form">
+		<tr>
+		    <td><input type="text" name="search" id="search"/></td>
+		    <td>
+			<select name="category">
+			    <option value="title">Title</option> 
+			    <option value="created_by">Author</option> 
+			    <option value="last_modified_by">Last modified by</option> 
+			</select>
+		    </td>
+		    <td class="submit_btn">
+			<p class="submit"><input type="submit" name="submit" id="submit" value="search" /></p>
+		    </td>
+		</tr>
+	    </table>
+	</form>
+    </div>
+    
     <div id="usermessage">{include file="_usermessage.tpl"}</div>
     <div id="paginate_div">{include file="_pagination.tpl"}</div>
-    
     <table class="manager_table">
 	<thead> 
 	    <th>Title</th>
@@ -30,5 +50,6 @@
 	    </tr>
 	{/foreach}
     </table>
+	 
 </div>
 {include file="_footer.tpl"}

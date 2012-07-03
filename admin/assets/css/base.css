@@ -21,7 +21,11 @@ body {height:95%;}
 
 #username {
     float: left;
+    margin-top:15px;
     margin-left: 20px;
+    margin-bottom: -10px;
+    font-size:13px;
+    font-weight:bold;
 }
 
 .manager_table {
@@ -57,7 +61,9 @@ body {height:95%;}
 }
 
 .action_button {display: block; margin-right: 10px;}
-.action_image {height: 40px;}
+.action_image {height: 28px;}
+.submenu_btn {width: 80px;}
+.submenu_btn a {text-decoration: none;}
 .page_title {margin-left: 10px; display: block;}
 
 #paginate_div {margin: auto; text-align: center;}
@@ -82,3 +88,4 @@ body {height:95%;}
 
 .article_main {width:90%; margin: auto; height:850px;}
 #upload_container {width: 90%; margin: auto;}
+.add_form {width:90%; margin: auto;}

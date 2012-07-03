@@ -95,17 +95,25 @@ class User {
 	}
     }
     
-    public static function getNumberOfUsers() {
+    public static function getNumberOfUsers($search=null,$category=null) {
         global $db;
+	if ($search != null && $category != null) {
+        $sql = "SELECT COUNT(*) as num FROM users WHERE $category LIKE '%$search%'"; 
+        } else {
         $sql = "SELECT COUNT(*) as num FROM users";
+	}
         $query = $db->query($sql);
         $result = $db->fetchArray($query);
         return $result['num'];
     }
     
-    public static function getNUsers ($start, $limit) {
+    public static function getNUsers ($start, $limit,$search=null,$category=null) {
         global $db;
+	if ($search != null && $category != null) {
+        $sql = "SELECT * FROM users WHERE $category LIKE '%$search%' LIMIT $start, $limit"; 
+        } else {
         $sql= "SELECT * FROM users ORDER BY id LIMIT $start, $limit";
+	}
         $result_array=self::findBySQL($sql);
         return $result_array;
     }

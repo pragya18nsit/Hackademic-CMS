@@ -1,7 +1,7 @@
 {include file="_header.tpl"}
 <link rel="stylesheet" type="text/css" href="{$site_root_path}admin/assets/css/login.css" />
-<div id="usermessage">{include file="_usermessage.tpl"}</div>
 <div id="login">
+    <div id="usermessage">{include file="_usermessage.tpl"}</div>
     <form method="post" action="{$site_root_path}admin/pages/login.php">
     	<h1>Log In</h1>
 	<fieldset id="inputs">

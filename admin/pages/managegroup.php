@@ -1,9 +1,9 @@
 <?php
 /**
  *
- * Hackademic-CMS/admin/index.php
+ * Hackademic-CMS/admin/pages/managegroup.php
  *
- * This page is the entry point for Hackademic CMS admin
+ * This page calls the Group Manager Controller
  *
  * Copyright (c) 2012 OWASP
  *
@@ -29,8 +29,8 @@
  * @copyright 2012 OWASP
  *
  */
-require_once("../init.php");
-require_once(HACKADEMIC_PATH."admin/controller/class.BackendController.php");
+require_once("../../init.php");
+require_once(HACKADEMIC_PATH."admin/controller/class.GroupManagerController.php");
 
-$controller = new BackendController();
+$controller = new GroupManagerController();
 echo $controller->go();

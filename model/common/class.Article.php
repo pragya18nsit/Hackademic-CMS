@@ -61,20 +61,28 @@ class Article {
         return $object_array;
     }
     
-    public static function getNarticles ($start, $limit) {
+    public static function getNarticles ($start, $limit,$search=null,$category=null) {
         global $db;
+	if ($search != null && $category != null) {
+        $sql = "SELECT * FROM articles WHERE $category LIKE '%$search%' LIMIT $start, $limit"; 
+        } else {
         $sql= "SELECT * FROM articles LIMIT $start, $limit";
+	}
         $result_array=self::findBySQL($sql);
         return $result_array;
     }
     
-    public static function getNumberOfArticles() {
+    public static function getNumberOfArticles($search=null,$category=null) {
         global $db;
+	if ($search != null && $category != null) {
+        $sql = "SELECT COUNT(*) as num FROM articles WHERE $category LIKE '%$search%'"; 
+        } else {
         $sql = "SELECT COUNT(*) as num FROM articles";
+	}
         $query = $db->query($sql);
         $result = $db->fetchArray($query);
         return $result['num'];
-    }
+      }
      
     public static function instantiate($record) {
         $object=new self;

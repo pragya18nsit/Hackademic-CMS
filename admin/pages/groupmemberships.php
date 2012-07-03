@@ -1,10 +1,9 @@
 <?php
 /**
  *
- * Hackademic-CMS/controller/class.DashboardController.php
+ * Hackademic-CMS/admin/pages/groupmemberships.php
  *
- * Hackademic Dashboard Controller
- * Class for generating the home page of the website
+ * This page calls the Group Memberships Controller
  *
  * Copyright (c) 2012 OWASP
  *
@@ -30,12 +29,8 @@
  * @copyright 2012 OWASP
  *
  */
-require_once(HACKADEMIC_PATH."controller/class.HackademicController.php");
+require_once("../../init.php");
+require_once(HACKADEMIC_PATH."admin/controller/class.GroupMembershipsController.php");
 
-class DashboardController extends HackademicController {
-    
-    public function go() {
-        $this->setViewTemplate('user_dashboard.tpl');
-	$this->generateView();
-    }
-}
+$controller = new GroupMembershipsController();
+echo $controller->go();

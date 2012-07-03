@@ -1,9 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/admin/index.php
+ * Hackademic-CMS/controller/class.LandingPageController.php
  *
- * This page is the entry point for Hackademic CMS admin
+ * Hackademic Landing Page Controller
+ * Class for generating the home page of the website
  *
  * Copyright (c) 2012 OWASP
  *
@@ -29,8 +30,15 @@
  * @copyright 2012 OWASP
  *
  */
-require_once("../init.php");
-require_once(HACKADEMIC_PATH."admin/controller/class.BackendController.php");
+require_once(HACKADEMIC_PATH."controller/class.HackademicController.php");
 
-$controller = new BackendController();
-echo $controller->go();
+class LandingPageController extends HackademicController {
+    
+    public function go() {
+	if ($this->isLoggedIn()) {
+	    $this->addToView('username', $this->getLoggedInUser());
+	}
+        $this->setViewTemplate('landingpage.tpl');
+	$this->generateView();
+    }
+}

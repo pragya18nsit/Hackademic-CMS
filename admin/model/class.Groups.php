@@ -1,11 +1,11 @@
 <?php
 /**
  *
- * Hackademic-CMS/model/common/class.Challenge.php
+ * Hackademic-CMS/admin/model/class.Groups.php
  *
- * Hackademic Challenge Class
- * Class for Hackademic's Challenge Object
- * 
+ * Hackademic Groups Model
+ * This class is for interacting with the Groups table in the DB
+ *
  * Copyright (c) 2012 OWASP
  *
  * LICENSE:
@@ -31,38 +31,59 @@
  *
  */
 require_once(HACKADEMIC_PATH."model/common/class.HackademicDB.php");
-class Challenge {
+
+class Groups {
+     
     public $id;
-    public $title;
-    public $date_posted;
-    
-    public function doesChallengeExist($name){
+    public $name;
+    public $date_created;
+    public $archive;
+     
+    public static function addGroup($groupname, $date_created) {
 	global $db;
-	$sql = "SELECT * FROM challenges WHERE title='$name'";
+	$sql = "INSERT INTO groups(name,date_created)";
+	$sql .= "VALUES ('$groupname','$date_created')";
 	$query = $db->query($sql);
-	$result = $db->numRows($query);
-	if ($result) {
+	if ($db->affectedRows()) {
 	    return true;
 	} else {
 	    return false;
 	}
-    } 
-       
-    public static function getChallenge($id) {
+    }
+     
+    public static function getNumberOfGroups($search=null,$category=null) {
 	global $db;
-        $sql = "SELECT * FROM challenges WHERE id='{$id}' LIMIT 1";
-        $result_array=self::findBySQL($sql);
-        // return !empty($result_array)?array_shift($result_array):false;
+        if ($search != null && $category != null) {
+        $sql = "SELECT COUNT(*) as num FROM groups WHERE $category LIKE '%$search%'"; 
+        } else {
+	$sql = "SELECT COUNT(*) as num FROM groups";
+        }
+	$query = $db->query($sql);
+	$result = $db->fetchArray($query);
+	return $result['num'];
+    }
+     
+    public static function getAllGroups() {
+	global $db;
+	$sql = "SELECT * FROM groups";
+	$query = $db->query($sql);
+	$result_array=self::findBySQL($sql);
         return $result_array;
     }
-       
-    public static function insertId() {
-        global $db;
-        return $db->insertId();
-    }
     
+    public static function getNGroups ($start, $limit,$search=null,$category=null) {
+        global $db;
+        if ($search != null && $category != null) {
+        $sql = "SELECT * FROM groups WHERE $category LIKE '%$search%' LIMIT $start, $limit"; 
+        } else {
+        $sql= "SELECT * FROM groups ORDER BY id LIMIT $start, $limit";
+        }
+        $result_array=self::findBySQL($sql);
+        return $result_array;
+    }
+     
     private static function findBySQL($sql) {
-	global $db;
+        global $db;
         $result_set=$db->query($sql);
         $object_array=array();
         while($row=$db->fetchArray($result_set)) {
@@ -70,30 +91,7 @@ class Challenge {
         }
         return $object_array;
     }
-       
-    public static function getNchallenges($start, $limit,$search=null,$category=null) {
-        global $db;
-	if ($search != null && $category != null) {
-        $sql = "SELECT * FROM challenges WHERE $category LIKE '%$search%' LIMIT $start, $limit"; 
-        } else {
-        $sql= "SELECT * FROM challenges LIMIT $start, $limit";
-	}
-        $result_array=self::findBySQL($sql);
-        return $result_array;
-    }
-    
-    public static function getNumberOfChallenges($search=null,$category=null) {
-        global $db;
-	if ($search != null && $category != null) {
-        $sql = "SELECT COUNT(*) as num FROM challenges WHERE $category LIKE '%$search%'"; 
-        } else {
-        $sql = "SELECT COUNT(*) as num FROM challenges";
-	}
-        $query = $db->query($sql);
-        $result = $db->fetchArray($query);
-        return $result['num'];
-    }
-    
+     
     public static function instantiate($record) {
         $object=new self;
         foreach($record as $attribute=>$value) {
@@ -103,9 +101,32 @@ class Challenge {
         }
         return $object;
     }
-	
+    
     private function hasAttribute($attribute) {
         $object_vars=get_object_vars($this);
         return array_key_exists($attribute,$object_vars);
+    }
+    
+    public static function deleteGroup($id){
+	global $db;
+	$sql="DELETE FROM groups WHERE id='$id'";
+	$query = $db->query($sql);
+	if ($db->affectedRows()) {
+	    return true;
+	} else {
+	    return false;
+	}
+    }
+    
+    public static function archiveGroup($id){
+	global $db;
+        $sql="UPDATE groups SET archive=1 ";
+	$sql .="WHERE id='$id'";
+        $query = $db->query($sql);
+	if ($db->affectedRows()) {
+	    return true;
+	} else {
+	    return false;
+	}
     }
 }

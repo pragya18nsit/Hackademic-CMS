@@ -35,8 +35,7 @@ if ($version[0] < 5) {
     die();
 }
 require_once('init.php');
-// This is only temporary as we are working on our first feature
-require_once(HACKADEMIC_PATH."controller/class.LoginController.php");
+require_once(HACKADEMIC_PATH."controller/class.LandingPageController.php");
 
-$controller = new LoginController();
-$controller->go();
+$controller = new LandingPageController();
+echo $controller->go();

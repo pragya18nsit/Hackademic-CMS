@@ -3,7 +3,7 @@
 
 <div class="main_content">
     <div class="header_bar">
-	<div class="page_title"><h3 class="left">Challenge Manager</h3></div>
+	<div class="page_title"><h3 class="left">Group Manager</h3></div>
     </div><br/>
     <div id="input_form">
 	<form method ="get">
@@ -12,7 +12,7 @@
 		    <td><input type="text" name="search" id="search"/></td>
 		    <td>
 			<select name="category">
-			    <option value="title">Title</option>
+			    <option value="name">Group Name</option> 
 			</select>
 		    </td>
 		    <td class="submit_btn">
@@ -28,17 +28,21 @@
     
     <table class="manager_table">
 	<thead> 
-	    <th>Challenge Title</th>
-	    <th>Date posted</th>
-	    <th>DELETE?</th>
+	    <th>Group name</th>
+	    <th>Date created</th>
+	    <th>Archive?</th>
+	    <th>Delete?</th>
 	</thead>
-	{foreach from=$challenges item=challenge}
+	{foreach from=$groups item=group}
 	    <tr>
-		<td>{$challenge->title}</a></td>
-		<td>{$challenge->date_posted|date_format}</td>
+		<td>{$group->name}</a></td>
+		<td>{$group->date_created|date_format}</td>
 		<td>   
-		    <a href="{$site_root_path}admin/pages/challengemanager.php?id={$challenge->id}&action=del">Click to delete article!</a>
-		</td>			
+		    <a href="{$site_root_path}admin/pages/managegroup.php?id={$group->id}&source=arch">Click to archive group!</a>
+		</td>
+		<td>   
+		    <a href="{$site_root_path}admin/pages/managegroup.php?id={$group->id}&source=del">Click to delete group!</a>
+		</td>		
 	    </tr>
 	{/foreach}
     </table>

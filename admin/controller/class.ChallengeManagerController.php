@@ -74,8 +74,11 @@ class ChallengeManagerController extends HackademicBackendController {
             'stages' => $stages,
             'last_page_m1' => $LastPagem1
         );
-	
+        if (isset($_GET['search']) && isset($_GET['category']) && $_GET['search']!='' && $_GET['category']!='') {
+          $challenges = ChallengeBackend::getNchallenges($start,$limit,$_GET['search'],$_GET['category']);
+        } else {
         $challenges = ChallengeBackend::getNchallenges($start, $limit);
+        }
 	$this->addToView('challenges', $challenges);
 	$this->addToView('total_pages', $total_pages);
 	$this->addToView('pagination', $pagination);
