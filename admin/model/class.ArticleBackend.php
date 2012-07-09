@@ -37,6 +37,7 @@ class ArticleBackend extends Article {
     
     public static function addArticle($title, $content, $date_posted, $created_by, $is_published) {
         global $db;
+	$content = mysql_escape_string($content);
 	$sql="INSERT INTO articles(title,content,date_posted,created_by,is_published)";
 	$sql .= "VALUES ('$title','$content','$date_posted','$created_by','$is_published')";
         $query = $db->query($sql);

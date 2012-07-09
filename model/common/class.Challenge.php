@@ -35,10 +35,14 @@ class Challenge {
     public $id;
     public $title;
     public $date_posted;
+    public $pkg_name;
+    public $description;
+    public $author;
+    public $category;
     
     public function doesChallengeExist($name){
 	global $db;
-	$sql = "SELECT * FROM challenges WHERE title='$name'";
+	$sql = "SELECT * FROM challenges WHERE pkg_name='$name'";
 	$query = $db->query($sql);
 	$result = $db->numRows($query);
 	if ($result) {

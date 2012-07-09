@@ -19,17 +19,10 @@ body {height:95%;}
 #logo{height:68px;}
 #orglogo{height:30px;}
 
-#mainTable {
-    margin:auto;
-    margin-top:2%;
-    width: 97%;
-}
-#mainTable #left_bar {
-    width:20%;
-}
-#mainTable #main_content {
-    width:60%;
-}
-#mainTable #right_bar {
-    width: 20%;
-}
+#mainTable { margin:auto; margin-top:2%; width: 97%;}
+#articleTable { margin:auto; width: 97%;}
+#mainTable #left_bar { width:20%;}
+#mainTable #main_content { width:60%;}
+#mainTable #right_bar { width: 20%;}
+.width100 {width: 100%;}
+#paginate_div {margin: auto; text-align: center;}

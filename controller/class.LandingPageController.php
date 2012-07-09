@@ -31,13 +31,50 @@
  *
  */
 require_once(HACKADEMIC_PATH."controller/class.HackademicController.php");
+require_once(HACKADEMIC_PATH."model/common/class.Article.php");
+require_once(HACKADEMIC_PATH."controller/class.FrontendMenuController.php");
 
 class LandingPageController extends HackademicController {
     
     public function go() {
+	 $limit = 3;
+	$targetpage = "http://localhost/hackademic/index.php";
+	$stages = 3;
+	$page=0;
+	
+	if(isset($_GET['page'])) {
+	    $page=$_GET['page'];
+	}
+	if($page) {
+	    $start = ($page - 1) * $limit; 
+	} else {
+	    $start = 0;
+	}	
+        $total_pages = Article::getNumberOfArticles();
+	// Initial page num setup
+	if ($page == 0){$page = 1;}
+	$prev = $page - 1;	
+	$next = $page + 1;							
+	$lastpage = ceil($total_pages/$limit);		
+	$LastPagem1 = $lastpage - 1;					
+	
+        $pagination = array (
+            'lastpage' => $lastpage,
+            'page' => $page,
+            'targetpage' => $targetpage,
+            'prev' => $prev,
+            'next' => $next,
+            'stages' => $stages,
+            'last_page_m1' => $LastPagem1
+        );
+	FrontendMenuController::go();
+	$articles=Article::getAllArticles($start,$limit);
 	if ($this->isLoggedIn()) {
 	    $this->addToView('username', $this->getLoggedInUser());
 	}
+	$this->addToView('articles', $articles);
+	$this->addToView('total_pages', $total_pages);
+        $this->addToView('pagination', $pagination);
         $this->setViewTemplate('landingpage.tpl');
 	$this->generateView();
     }

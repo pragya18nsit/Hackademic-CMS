@@ -1,5 +1,5 @@
 {include file="_header.tpl"}
-<link rel="stylesheet" type="text/css" href="{$site_root_path}admin/assets/css/pagination.css"/>
+<link rel="stylesheet" type="text/css" href="{$site_root_path}assets/css/pagination.css"/>
 
 <div class="main_content">
     <div class="header_bar">

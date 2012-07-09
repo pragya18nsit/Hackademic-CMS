@@ -69,12 +69,18 @@ class User {
         return $object_array;
     }
     
-    public static function addUser($username,$full_name,$email,$password,$joined,$is_activated,$is_admin){
+    public static function addUser($username,$full_name,$email,$password,$joined,$is_activated=null,$is_admin=null){
         global $db;
         $password = md5($password);
+	if($is_activated!=null && $is_admin!=null){
 	$sql="INSERT INTO users (username,full_name,email,password,joined,is_activated,is_admin)";
 	$sql .= "VALUES ('$username','$full_name','$email','$password','$joined','$is_activated','$is_admin')";
-        $query = $db->query($sql);
+	}
+	else{
+	$sql="INSERT INTO users (username,full_name,email,password,joined)";
+	$sql .= "VALUES ('$username','$full_name','$email','$password','$joined')";
+        }
+	$query = $db->query($sql); 
         if ($db->affectedRows()) {
 	    return true;
         } else {

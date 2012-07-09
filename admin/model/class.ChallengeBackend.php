@@ -34,10 +34,11 @@
 require_once(HACKADEMIC_PATH."/model/common/class.Challenge.php");
 class ChallengeBackend extends Challenge{
     
-    public static function addchallenge($title,$date_posted){
+    public static function addchallenge($title,$pkg_name,$description,$author,$category,$date_posted){
 	global $db;
-	$sql="INSERT INTO challenges(title,date_posted)";
-	$sql .= "VALUES ('$title','$date_posted')";
+	$description=mysql_escape_string($description);
+	$sql="INSERT INTO challenges(title,pkg_name,description,author,category,date_posted)";
+	$sql .= "VALUES ('$title','$pkg_name','$description','$author','$category','$date_posted')";
         $query = $db->query($sql);
         if ($db->affectedRows()) {
 	    return true;

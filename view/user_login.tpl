@@ -1,12 +1,14 @@
 <div id="login">
-    <form method="post" action="{$site_root_path}pages/login.php">
-    	<h1>Log In</h1>
+    <form class="login" method="post" action="{$site_root_path}pages/login.php">
 	<fieldset id="inputs">
-	    <input name="username" id="username" type="text" placeholder="Username" autofocus required>   
-	    <input name="pwd" id="password" type="password" placeholder="Password" required>
-	</fieldset>
-	<fieldset id="actions">
-            <input name="submit" type="submit" id="submit" value="Login">
+	    <legend>Login Details</legend>
+	    <label>Username</label>
+	    <input name="username" id="username" type="text" autofocus required>
+	    <label>Password</label>
+	    <input name="pwd" id="password" type="password" required>
+	    <input class="submit" name="submit" type="submit" id="submit" value="Login"><br/>
+	    <a href="{$site_root_path}pages/forgotpw.php">Forgot your password</a><br/>
+	    <a href="{$site_root_path}pages/register.php">Create an account</a>
         </fieldset>
     </form>
 </div>

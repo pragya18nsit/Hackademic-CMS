@@ -5,10 +5,8 @@
     <title>{if isset($controller_title)}{$controller_title} | {/if}{$app_title}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{$site_root_path}admin/assets/images/favicon.png">
     <link rel="stylesheet" type="text/css" href="{$site_root_path}assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="{$site_root_path}assets/css/pagination.css" />
     <link rel="stylesheet" type="text/css" href="{$site_root_path}assets/css/base.css" />
-   
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
     <div id="main">
@@ -28,3 +26,18 @@
 	    </div>     
 	</div>	
 	<div id="content">
+	    <table id="mainTable">
+		<tr>
+		    <td id="left_bar" valign="top">
+			{if isset($main_menu)}
+			<!-- Main Menu -->
+			<div id="menuHeader" class="menubg flt"> 
+			    <ul id="mainMenu" class="menu flt">
+				{foreach from=$main_menu item=foo}
+				<li><a class="width100" href="{$site_root_path}{$foo['url']}"><span class="padding_menu">{$foo['title']}</span></a></li>
+				{/foreach}
+			    </ul>
+			</div>
+			<br/>{/if}<br/>
+		    </td>
+		    <td id="main_content" valign="top">

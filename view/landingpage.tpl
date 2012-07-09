@@ -1,15 +1,18 @@
 {include file="_header_frontend.tpl"}
-<table id="mainTable" border="1">
+<table id="articleTable">
+{foreach from=$articles item=article}
     <tr>
-        <td id="left_bar">Left Bar</td>
-        <td id="main_content">Main Content</td>
-        <td id="right_bar">
-            {if isset($username)}
-                Welcome {$username}
-                <a href="{$site_root_path}pages/logout.php">Logout</a>
-            {else}
-                {include file="user_login.tpl"}
-            {/if}
+        <td>
+            <h3><a href="{$site_root_path}/pages/readarticle.php?id={$article->id}">{$article->title}</a></h3>
+            <div class="date">{$article->date_posted|date_format}</div>
         </td>
     </tr>
+    <tr>
+        <td>{$article->content|truncate:500}<br/><a href="{$site_root_path}/pages/readarticle.php?id={$article->id}">Read More</a><hr/></td>
+    </tr>
+{/foreach}
 </table>
+
+<div id="paginate_div">{include file="_pagination_frontend.tpl"}</div>
+
+{include file="_footer_frontend.tpl"}
