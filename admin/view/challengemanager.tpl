@@ -34,7 +34,10 @@
 	</thead>
 	{foreach from=$challenges item=challenge}
 	    <tr>
-		<td>{$challenge->title}</a></td>
+		<td>
+		 <a href="{$site_root_path}admin/pages/editchallenge.php?id={$challenge->id}&action=update">
+		 {$challenge->title}</a>
+		</td>
 		<td>{$challenge->date_posted|date_format}</td>
 		<td>   
 		    <a href="{$site_root_path}admin/pages/challengemanager.php?id={$challenge->id}&action=del">Click to delete article!</a>

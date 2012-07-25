@@ -1,0 +1,34 @@
+<h1>{#I-04#}</h1>
+
+<form action="{#url#}" method="post">
+<input type="hidden" name="step" value="database" />
+
+
+<div class="input"><p>{#I-05#}</p>
+<input size="30" class="text" type="text" name="dbname" value="" />
+</div>
+
+<div class="input"><p>{#I-06#}</p>
+<input size="30" class="text" type="text" name="dbuser" value="" />
+</div>
+
+<div class="input"><p>{#I-07#}</p>
+<input size="30" class="text" type="text" name="dbpass" value="" />
+</div>
+
+<div class="input"><p>{#I-08#}</p>
+<input size="30" class="text" type="text" name="dbhost" value="localhost" />
+</div>
+
+<div class="input"><p>{#I-09#}</p>
+<input type="radio" name="create_database" /><label>{#I-11#}</label>
+<input type="radio" name="create_database" checked="checked" /><label>{#I-10#}</label>
+</div>
+
+
+<!-- begin buttons -->
+<div class="input">
+	<input class="button" type="submit" value="{#I-03#}" />
+</div>
+<!-- end buttons -->
+</form>

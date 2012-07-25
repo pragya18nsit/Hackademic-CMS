@@ -47,6 +47,18 @@ class ChallengeBackend extends Challenge{
 	}
     }
     
+     public static function updateChallenge($id,$title,$description){
+	global $db;
+	$description=mysql_escape_string($description);
+        $sql="UPDATE challenges SET title='$title',description='$description'";
+        $sql .= " WHERE id=$id";
+	$query = $db->query($sql);
+	if ($db->affectedRows()) {
+	  return true;
+	} else {
+	  return false;
+	}
+    }
     public static function deleteChallenge($id){
 	global $db;
 	$sql = "DELETE FROM challenges WHERE id='$id'";

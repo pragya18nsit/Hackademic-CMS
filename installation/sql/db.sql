@@ -1,6 +1,6 @@
-CREATE DATABASE hackademic;
 
-CREATE TABLE hackademic.users (
+
+CREATE TABLE users (
     id int(11) UNIQUE AUTO_INCREMENT,
     username varchar(255) PRIMARY KEY,
     full_name varchar(255) NOT NULL,
@@ -13,12 +13,7 @@ CREATE TABLE hackademic.users (
     token int(10) DEFAULT 0
 );
 
-INSERT INTO  hackademic.users (id, username, full_name, email, password, joined, last_visit,
-    is_activated, is_admin, token) VALUES ('1',  'pragya',  'pragyagupta',
-    'pragya18nsit@gmail.com', 'd4dc86f22f862cfd6afbe8f412f9c956', '0000-00-00 00:00:00',
-    '0000-00-00 00:00:00', '0', '1', '0');
-
-CREATE TABLE hackademic.articles (
+CREATE TABLE articles (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     title varchar(255),
     content LONGTEXT,
@@ -30,23 +25,23 @@ CREATE TABLE hackademic.articles (
     is_published int(1) DEFAULT 1
 );
 
-CREATE TABLE hackademic.challenges (
+CREATE TABLE challenges (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     title varchar(255),
     date_posted datetime NOT NULL
 );
 
-CREATE TABLE hackademic.groups (
+CREATE TABLE groups (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
     date_created datetime NOT NULL,
     archive int(1) DEFAULT 0
 );
 
-CREATE TABLE hackademic.group_memberships (
+CREATE TABLE group_memberships (
     id int(11) UNIQUE,
     user_id int(11) NOT NULL ,
     group_id int(11) NOT NULL ,
     date_created datetime NOT NULL,
     PRIMARY KEY (user_id,group_id)
-)
+);
