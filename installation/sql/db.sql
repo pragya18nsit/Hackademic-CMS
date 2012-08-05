@@ -9,7 +9,7 @@ CREATE TABLE users (
     joined datetime NOT NULL,
     last_visit datetime DEFAULT NULL,
     is_activated int(1) DEFAULT 0,
-    is_admin int(1) DEFAULT 0,
+    type int(10) DEFAULT 0,
     token int(10) DEFAULT 0
 );
 
@@ -28,7 +28,18 @@ CREATE TABLE articles (
 CREATE TABLE challenges (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     title varchar(255),
-    date_posted datetime NOT NULL
+    pkg_name varchar(255) NOT NULL,
+    description text,
+    author varchar(255) NOT NULL,
+    category varchar(255) NOT NULL,
+    date_posted datetime NOT NULL,
+    visibility varchar(255)
+);
+
+CREATE TABLE classchallenges (
+class_id int(11),
+challenge_id int(11),
+time time
 );
 
 CREATE TABLE groups (
@@ -44,4 +55,12 @@ CREATE TABLE group_memberships (
     group_id int(11) NOT NULL ,
     date_created datetime NOT NULL,
     PRIMARY KEY (user_id,group_id)
+);
+
+CREATE TABLE challenge_attempts (
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
+    user_id int(11) NOT NULL,
+    challenge_id int(11) NOT NULL,
+    time time NOT NULL,
+    status varchar(255) NOT NULL
 );

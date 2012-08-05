@@ -26,3 +26,17 @@ body {height:95%;}
 #mainTable #right_bar { width: 20%;}
 .width100 {width: 100%;}
 #paginate_div {margin: auto; text-align: center;}
+
+.user_add { width: auto; margin: auto; height: 450px;}
+.user_add tr {margin-bottom: 10px;}
+.user_add .submit_btn {text-align: center;}
+
+.header_bar {
+    background-color: #f4f4f4;
+    height: 55px;
+    width: 90%;
+    margin: auto;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+}
+.page_title {margin-left: 10px; display: block;}

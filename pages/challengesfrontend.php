@@ -1,11 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/controller/class.ReadArticleController.php
+ * Hackademic-CMS/pages/challengesfrontend.php
  *
- * Hackademic Frontend Read Article Controller
- * Class for creating the frontend Main Menu
- *
+ * The page for calling the Hackademic challenges in the frontend.
+ * 
  * Copyright (c) 2012 OWASP
  *
  * LICENSE:
@@ -30,15 +29,8 @@
  * @copyright 2012 OWASP
  *
  */
-require_once(HACKADEMIC_PATH."/model/common/class.Article.php");
-require_once(HACKADEMIC_PATH."/controller/class.HackademicController.php");
-class ReadArticleController extends HackademicController{
-     public function go() {
-        
-        $id=$_GET['id'];
-	$article=Article::getArticle($id);
-	$this->addToView('article', $article[0]);
-        $this->setViewTemplate('readarticle.tpl');  
-	$this->generateView();
-    }
-}
+require_once("../init.php");
+require_once(HACKADEMIC_PATH."controller/class.ChallengeMenuController.php");
+
+$controller = new ChallengeMenuController();
+echo $controller->go();

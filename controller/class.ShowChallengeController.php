@@ -1,10 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/controller/class.ReadArticleController.php
+ * Hackademic-CMS/controller/class.ShowChallengeController.php
  *
- * Hackademic Frontend Read Article Controller
- * Class for creating the frontend Main Menu
+ * Hackademic Show Challenge Controller
+ * Class for the Show Challenge page in Frontend
  *
  * Copyright (c) 2012 OWASP
  *
@@ -30,15 +30,18 @@
  * @copyright 2012 OWASP
  *
  */
-require_once(HACKADEMIC_PATH."/model/common/class.Article.php");
-require_once(HACKADEMIC_PATH."/controller/class.HackademicController.php");
-class ReadArticleController extends HackademicController{
-     public function go() {
-        
-        $id=$_GET['id'];
-	$article=Article::getArticle($id);
-	$this->addToView('article', $article[0]);
-        $this->setViewTemplate('readarticle.tpl');  
-	$this->generateView();
+require_once(HACKADEMIC_PATH."model/common/class.Challenge.php");
+require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
+
+class ShowChallengeController extends HackademicController {
+    public function go() {
+	if (isset($_GET['id'])) {
+	  $id=$_GET['id'];
+        }
+                  $challenge=Challenge::getChallenge($id);
+                  $this->setViewTemplate('showChallenge.tpl');
+	          $this->addToView('challenge', $challenge[0]);
+                  $this->generateView();
+	
     }
 }

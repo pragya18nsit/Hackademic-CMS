@@ -48,9 +48,17 @@ class Session {
      * @return bool Is user logged into Hackademic an admin
      */
     public static function isAdmin() {
-	if (isset($_SESSION['hackademic_user_is_admin'])){
+	if (isset($_SESSION['hackademic_user_type'])&&($_SESSION['hackademic_user_type']==1)){
     	    return true;
-	} else {	
+	} else {
+	    return false; 
+	}	       
+    }
+    
+     public static function isTeacher() {
+	if (isset($_SESSION['hackademic_user_type'])&&($_SESSION['hackademic_user_type']==2)){
+    	    return true;
+	} else {
 	    return false; 
 	}	       
     }
@@ -62,7 +70,7 @@ class Session {
     public static function completeLogin($owner) {
 	User::updateLastVisit($owner->username);
 	$_SESSION['hackademic_user'] = $owner->username;
-        $_SESSION['hackademic_user_is_admin'] = $owner->is_admin;
+        $_SESSION['hackademic_user_type'] = $owner->type;
     }
 	   /**
      * Check password
@@ -110,7 +118,7 @@ class Session {
      */
     public static function logout() {
 	unset($_SESSION['hackademic_user']);
-        unset($_SESSION['hackademic_user_is_admin']);
+        unset($_SESSION['hackademic_user_type']);
         session_destroy();      
     }
 }

@@ -33,6 +33,8 @@
 require_once(HACKADEMIC_PATH."model/common/class.SmartyHackademic.php");
 require_once(HACKADEMIC_PATH."model/common/class.Session.php");
 require_once(HACKADEMIC_PATH."controller/class.FrontendMenuController.php");
+require_once(HACKADEMIC_PATH."controller/class.ChallengeMenuController.php");
+require_once(HACKADEMIC_PATH."controller/class.UserMenuController.php");
 
 abstract class HackademicController {
     
@@ -82,8 +84,17 @@ abstract class HackademicController {
             $this->addToView('logged_in_user', $this->getLoggedInUser());
         }
         if ($this->isAdmin()) {
-            $this->addToView('user_is_admin', true);
+            $this->addToView('user_type', true);
         }
+	$menu=FrontendMenuController::go();
+	$this->addToView('main_menu',$menu);
+	
+	$challenge_menu=ChallengeMenuController::go();
+	$this->addToView('challenge_menu',$challenge_menu);
+	if($this->isLoggedIn()){
+	    $usermenu=UserMenuController::go();
+	    $this->addToView('user_menu',$usermenu);
+	}
     }
     
     /**

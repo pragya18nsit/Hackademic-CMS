@@ -13,7 +13,7 @@ while(!feof($file)){
 }
 
 $query= "INSERT INTO users (username, full_name, email, password, joined, last_visit,";
-$query .="is_activated ,is_admin ,token) VALUES ('".$_SESSION['admin_username']."', ";
+$query .="is_activated ,type ,token) VALUES ('".$_SESSION['admin_username']."', ";
 $query .="'Administrator','".$_SESSION['admin_email']."','".$_SESSION['admin_password']."', ";
 $query .="'".date("Y-m-d H-i-s")."','0000-00-00 00:00:00', '1','1','0');";
 $SQL[]=$query;

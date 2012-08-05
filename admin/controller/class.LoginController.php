@@ -66,7 +66,7 @@ class LoginController extends HackademicBackendController {
                     } elseif (!$session->pwdCheck($_POST['pwd'], $user->password)) {
                         $this->addErrorMessage("Incorrect password");
                         return $this->generateView();
-                    } elseif(!$user->is_admin) {
+                    } elseif(!$user->type) {
 			$this->addErrorMessage("You are not an administrator");
 			return $this->generateView();
 		    } else {

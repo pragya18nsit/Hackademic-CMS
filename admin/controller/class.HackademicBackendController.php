@@ -44,7 +44,8 @@ class HackademicBackendController extends HackademicController {
             // Else if not logged in, go to login page
             header('Location: '.SOURCE_ROOT_PATH."admin/pages/login.php");
         } else {
-            MenuController::go();
+            $menu=MenuController::go();
+	    $this->addToView("main_menu_admin",$menu);
         }
     }
     

@@ -37,7 +37,7 @@ class User {
     public $username;
     public $password;
     public $full_name;
-    public $is_admin;
+    public $type;
     public $email;
     public $joined;
     public $last_visit;
@@ -69,16 +69,16 @@ class User {
         return $object_array;
     }
     
-    public static function addUser($username,$full_name,$email,$password,$joined,$is_activated=null,$is_admin=null){
+    public static function addUser($username=null,$full_name=null,$email=null,$password=null,$joined=null,$is_activated=null,$type=null,$token=null){
         global $db;
         $password = md5($password);
-	if($is_activated!=null && $is_admin!=null){
-	$sql="INSERT INTO users (username,full_name,email,password,joined,is_activated,is_admin)";
-	$sql .= "VALUES ('$username','$full_name','$email','$password','$joined','$is_activated','$is_admin')";
+	if($is_activated!=null && $type!=null){
+	$sql="INSERT INTO users (username,full_name,email,password,joined,is_activated,type,token)";
+	$sql .= "VALUES ('$username','$full_name','$email','$password','$joined','$is_activated','$type','$token')";
 	}
 	else{
-	$sql="INSERT INTO users (username,full_name,email,password,joined)";
-	$sql .= "VALUES ('$username','$full_name','$email','$password','$joined')";
+	$sql="INSERT INTO users (username,full_name,email,password,joined,token)";
+	$sql .= "VALUES ('$username','$full_name','$email','$password','$joined','$token')";
         }
 	$query = $db->query($sql); 
         if ($db->affectedRows()) {
@@ -87,6 +87,32 @@ class User {
 	    return false;
 	}
     }
+  
+    public static function addToken($username,$token){
+        global $db;
+	$sql="UPDATE users SET username='$username',token='$token'";
+	$sql .= "WHERE username='$username'";
+	$query = $db->query($sql); 
+        if ($db->affectedRows()) {
+	    return true;
+        } else {
+	    return false;
+	}
+    }
+    
+     public static function updatePassword($password,$username){
+        global $db;
+	$password=md5($password);
+	$sql="UPDATE users SET password='$password',token='0'";
+	$sql .= "WHERE username='$username'";
+	$query = $db->query($sql); 
+        if ($db->affectedRows()) {
+	    return true;
+        } else {
+	    return false;
+	}
+    }
+    
     
     public static function updateLastVisit($username){
 	global $db;
@@ -100,6 +126,7 @@ class User {
 	    return false;
 	}
     }
+   
     
     public static function getNumberOfUsers($search=null,$category=null) {
         global $db;
@@ -136,14 +163,14 @@ class User {
 	}
     }
     
-    public static function updateUser($id,$username,$full_name,$email,$password,$is_activated,$is_admin){
+    public static function updateUser($id,$username,$full_name,$email,$password,$is_activated,$type){
 	global $db;
 	if($password=='') {
-	$sql="UPDATE users SET username='$username',full_name='$full_name',email='$email',is_activated='$is_activated',is_admin='$is_admin'";
+	$sql="UPDATE users SET username='$username',full_name='$full_name',email='$email',is_activated='$is_activated',type='$type'";
 	$sql .= " WHERE id=$id";
 	} else {
 	    $password=md5($password);
-	    $sql="UPDATE users SET username='$username',full_name='$full_name',email='$email',password='$password',is_activated='$is_activated',is_admin='$is_admin'";
+	    $sql="UPDATE users SET username='$username',full_name='$full_name',email='$email',password='$password',is_activated='$is_activated',type='$type'";
 	    $sql .= " WHERE id=$id";
 	}
 	$query = $db->query($sql);
@@ -179,4 +206,15 @@ class User {
         $object_vars=get_object_vars($this);
         return array_key_exists($attribute,$object_vars);
     }
+      public static function validateToken($username,$token){
+	global $db;
+	$sql = "SELECT * FROM users WHERE username='$username' AND token='$token'";
+	$query = $db->query($sql);
+	$result = $db->numRows($query);
+	if ($result) {
+	    return true;
+	} else {
+	    return false;
+	}
+      }
 }

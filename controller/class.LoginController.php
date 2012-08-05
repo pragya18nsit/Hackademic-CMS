@@ -60,13 +60,15 @@ class LoginController extends HackademicController {
                     $username = $_POST['username'];
                     $this->addToView('username', $username);
 		    $user=User::findByUsername($username);
+		
                     if (!$user) {
                         $this->addErrorMessage("Incorrect username");
                         return $this->generateView();
                     } elseif (!$session->pwdCheck($_POST['pwd'], $user->password)) {
                         $this->addErrorMessage("Incorrect password");
                         return $this->generateView();
-                    }  else {
+		    }
+		      else {
                         // this sets variables in the session
 		        $session->completeLogin($user);
                         $controller = new LandingPageController(true);

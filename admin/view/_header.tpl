@@ -28,12 +28,12 @@
 	    </div>     
 	</div>	
 	<div id="content">
-	    {if isset($main_menu)}
+	    {if isset($main_menu_admin)}
 	    <div id="username">Hi {$logged_in_user},</div><br/>
 	    <!-- Main Menu -->
 	    <div id="menuHeader"> 
 		<ul id="mainMenu">
-		    {foreach from=$main_menu item=foo}
+		    {foreach from=$main_menu_admin item=foo}
 		    <li><a href="{$site_root_path}{$foo['url']}">{$foo['title']}</a></li>
 		    {/foreach}
 		</ul>

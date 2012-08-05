@@ -4,7 +4,6 @@
     <div class="header_bar">
 	<div class="page_title"><h3 class="left">Register User</h3></div>
     </div><br/>
-    <div id="usermessage">{include file="_usermessage.tpl"}</div>
     
     <div id="input_form">
     <form id="form" name="form" method="post">

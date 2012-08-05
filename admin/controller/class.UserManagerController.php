@@ -51,7 +51,7 @@ class UserManagerController extends HackademicBackendController {
 	$total_pages = User::getNumberOfUsers();
 	}
 	$limit = 3; 
-	$targetpage = "http://localhost/hackademic/admin/pages/usermanager.php";
+	$targetpage = SOURCE_ROOT_PATH."admin/pages/usermanager.php";
 	$stages = 3;
 	$page=0;
 	if(isset($_GET['page'])) {

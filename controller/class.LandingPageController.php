@@ -37,7 +37,7 @@ require_once(HACKADEMIC_PATH."controller/class.FrontendMenuController.php");
 class LandingPageController extends HackademicController {
     
     public function go() {
-	 $limit = 3;
+	$limit = 3;
 	$targetpage = "http://localhost/hackademic/index.php";
 	$stages = 3;
 	$page=0;
@@ -67,7 +67,7 @@ class LandingPageController extends HackademicController {
             'stages' => $stages,
             'last_page_m1' => $LastPagem1
         );
-	FrontendMenuController::go();
+	
 	$articles=Article::getAllArticles($start,$limit);
 	if ($this->isLoggedIn()) {
 	    $this->addToView('username', $this->getLoggedInUser());

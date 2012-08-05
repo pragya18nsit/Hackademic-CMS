@@ -30,30 +30,28 @@
  * @copyright 2012 OWASP
  *
  */
-require_once(HACKADEMIC_PATH."/controller/class.HackademicController.php");
-class FrontendMenuController extends HackademicController{
+
+class FrontendMenuController{
     
     public function go() {
         $menu = self::createMainMenu();
-	self::generateMenu($menu);
+	return $menu;
     }
     
     /**
      * Create Main Menu
      */
     protected function createMainMenu() {
+	       $link1 = array ('title'=>'Home', 'url'=>'admin/pages/addarticle.php');
+               $link2 = array ('title'=>'About us', 'url'=>'admin/pages/articlemanager.php');
+               $link3 = array ('title'=>'Login/Logout', 'url'=>'admin/pages/usermanager.php');
+	       $link4 = array ('title'=>'Results', 'url'=>'admin/pages/addchallenge.php');
+               $link5 = array ('title'=>'Top 100', 'url'=>'admin/pages/challengemanager.php');
+               $link6 = array ('title'=>'Download', 'url'=>'admin/pages/globalconfiguration.php');
+               $link7 = array ('title'=>'Greek', 'url'=>'pages/logout.php');
         
-        $link1 = array ('title'=>'Home', 'url'=>'admin/pages/addarticle.php');
-        $link2 = array ('title'=>'About us', 'url'=>'admin/pages/articlemanager.php');
-        $link3 = array ('title'=>'Login/Logout', 'url'=>'admin/pages/usermanager.php');
-	  	
-        $link4 = array ('title'=>'Results', 'url'=>'admin/pages/addchallenge.php');
-        $link5 = array ('title'=>'Top 100', 'url'=>'admin/pages/challengemanager.php');
-        $link6 = array ('title'=>'Download', 'url'=>'admin/pages/globalconfiguration.php');
-        $link7 = array ('title'=>'Greek', 'url'=>'pages/logout.php');
-        
-        $menu = array(
-            $link1,
+	    $menu = array(
+	    $link1,
             $link2,
             $link3,
             $link4,
@@ -61,9 +59,9 @@ class FrontendMenuController extends HackademicController{
             $link6,
             $link7
         );
-        return $menu;
-    }
-    protected function generateMenu($menu) {
-        $this->addToView('main_menu',$menu);        
-    }
+	    return $menu;
+    
+
+}
+    
 }

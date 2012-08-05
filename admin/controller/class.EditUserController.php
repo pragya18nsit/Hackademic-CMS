@@ -48,17 +48,17 @@ class EditUserController extends HackademicBackendController {
 		$this->addErrorMessage("Please enter your full name");
 	    } elseif ($_POST['is_activated']=='') {
 		$this->addErrorMessage("Is the user activated or not");
-	    } elseif ($_POST['is_admin']=='') {
-		$this->addErrorMessage("Is the user administrator or not");
+	    } elseif ($_POST['type']=='') {
+		$this->addErrorMessage("Please select the type of the user");
 	    } else {
                 $this->username =$_POST['username'];
 	        $this->email = $_POST['email'];
 		$this->password = $_POST['password'];
                 $this->full_name=$_POST['full_name'];
 		$this->is_activated=$_POST['is_activated'];
-		$this->is_admin=$_POST['is_admin'];
+		$this->type=$_POST['type'];
                             
-                User::updateUser($id,$this->username,$this->full_name,$this->email,$this->password,$this->is_activated,$this->is_admin);
+                User::updateUser($id,$this->username,$this->full_name,$this->email,$this->password,$this->is_activated,$this->type);
                 $this->addSuccessMessage("User details have been updated succesfully");
 	    }
         }

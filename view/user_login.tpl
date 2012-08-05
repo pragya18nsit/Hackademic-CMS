@@ -7,7 +7,7 @@
 	    <label>Password</label>
 	    <input name="pwd" id="password" type="password" required>
 	    <input class="submit" name="submit" type="submit" id="submit" value="Login"><br/>
-	    <a href="{$site_root_path}pages/forgotpw.php">Forgot your password</a><br/>
+	    <a href="{$site_root_path}pages/forgotpassword.php">Forgot your password</a><br/>
 	    <a href="{$site_root_path}pages/register.php">Create an account</a>
         </fieldset>
     </form>

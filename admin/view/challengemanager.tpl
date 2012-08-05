@@ -40,7 +40,7 @@
 		</td>
 		<td>{$challenge->date_posted|date_format}</td>
 		<td>   
-		    <a href="{$site_root_path}admin/pages/challengemanager.php?id={$challenge->id}&action=del">Click to delete article!</a>
+		    <a href="{$site_root_path}admin/pages/challengemanager.php?id={$challenge->id}&action=del">Delete challenge?</a>
 		</td>			
 	    </tr>
 	{/foreach}

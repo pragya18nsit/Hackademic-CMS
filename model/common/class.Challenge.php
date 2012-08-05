@@ -59,6 +59,14 @@ class Challenge {
         // return !empty($result_array)?array_shift($result_array):false;
         return $result_array;
     }
+    
+     public static function getChallengesFrontend() {
+	global $db;
+        $sql = "SELECT * FROM challenges";
+        $result_array=self::findBySQL($sql);
+        // return !empty($result_array)?array_shift($result_array):false;
+        return $result_array;
+    }
        
     public static function insertId() {
         global $db;

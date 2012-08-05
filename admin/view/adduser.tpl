@@ -41,14 +41,16 @@
 		    <input type="radio" name="is_activated" value="0"/>No
 		</td>
 	    </tr>
-	    
-	    <tr>
-		<td><label>Make the user an administrator</label></td>
-		<td class="radio">
-		    <input type="radio" name="is_admin" value="1"/>Yes
-		    <input type="radio" name="is_admin" value="0"/>No
-		</td>
-	    </tr>
+		
+		<tr>
+		<td><label>Select the type of user</label></td>
+		<td><select name="type">
+		       <option value="">Select</option>
+               <option value="0">Student</option>
+               <option value="2">Teacher</option>
+               <option value="1">Admin</option>
+        </select></td>
+		</tr>
 	    
 	    <tr class="submit_btn">
 		<td colspan="2">

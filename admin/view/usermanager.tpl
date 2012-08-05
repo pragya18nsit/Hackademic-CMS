@@ -69,7 +69,7 @@
 	    <th>Joined</th>
 	    <th>Last Visit</th>
 	    <th>Activated</th>
-	    <th>Administrator</th>
+	    <th>Type Of User</th>
 	</thead>
 	{foreach from=$users item=user}
 	    <tr>
@@ -82,7 +82,7 @@
 		<td>{$user->joined|date_format}</td>
 		<td>{if $user->last_visit}{$user->last_visit|date_format}{else}Never{/if}</td>
 		<td>{if $user->is_activated}Yes{else}No{/if}</td>
-		<td>{if $user->is_admin}Yes{else}No{/if}</td>
+		<td>{if $user->type==1}Admin{elseif $user->type==2}Teacher{else}Student{/if}</td>
 	   </tr>
 	{/foreach}
     </table>

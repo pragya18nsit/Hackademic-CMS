@@ -49,9 +49,9 @@ class AddUserController extends HackademicBackendController {
 	    } elseif ($_POST['confirmpassword']=='') {
 		$this->addErrorMessage("Please confirm password");
 	    } elseif (!isset($_POST['is_activated'])) {
-		$this->addErrorMessage("IS the user activated?");
-	    } elseif (!isset($_POST['is_admin'])) {
-	        $this->addErrorMessage("Is user an administrator?");
+		$this->addErrorMessage("Is the user activated?");
+	    } elseif (!isset($_POST['type'])) {
+	        $this->addErrorMessage("Select the type of user");
 	    } elseif ($_POST['email']=='') {
 	        $this->addErrorMessage("please enter ur email id");	    
 	    } else {
@@ -61,7 +61,7 @@ class AddUserController extends HackademicBackendController {
 		$full_name = $_POST['full_name'];
 		$email=$_POST['email'];
 		$is_activated = $_POST['is_activated'];
-		$is_admin = $_POST['is_admin'];
+		$type = $_POST['type'];
 		if (User::doesUserExist($username)) {
 	            $this->addErrorMessage("Username already exists");
 	        }
@@ -75,7 +75,7 @@ class AddUserController extends HackademicBackendController {
 		    $message="Hackademic account created succesfully";
 		    //Mailer::mail($email,$subject,$message);
 		    $joined=date("Y-m-d H-i-s");
-		    $result = User::addUser($username,$full_name,$email,$password,$joined,$is_activated,$is_admin);
+		    $result = User::addUser($username,$full_name,$email,$password,$joined,$is_activated,$type);
 		    $this->addSuccessMessage("User has been added succesfully");
 		    header('Location:'.SOURCE_ROOT_PATH."admin/pages/usermanager.php?source=add");
 	        }

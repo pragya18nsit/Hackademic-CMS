@@ -42,18 +42,25 @@
 		</td>
 	    </tr>
 	    
-	    <tr>
-		<td><label>Make the user an administrator</label></td>
-		<td class="radio">
-		    {if $user->is_admin}
-			<input type="radio" name="is_admin" value="1" checked="true" />Yes
-			<input type="radio" name="is_admin" value="0" />No
-		    {else}
-			<input type="radio" name="is_admin" value="1"  />Yes
-			<input type="radio" name="is_admin" value="0" checked="true" />No
-		    {/if}
-		</td>
-	    </tr>
+		<tr>
+		<td><label>Select the type of user</label></td>
+		<td><select name="type">
+			    {if $user->type==0}
+               <option value="0" selected="selected">Student</option>
+			   <option value="1" >Admin</option>
+			   <option value="2" >Teacher</option>
+			   {elseif $user->type==2}
+               <option value="2" selected="selected">Teacher</option>
+			   <option value="1" >Admin</option>
+			   <option value="0" >Student</option>
+			   {else}
+               <option value="1" selected="selected">Admin</option>
+			   <option value="2" >Teacher</option>
+			   <option value="0" >Student</option>
+			   {/if}
+			   
+        </select></td>
+		</tr>
 	    
 	    <tr class="submit_btn">
 		<td colspan="2">
