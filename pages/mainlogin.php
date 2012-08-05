@@ -1,11 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/controller/class.ShowChallengeController.php
+ * Hackademic-CMS/pages/mainlogin.php
  *
- * Hackademic Show Challenge Controller
- * Class for the Show Challenge page in Frontend
- *
+ * The page for calling the Hackademic Login Controller
+ * 
  * Copyright (c) 2012 OWASP
  *
  * LICENSE:
@@ -30,23 +29,8 @@
  * @copyright 2012 OWASP
  *
  */
-require_once(HACKADEMIC_PATH."model/common/class.Challenge.php");
-require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
+require_once("../init.php");
+require_once(HACKADEMIC_PATH."controller/class.MainLoginController.php");
 
-class ShowChallengeController extends HackademicController {
-    public function go() {
-    if ($this->isLoggedIn() ){
-	if (isset($_GET['id'])) {
-	  $id=$_GET['id'];
-        }
-                  $challenge=Challenge::getChallenge($id);
-                  $this->setViewTemplate('showChallenge.tpl');
-	          $this->addToView('challenge', $challenge[0]);
-                  $this->generateView();
-	
-    }
-    else{
-	header('Location:'.SOURCE_ROOT_PATH."pages/mainlogin.php?msg=challenge");
-    }
-    }
-}
+$controller = new MainLoginController();
+echo $controller->go();

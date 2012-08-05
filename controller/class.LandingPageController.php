@@ -37,8 +37,8 @@ require_once(HACKADEMIC_PATH."controller/class.FrontendMenuController.php");
 class LandingPageController extends HackademicController {
     
     public function go() {
-	$limit = 3;
-	$targetpage = "http://localhost/hackademic/index.php";
+	$limit = 10;
+	$targetpage = SOURCE_ROOT_PATH."index.php";
 	$stages = 3;
 	$page=0;
 	

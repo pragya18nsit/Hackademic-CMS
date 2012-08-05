@@ -1,10 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/controller/class.ShowChallengeController.php
+ * Hackademic-CMS/controller/class.MainLoginController.php
  *
- * Hackademic Show Challenge Controller
- * Class for the Show Challenge page in Frontend
+ * Hackademic Main Login Controller
+ * Class for logging into the backend
  *
  * Copyright (c) 2012 OWASP
  *
@@ -30,23 +30,25 @@
  * @copyright 2012 OWASP
  *
  */
-require_once(HACKADEMIC_PATH."model/common/class.Challenge.php");
-require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
+require_once(HACKADEMIC_PATH."model/common/class.Session.php");
+require_once(HACKADEMIC_PATH."controller/class.LandingPageController.php");
+require_once(HACKADEMIC_PATH."controller/class.HackademicController.php");
+require_once(HACKADEMIC_PATH."model/common/class.User.php");
 
-class ShowChallengeController extends HackademicController {
+class MainLoginController extends HackademicController {
+
     public function go() {
-    if ($this->isLoggedIn() ){
-	if (isset($_GET['id'])) {
-	  $id=$_GET['id'];
-        }
-                  $challenge=Challenge::getChallenge($id);
-                  $this->setViewTemplate('showChallenge.tpl');
-	          $this->addToView('challenge', $challenge[0]);
-                  $this->generateView();
-	
-    }
-    else{
-	header('Location:'.SOURCE_ROOT_PATH."pages/mainlogin.php?msg=challenge");
-    }
-    }
+	$this->setViewTemplate('mainlogin.tpl');
+        if(isset($_GET["msg"])){
+            if($_GET["msg"]=="username"){
+                $this->addErrorMessage("The username you entered is incorrect");
+            } elseif($_GET["msg"]=="password"){
+                $this->addErrorMessage("The username and password donot match"); 
+            } elseif($_GET["msg"]=="challenge"){
+                $this->addErrorMessage("You must be logged in to try a challenge");
+            }
+            }
+	$this->addPageTitle('Log in');
+        return $this->generateView();
+	    }
 }

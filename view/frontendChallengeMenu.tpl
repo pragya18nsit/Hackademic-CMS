@@ -6,9 +6,6 @@
            {$challenge->pkg_name}
         </td>
     </tr>
-    <tr>
-        <td><hr/></td>
-    </tr>
 
 </table>
 {include file="_footer_frontend.tpl"}

@@ -42,26 +42,17 @@ class FrontendMenuController{
      * Create Main Menu
      */
     protected function createMainMenu() {
-	       $link1 = array ('title'=>'Home', 'url'=>'admin/pages/addarticle.php');
-               $link2 = array ('title'=>'About us', 'url'=>'admin/pages/articlemanager.php');
-               $link3 = array ('title'=>'Login/Logout', 'url'=>'admin/pages/usermanager.php');
-	       $link4 = array ('title'=>'Results', 'url'=>'admin/pages/addchallenge.php');
-               $link5 = array ('title'=>'Top 100', 'url'=>'admin/pages/challengemanager.php');
-               $link6 = array ('title'=>'Download', 'url'=>'admin/pages/globalconfiguration.php');
-               $link7 = array ('title'=>'Greek', 'url'=>'pages/logout.php');
+	       $link1 = array ('title'=>'Home', 'url'=>'index.php');
+               $link2 = array ('title'=>'About us', 'url'=>'admin/pages/aboutus.php');
+               $link3 = array ('title'=>'Rankings', 'url'=>'pages/ranking.php');
+               $link4 = array ('title'=>'Download','external'=>true,'url'=>'https://code.google.com/p/owasp-hackademic-challenges/');
         
 	    $menu = array(
 	    $link1,
             $link2,
             $link3,
-            $link4,
-            $link5,
-            $link6,
-            $link7
+            $link4
         );
 	    return $menu;
-    
-
-}
-    
+    }
 }

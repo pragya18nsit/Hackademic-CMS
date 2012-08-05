@@ -1,28 +1,32 @@
-<h1>{#I-26#}</h1>
+<div class="header_bar">
+	<div class="page_title"><h3 class="left">{#I-26#}</h3></div>
+</div><br/>
 
-<form action="{#url#}" method="post" onsubmit="return checkForm(this)">
+<div id="input_form">
+<form action="{#url#}" method="post" onsubmit="return checkForm(this)" class="user_add">
 <input type="hidden" name="step" value="db" />
 
 
-<div class="input"><p>{#I-29#}</p>
+<div class="input"><p>{#I-29#}:</p>
 <input size="50" class="text" type="text" name="email" value="{#url#}" />
 </div>
 
-<div class="input"><p>{#I-27#}</p>
+<div class="input"><p>{#I-27#}:</p>
 <input size="50" class="text" type="text" name="username" value="{#username#}" />
 </div>
 
-<div class="input"><p>{#I-28#}</p>
+<div class="input"><p>{#I-28#}:</p>
 <input size="50" class="text" type="password" name="password" value="" />
 </div>
 
 
 <!-- begin buttons -->
-<div class="input">
-	<input class="button" type="submit" value="{#I-03#}" />
+<div class="submit_btn">
+	<p class="submit"><input class="left try_me" type="submit" value="{#I-03#}" /></p>
 </div>
 <!-- end buttons -->
 </form>
+</div>
 <script type="text/javascript">
   function checkForm(form){
    var username=form.username.value;

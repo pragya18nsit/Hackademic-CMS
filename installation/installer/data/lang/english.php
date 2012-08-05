@@ -34,7 +34,7 @@ $lang = array(
 'I-04' => "Database Settings",
 'I-05' => "Database Name",
 'I-06' => "Database User",
-'I-07' => "Database Pass",
+'I-07' => "Database Password",
 'I-08' => "Database Host",
 'I-09' => "Create Database if it doesn't exists?",
 'I-10' => "Yes",
@@ -58,5 +58,6 @@ $lang = array(
 'I-27' => "Username",
 'I-28' => "Password",
 'I-29' => "Email",
-'I-30' => "Application Title"
+'I-30' => "Application Title",
+'I-31' => "You can now login by visiting the following URL in your browser:"
 );

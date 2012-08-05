@@ -47,26 +47,22 @@ class UserMenuController{
 	 Session::isAdmin();
 	
     	if(Session::isAdmin()){
-	       $link8 = array ('title'=>'Add Article', 'url'=>'admin/pages/addarticle.php');
-               $link9 = array ('title'=>'Article Manager', 'url'=>'admin/pages/articlemanager.php');
-               $link10 = array ('title'=>'User Manager', 'url'=>'admin/pages/usermanager.php');
-	       $link11 = array ('title'=>'Add Challenge', 'url'=>'admin/pages/addchallenge.php');
-               $link12 = array ('title'=>'Challenge Manager', 'url'=>'admin/pages/challengemanager.php');
-               $link13 = array ('title'=>'Global Configuration', 'url'=>'admin/pages/globalconfiguration.php');
-               $link14 = array ('title'=>'Logout', 'url'=>'pages/logout.php');
+	       $link1 = array ('title'=>'Add Article', 'url'=>'admin/pages/addarticle.php');
+               $link2 = array ('title'=>'Article Manager', 'url'=>'admin/pages/articlemanager.php');
+               $link3 = array ('title'=>'User Manager', 'url'=>'admin/pages/usermanager.php');
+	       $link4 = array ('title'=>'Add Challenge', 'url'=>'admin/pages/addchallenge.php');
+               $link5 = array ('title'=>'Challenge Manager', 'url'=>'admin/pages/challengemanager.php');
+               $link6 = array ('title'=>'Global Configuration', 'url'=>'admin/pages/globalconfiguration.php');
         
 	    $menu = array(
-            $link8,
-            $link9,
-            $link10,
-            $link11,
-            $link12,
-            $link13,
-            $link14
+            $link1,
+            $link2,
+            $link3,
+            $link4,
+            $link5,
+            $link6
         );
-	    return $menu;
-    }
-    elseif(Session::isTeacher()){
+    } elseif(Session::isTeacher()){
 	  $link1 = array ('title'=>'Create a new class', 'url'=>'admin/pages/addarticle.php');
           $link2 = array ('title'=>'Add Challenge', 'url'=>'admin/pages/addchallenge.php');
           $link3 = array ('title'=>'See progress of students', 'url'=>'admin/pages/usermanager.php');
@@ -90,8 +86,8 @@ class UserMenuController{
             $link2,
             $link3
         );
-	return $menu;
     }
+	return $menu;
     }
 }
     

@@ -35,7 +35,7 @@
 			    <ul id="mainMenu" class="menu flt">
 				{foreach from=$main_menu item=foo}
 				<li>
-				<a class="width100" href="{$site_root_path}{$foo['url']}"><span class="padding_menu">{$foo['title']}</span></a></li>
+				<a class="width100" href="{if !isset($foo['external'])}{$site_root_path}{/if}{$foo['url']}"><span class="padding_menu">{$foo['title']}</span></a></li>
 				{/foreach}
 			    </ul>
 			</div>

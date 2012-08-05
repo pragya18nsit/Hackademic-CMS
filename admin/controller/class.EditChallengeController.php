@@ -44,12 +44,15 @@ class EditChallengeController extends HackademicBackendController {
 		$this->addErrorMessage("Title of the challenge should not be empty");
             } elseif ($_POST['description']=='') {
 		$this->addErrorMessage("Description should not be empty");
+	    } elseif ($_POST['visibility']=='') {
+		$this->addErrorMessage("Visibility field should not be empty");
 	    } else {
                 
                 $this->title =$_POST['title'];
                 $this->description=$_POST['description'];
-                            
-                ChallengeBackend::updateChallenge($id,$this->title,$this->description);
+		$this->visibility=$_POST['visibility'];
+                $this->publish=$_POST['publish'];            
+                ChallengeBackend::updateChallenge($id,$this->title,$this->description,$this->visibility,$this->publish);
                 $this->addSuccessMessage("Challenge details have been updated succesfully");
 	    }
         }

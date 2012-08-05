@@ -300,6 +300,7 @@ class Installer
         $sample=str_replace("#YOUR_DBNAME#",$values['dbname'],$sample);
         file_put_contents($path,$sample);
 
+        $this->view->vars = array("login_path" => $_POST['source_root_path']);
         $this->view->render('finish');
         unset($_SESSION);
     }

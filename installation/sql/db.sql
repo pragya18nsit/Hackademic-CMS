@@ -1,5 +1,3 @@
-
-
 CREATE TABLE users (
     id int(11) UNIQUE AUTO_INCREMENT,
     username varchar(255) PRIMARY KEY,
@@ -33,13 +31,14 @@ CREATE TABLE challenges (
     author varchar(255) NOT NULL,
     category varchar(255) NOT NULL,
     date_posted datetime NOT NULL,
-    visibility varchar(255)
+    visibility varchar(255) DEFAULT 'private',
+    publish int(10) DEFAULT 0
 );
 
 CREATE TABLE classchallenges (
-class_id int(11),
-challenge_id int(11),
-time time
+    class_id int(11),
+    challenge_id int(11),
+    added datetime
 );
 
 CREATE TABLE groups (

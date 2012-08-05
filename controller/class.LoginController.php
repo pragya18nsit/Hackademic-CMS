@@ -62,10 +62,10 @@ class LoginController extends HackademicController {
 		    $user=User::findByUsername($username);
 		
                     if (!$user) {
-                        $this->addErrorMessage("Incorrect username");
-                        return $this->generateView();
+			header('Location:'.SOURCE_ROOT_PATH."pages/mainlogin.php?msg=username");
+                        //return $this->generateView();
                     } elseif (!$session->pwdCheck($_POST['pwd'], $user->password)) {
-                        $this->addErrorMessage("Incorrect password");
+			header('Location:'.SOURCE_ROOT_PATH."pages/mainlogin.php?msg=username");
                         return $this->generateView();
 		    }
 		      else {
