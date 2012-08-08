@@ -40,8 +40,9 @@ class ClassMemberships {
      
     public static function addMembership($user_id,$class_id){
         global $db;
-        $sql="INSERT INTO class_memberships(user_id,class_id)";
-	$sql .= "VALUES ('$user_id','$class_id')";
+	$date = date('Y-m-d H:i:s');
+        $sql="INSERT INTO class_memberships(user_id,class_id,date_created)";
+	$sql .= "VALUES ('$user_id','$class_id','$date')";
         $query = $db->query($sql);
         if ($db->affectedRows()) {
 	    return true;
@@ -84,5 +85,18 @@ class ClassMemberships {
 	} else {
 	    return false;
 	}
+    }
+    
+    public static function getAllMemberships($class_id) {
+	global $db;
+	$sql = "SELECT class_memberships.user_id, users.username FROM class_memberships ";
+	$sql .= "LEFT JOIN users on class_memberships.user_id = users.id WHERE ";
+	$sql .= "class_memberships.class_id = $class_id";
+	$query = $db->query($sql);
+	$result_array = array();
+	while ($row = $db->fetchArray($query)) {
+	    array_push($result_array, $row);
+	}
+	return $result_array;
     }
 }

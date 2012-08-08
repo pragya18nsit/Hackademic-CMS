@@ -1,9 +1,9 @@
 <?php
 /**
  *
- * Hackademic-CMS/admin/pages/globalconfiguration.php
+ * Hackademic-CMS/admin/pages/manageclass.php
  *
- * This page calls the Global Configuration Controller
+ * This page calls the Class Manager Controller
  *
  * Copyright (c) 2012 OWASP
  *
@@ -30,7 +30,7 @@
  *
  */
 require_once("../../init.php");
-require_once(HACKADEMIC_PATH."admin/controller/class.GlobalConfigurationrController.php");
+require_once(HACKADEMIC_PATH."admin/controller/class.ShowClassController.php");
 
-$controller = new GlobalConfigurationrController();
+$controller = new ShowClassController();
 echo $controller->go();

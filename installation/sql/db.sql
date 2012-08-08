@@ -50,7 +50,7 @@ CREATE TABLE classes (
 );
 
 CREATE TABLE class_memberships (
-    id int(11) UNIQUE,
+    id int(11) UNIQUE AUTO_INCREMENT,
     user_id int(11) NOT NULL ,
     class_id int(11) NOT NULL ,
     date_created datetime NOT NULL,

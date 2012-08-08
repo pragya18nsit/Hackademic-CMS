@@ -86,4 +86,17 @@ class ClassChallenges {
 	    return false;
 	}
     }
+    
+    public static function getAllMemberships($class_id) {
+	global $db;
+	$sql = "SELECT DISTINCT class_challenges.challenge_id, challenges.title FROM class_challenges ";
+	$sql .= "LEFT JOIN challenges on class_challenges.challenge_id = challenges.id WHERE ";
+	$sql .= "class_challenges.class_id = $class_id";
+	$query = $db->query($sql);
+	$result_array = array();
+	while ($row = $db->fetchArray($query)) {
+	    array_push($result_array, $row);
+	}
+	return $result_array;
+    }
 }

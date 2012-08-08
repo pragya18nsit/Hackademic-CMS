@@ -35,7 +35,7 @@
 	</thead>
 	{foreach from=$classes item=class}
 	    <tr>
-		<td>{$class->name}</a></td>
+		<td><a href="{$site_root_path}admin/pages/showclass.php?id={$class->id}">{$class->name}</a></td>
 		<td>{$class->date_created|date_format}</td>
 		<td>   
 		    <a href="{$site_root_path}admin/pages/manageclass.php?id={$class->id}&source=arch">Click to archive class!</a>

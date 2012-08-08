@@ -4,6 +4,28 @@
 <div class="main_content">
     <div class="header_bar">
 	<div class="page_title"><h3 class="left">Challenge Manager</h3></div>
+	<div id="" class="right action_button">
+	    <table>
+		<tr class="center">
+		    <td>
+			<div class="submenu_btn">
+			    <a href="{$site_root_path}admin/pages/addclass.php">
+				<img class="action_image" src="{$site_root_path}admin/assets/images/addclass.png"/><br/>
+				<span class="caption">Add Class</span>
+			    </a>
+			</div>
+		    </td>
+		    <td>
+			<div class="submenu_btn">
+			    <a href="{$site_root_path}admin/pages/manageclass.php">
+				<img class="action_image" src="{$site_root_path}admin/assets/images/manageclass.png"/><br/>
+				<span class="caption">Class Manager</span>
+			    </a>
+			</div>
+		    </td>
+		</tr>
+	    </table>
+	</div>
     </div><br/>
     <div id="input_form">
 	<form method ="get">

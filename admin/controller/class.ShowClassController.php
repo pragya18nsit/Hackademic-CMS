@@ -1,10 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/admin/controller/class.ClassChallengesController.php
+ * Hackademic-CMS/admin/controller/class.ClassMembershipsController.php
  *
- * Hackademic Class Challenges Controller
- * Class for the Class Challenges page in Backend
+ * Hackademic Class Memberships Controller
+ * Class for the Class Memberships page in Backend
  *
  * Copyright (c) 2012 OWASP
  *
@@ -30,37 +30,34 @@
  * @copyright 2012 OWASP
  *
  */
+require_once(HACKADEMIC_PATH."admin/model/class.ClassMemberships.php");
 require_once(HACKADEMIC_PATH."admin/model/class.ClassChallenges.php");
 require_once(HACKADEMIC_PATH."admin/model/class.Classes.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
 
-class ClassChallengesController extends HackademicBackendController {
+class ShowClassController extends HackademicBackendController {
     
     public function go() {
-        $this->setViewTemplate('classchallenge.tpl');
-	$challenge_id=$_GET['id'];
-	if (isset($_POST['submit'])) {
-	    $class_id=$_POST['class_id'];
-	    if(ClassChallenges::doesMembershipExist($challenge_id, $class_id))
-	    {
-		$this->addErrorMessage("Challenge is already a member of this class");
-	    }
-	    else{
-	    ClassChallenges::addMembership($challenge_id,$class_id);
-	    $this->addSuccessMessage("Challenge has been added to the class succesfully");
+        $this->setViewTemplate('showclass.tpl');
+	if (!isset($_GET['id'])) {
+	    header('Location: '.SOURCE_ROOT_PATH."admin/pages/manageclass.php");
+	}
+	$class_id=$_GET['id'];
+	if (isset($_GET['action']) && $_GET['action'] == "del") {
+	    if (isset($_GET['uid'])) {
+		ClassMemberships::deleteMembership($_GET['uid'],$class_id);
+		$this->addSuccessMessage("User has been deleted from the class succesfully");
+	    } else if (isset($_GET['cid'])) {
+		ClassChallenges::deleteMembership($_GET['cid'],$class_id);
+		$this->addSuccessMessage("Challenge has been deleted from the class succesfully");
 	    }
 	}
-	elseif (isset($_GET['action']) && $_GET['action']=="del") {
-	    $class_id=$_GET['class_id'];
-	    ClassChallenges::deleteMembership($challenge_id,$class_id);
-	    $this->addSuccessMessage("Challenge has been deleted from the class succesfully");
-	}	
-	$class_memberships = ClassChallenges::getMembershipsOfChallenge($challenge_id);
-        
-        $classes = Classes::getAllClasses();
-	$this->addToView('classes', $classes);
-	$this->addToView('class_memberships', $class_memberships);
-	$this->setViewTemplate('classchallenges.tpl');
-	$this->generateView();
+	$class = Classes::getClass($class_id);
+	$user_members = ClassMemberships::getAllMemberships($class_id);
+	$challenges_assigned = ClassChallenges::getAllMemberships($class_id);
+	$this->addToView('class', $class);
+	$this->addToView('users', $user_members);
+	$this->addToView('challenges', $challenges_assigned);
+	return $this->generateView();
     }
 }

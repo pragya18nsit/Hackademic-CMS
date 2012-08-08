@@ -39,10 +39,10 @@ class Classes {
     public $date_created;
     public $archive;
      
-    public static function addClass($classname, $date_created) {
+    public static function addClass($class_name, $date_created) {
 	global $db;
 	$sql = "INSERT INTO classes(name,date_created)";
-	$sql .= "VALUES ('$classname','$date_created')";
+	$sql .= "VALUES ('$class_name','$date_created')";
 	$query = $db->query($sql);
 	if ($db->affectedRows()) {
 	    return true;
@@ -50,7 +50,15 @@ class Classes {
 	    return false;
 	}
     }
-     
+    
+    public static function getClass($class_id) {
+	global $db;
+	$sql = "SELECT * FROM classes WHERE id=$class_id";
+	$query = $db->query($sql);
+	$result_array=self::findBySQL($sql);
+        return !empty($result_array)?array_shift($result_array):false;
+    }
+    
     public static function getNumberOfClasses($search=null,$category=null) {
 	global $db;
         if ($search != null && $category != null) {

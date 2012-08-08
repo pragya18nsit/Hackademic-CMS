@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{$site_root_path}assets/css/pagination.css"/>
 <div class="main_content">
     <div class="header_bar">
-	<div class="page_title"><h3 class="left">Class Membership </h3></div>
+	<div class="page_title"><h3 class="left">Class Membership - Users</h3></div>
     </div><br/>
     <div id="usermessage">{include file="_usermessage.tpl"}</div>
     
@@ -32,7 +32,7 @@
 	</thead>
 	{foreach from=$class_memberships item=class}
 	    <tr>  
-		<td>{$class['name']}</td>
+		<td><a href="{$site_root_path}admin/pages/showclass.php?id={$class['class_id']}">{$class['name']}</a></td>
 		<td><a href="{$site_root_path}admin/pages/classmemberships.php?id={$smarty.get.id}&class_id={$class['class_id']}&action=del">Delete</a></td>
 	    </tr>
 	{/foreach} 			

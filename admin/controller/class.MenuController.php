@@ -49,8 +49,7 @@ class MenuController extends HackademicController {
         $link3 = array ('title'=>'User Manager', 'url'=>'admin/pages/usermanager.php');
         $link4 = array ('title'=>'Add New Challenge', 'url'=>'admin/pages/addchallenge.php');
         $link5 = array ('title'=>'Challenge Manager', 'url'=>'admin/pages/challengemanager.php');
-        $link6 = array ('title'=>'Global Configuration', 'url'=>'admin/pages/globalconfiguration.php');
-        $link7 = array ('title'=>'Logout', 'url'=>'admin/pages/logout.php');
+        $link6 = array ('title'=>'Logout', 'url'=>'admin/pages/logout.php');
         
         $menu = array(
             $link1,
@@ -58,8 +57,7 @@ class MenuController extends HackademicController {
             $link3,
             $link4,
             $link5,
-            $link6,
-            $link7
+            $link6
         );
         return $menu;
     }
