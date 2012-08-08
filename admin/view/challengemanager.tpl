@@ -30,6 +30,8 @@
 	<thead> 
 	    <th>Challenge Title</th>
 	    <th>Date posted</th>
+	    <th>Visibility</th>
+	    <th>Published</th>
 	    <th>DELETE?</th>
 	</thead>
 	{foreach from=$challenges item=challenge}
@@ -39,6 +41,8 @@
 		 {$challenge->title}</a>
 		</td>
 		<td>{$challenge->date_posted|date_format}</td>
+		<td>{if $challenge->visibility == "public"}Public{else}Private{/if}</td>
+		<td>{if $challenge->publish == 0}No{else}Yes{/if}</td>
 		<td>   
 		    <a href="{$site_root_path}admin/pages/challengemanager.php?id={$challenge->id}&action=del">Delete challenge?</a>
 		</td>			

@@ -1,10 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/admin/controller/class.GroupManagerController.php
+ * Hackademic-CMS/admin/controller/class.ClassManagerController.php
  *
- * Hackademic Manage Group Controller
- * Class for the Group Manager page in Backend
+ * Hackademic Manage Class Controller
+ * Class for the Class Manager page in Backend
  *
  * Copyright (c) 2012 OWASP
  *
@@ -30,29 +30,29 @@
  * @copyright 2012 OWASP
  *
  */
-require_once(HACKADEMIC_PATH."admin/model/class.GroupMemberships.php");
-require_once(HACKADEMIC_PATH."admin/model/class.Groups.php");
+require_once(HACKADEMIC_PATH."admin/model/class.ClassMemberships.php");
+require_once(HACKADEMIC_PATH."admin/model/class.Classes.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
 
-class GroupManagerController extends HackademicBackendController {
+class ClassManagerController extends HackademicBackendController {
     
     public function go() {
 	if (isset($_GET["source"]) && ($_GET["source"]=="del")) {
             $id=$_GET['id'];
-            Groups::deleteGroup($id);
-            $this->addSuccessMessage("Group has been deleted succesfully");
+            Classes::deleteClass($id);
+            $this->addSuccessMessage("Class has been deleted succesfully");
         } elseif(isset($_GET["source"]) && ($_GET["source"]=="arch")) {
 	    $id=$_GET['id'];
-            Groups::archiveGroup($id);
-            $this->addSuccessMessage("Group has been archived succesfully");
+            Classes::archiveClass($id);
+            $this->addSuccessMessage("Class has been archived succesfully");
 	}
 	if (isset($_GET['search']) && isset($_GET['category']) && $_GET['search']!='' && $_GET['category']!='') {
-             $total_pages = Groups::getNumberOfGroups($_GET['search'], $_GET['category']);
+             $total_pages = Classes::getNumberOfClasses($_GET['search'], $_GET['category']);
         } else {
-	    $total_pages =Groups::getNumberOfGroups();
+	    $total_pages =Classes::getNumberOfClasses();
 	}
         $limit = 3; 
-	$targetpage = "http://localhost/hackademic/admin/pages/managegroup.php";
+	$targetpage = "http://localhost/hackademic/admin/pages/manageclass.php";
 	$stages = 3;
 	$page=0;
 	if(isset($_GET['page'])) {
@@ -81,14 +81,17 @@ class GroupManagerController extends HackademicBackendController {
             'last_page_m1' => $LastPagem1
         );
          if (isset($_GET['search']) && isset($_GET['category']) && $_GET['search']!='' && $_GET['category']!='') {
-             $groups= Groups::getNGroups($start,$limit,$_GET['search'],$_GET['category']);
+             $classes= Classes::getNClasses($start,$limit,$_GET['search'],$_GET['category']);
         } else {
-        $groups = Groups::getNGroups($start, $limit);
+        $classes = Classes::getNClasses($start, $limit);
 	}
-	$this->addToView('groups', $groups);
+	if (isset($_GET['search'])) {
+	    $this->addToView('search_string', $_GET['search']);
+	}
+	$this->addToView('classes', $classes);
 	$this->addToView('total_pages', $total_pages);
         $this->addToView('pagination', $pagination);
-	$this->setViewTemplate('groupmanager.tpl');
+	$this->setViewTemplate('classmanager.tpl');
 	$this->generateView();
     }
 }

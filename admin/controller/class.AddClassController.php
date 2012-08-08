@@ -1,10 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/admin/controller/class.AddGroupController.php
+ * Hackademic-CMS/admin/controller/class.AddClassController.php
  *
- * Hackademic Add Group Controller
- * Class for the Add Group page in Backend
+ * Hackademic Add Class Controller
+ * Class for the Add Class page in Backend
  *
  * Copyright (c) 2012 OWASP
  *
@@ -31,23 +31,23 @@
  *
  */
 require_once(HACKADEMIC_PATH."model/common/class.Session.php");
-require_once(HACKADEMIC_PATH."admin/model/class.Groups.php");
+require_once(HACKADEMIC_PATH."admin/model/class.Classes.php");
 require_once(HACKADEMIC_PATH."/admin/controller/class.HackademicBackendController.php");
 
-class AddGroupController extends HackademicBackendController {
+class AddClassController extends HackademicBackendController {
    
     public function go() {
-        $this->setViewTemplate('addgroup.tpl');
+        $this->setViewTemplate('addclass.tpl');
         if(isset($_POST['submit'])) {
-            if ($_POST['groupname']=='') {
-	        $this->addErrorMessage("Name of the group should not be empty");
+            if ($_POST['classname']=='') {
+	        $this->addErrorMessage("Name of the class should not be empty");
 	    } else {
 		// $this->created_by= Session::getLoggedInUser();
-                $this->groupname =$_POST['groupname'];
+                $this->classname =$_POST['classname'];
                 $this->date_created = date("Y-m-d H:i:s");
-                Groups::addGroup($this->groupname,$this->date_created);
-                $this->addSuccessMessage("Group has been created succesfully");
-                header('Location: '.SOURCE_ROOT_PATH."admin/pages/usermanager.php?source=addgroup");
+                Classes::addClass($this->classname,$this->date_created);
+                $this->addSuccessMessage("Class has been created succesfully");
+                header('Location: '.SOURCE_ROOT_PATH."admin/pages/usermanager.php?source=addclass");
             }
         }
         $this->generateView();

@@ -43,15 +43,13 @@ class FrontendMenuController{
      */
     protected function createMainMenu() {
 	       $link1 = array ('title'=>'Home', 'url'=>'index.php');
-               $link2 = array ('title'=>'About us', 'url'=>'admin/pages/aboutus.php');
-               $link3 = array ('title'=>'Rankings', 'url'=>'pages/ranking.php');
-               $link4 = array ('title'=>'Download','external'=>true,'url'=>'https://code.google.com/p/owasp-hackademic-challenges/');
+               $link2 = array ('title'=>'Rankings', 'url'=>'pages/ranking.php');
+               $link3 = array ('title'=>'Download','external'=>true,'url'=>'https://code.google.com/p/owasp-hackademic-challenges/');
         
 	    $menu = array(
 	    $link1,
             $link2,
-            $link3,
-            $link4
+            $link3
         );
 	    return $menu;
     }

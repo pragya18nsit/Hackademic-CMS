@@ -1,9 +1,9 @@
 <?php
 /**
  *
- * Hackademic-CMS/admin/pages/addgroup.php
+ * Hackademic-CMS/admin/pages/manageclass.php
  *
- * This page calls the Add Group Controller
+ * This page calls the Class Manager Controller
  *
  * Copyright (c) 2012 OWASP
  *
@@ -30,7 +30,7 @@
  *
  */
 require_once("../../init.php");
-require_once(HACKADEMIC_PATH."admin/controller/class.AddGroupController.php");
+require_once(HACKADEMIC_PATH."admin/controller/class.ClassManagerController.php");
 
-$controller = new AddGroupController();
+$controller = new ClassManagerController();
 echo $controller->go();

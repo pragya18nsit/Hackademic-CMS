@@ -1,10 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/admin/model/class.Groups.php
+ * Hackademic-CMS/admin/model/class.Classes.php
  *
- * Hackademic Groups Model
- * This class is for interacting with the Groups table in the DB
+ * Hackademic Classes Model
+ * This class is for interacting with the Classes table in the DB
  *
  * Copyright (c) 2012 OWASP
  *
@@ -32,17 +32,17 @@
  */
 require_once(HACKADEMIC_PATH."model/common/class.HackademicDB.php");
 
-class Groups {
+class Classes {
      
     public $id;
     public $name;
     public $date_created;
     public $archive;
      
-    public static function addGroup($groupname, $date_created) {
+    public static function addClass($classname, $date_created) {
 	global $db;
-	$sql = "INSERT INTO groups(name,date_created)";
-	$sql .= "VALUES ('$groupname','$date_created')";
+	$sql = "INSERT INTO classes(name,date_created)";
+	$sql .= "VALUES ('$classname','$date_created')";
 	$query = $db->query($sql);
 	if ($db->affectedRows()) {
 	    return true;
@@ -51,32 +51,32 @@ class Groups {
 	}
     }
      
-    public static function getNumberOfGroups($search=null,$category=null) {
+    public static function getNumberOfClasses($search=null,$category=null) {
 	global $db;
         if ($search != null && $category != null) {
-        $sql = "SELECT COUNT(*) as num FROM groups WHERE $category LIKE '%$search%'"; 
+        $sql = "SELECT COUNT(*) as num FROM classes WHERE $category LIKE '%$search%'"; 
         } else {
-	$sql = "SELECT COUNT(*) as num FROM groups";
+	$sql = "SELECT COUNT(*) as num FROM classes";
         }
 	$query = $db->query($sql);
 	$result = $db->fetchArray($query);
 	return $result['num'];
     }
      
-    public static function getAllGroups() {
+    public static function getAllClasses() {
 	global $db;
-	$sql = "SELECT * FROM groups";
+	$sql = "SELECT * FROM classes";
 	$query = $db->query($sql);
 	$result_array=self::findBySQL($sql);
         return $result_array;
     }
     
-    public static function getNGroups ($start, $limit,$search=null,$category=null) {
+    public static function getNClasses ($start, $limit,$search=null,$category=null) {
         global $db;
         if ($search != null && $category != null) {
-        $sql = "SELECT * FROM groups WHERE $category LIKE '%$search%' LIMIT $start, $limit"; 
+        $sql = "SELECT * FROM classes WHERE $category LIKE '%$search%' LIMIT $start, $limit"; 
         } else {
-        $sql= "SELECT * FROM groups ORDER BY id LIMIT $start, $limit";
+        $sql= "SELECT * FROM classes ORDER BY id LIMIT $start, $limit";
         }
         $result_array=self::findBySQL($sql);
         return $result_array;
@@ -107,9 +107,9 @@ class Groups {
         return array_key_exists($attribute,$object_vars);
     }
     
-    public static function deleteGroup($id){
+    public static function deleteClass($id){
 	global $db;
-	$sql="DELETE FROM groups WHERE id='$id'";
+	$sql="DELETE FROM classes WHERE id='$id'";
 	$query = $db->query($sql);
 	if ($db->affectedRows()) {
 	    return true;
@@ -118,9 +118,9 @@ class Groups {
 	}
     }
     
-    public static function archiveGroup($id){
+    public static function archiveClass($id){
 	global $db;
-        $sql="UPDATE groups SET archive=1 ";
+        $sql="UPDATE classes SET archive=1 ";
 	$sql .="WHERE id='$id'";
         $query = $db->query($sql);
 	if ($db->affectedRows()) {

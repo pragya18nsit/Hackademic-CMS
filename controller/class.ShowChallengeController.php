@@ -35,18 +35,15 @@ require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController
 
 class ShowChallengeController extends HackademicController {
     public function go() {
-    if ($this->isLoggedIn() ){
 	if (isset($_GET['id'])) {
 	  $id=$_GET['id'];
         }
-                  $challenge=Challenge::getChallenge($id);
-                  $this->setViewTemplate('showChallenge.tpl');
-	          $this->addToView('challenge', $challenge[0]);
-                  $this->generateView();
-	
-    }
-    else{
-	header('Location:'.SOURCE_ROOT_PATH."pages/mainlogin.php?msg=challenge");
-    }
+        $challenge=Challenge::getChallenge($id);
+        $this->setViewTemplate('showChallenge.tpl');
+	$this->addToView('challenge', $challenge[0]);
+	if (!$this->isLoggedIn()) {
+	    $this->addErrorMessage("You must login to be able to take the challenge");
+	}
+        $this->generateView();
     }
 }

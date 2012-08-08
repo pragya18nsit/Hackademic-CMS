@@ -18,17 +18,17 @@
 		    </td>
 		    <td>
 			<div class="submenu_btn">
-			    <a href="{$site_root_path}admin/pages/addgroup.php">
-				<img class="action_image" src="{$site_root_path}admin/assets/images/addgroup.png"/><br/>
-				<span class="caption">Add Group</span>
+			    <a href="{$site_root_path}admin/pages/addclass.php">
+				<img class="action_image" src="{$site_root_path}admin/assets/images/addclass.png"/><br/>
+				<span class="caption">Add Class</span>
 			    </a>
 			</div>
 		    </td>
 		    <td>
 			<div class="submenu_btn">
-			    <a href="{$site_root_path}admin/pages/managegroup.php">
-				<img class="action_image" src="{$site_root_path}admin/assets/images/managegroup.png"/><br/>
-				<span class="caption">Group Manager</span>
+			    <a href="{$site_root_path}admin/pages/manageclass.php">
+				<img class="action_image" src="{$site_root_path}admin/assets/images/manageclass.png"/><br/>
+				<span class="caption">Class Manager</span>
 			    </a>
 			</div>
 		    </td>
@@ -65,7 +65,7 @@
 	    <th> Username </th>
 	    <th>Full Name</th>
 	    <th>Email</th>
-	    <th>Groups</th>
+	    <th>Classes</th>
 	    <th>Joined</th>
 	    <th>Last Visit</th>
 	    <th>Activated</th>
@@ -77,7 +77,7 @@
 		<td>{$user->full_name}</td>
 		<td>{$user->email}</td>
 		<td>
-		    <a href="{$site_root_path}admin/pages/groupmemberships.php?id={$user->id}">Edit</a>
+		    <a href="{$site_root_path}admin/pages/classmemberships.php?id={$user->id}">Edit</a>
 		</td>
 		<td>{$user->joined|date_format}</td>
 		<td>{if $user->last_visit}{$user->last_visit|date_format}{else}Never{/if}</td>

@@ -1,10 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/admin/mode/class.GroupMemberships.php
+ * Hackademic-CMS/admin/mode/class.ClassMemberships.php
  *
- * Hackademic Group Memberships Model
- * This class is for interacting with the group_memberships table in DB
+ * Hackademic Class Memberships Model
+ * This class is for interacting with the class_memberships table in DB
  *
  * Copyright (c) 2012 OWASP
  *
@@ -32,16 +32,16 @@
  */
 require_once(HACKADEMIC_PATH."model/common/class.HackademicDB.php");
 
-class GroupMemberships {
+class ClassMemberships {
     public $id;
     public $user_id;
-    public $group_id;
+    public $class_id;
     public $date_created;
      
-    public static function addMembership($user_id,$group_id){
+    public static function addMembership($user_id,$class_id){
         global $db;
-        $sql="INSERT INTO group_memberships(user_id,group_id)";
-	$sql .= "VALUES ('$user_id','$group_id')";
+        $sql="INSERT INTO class_memberships(user_id,class_id)";
+	$sql .= "VALUES ('$user_id','$class_id')";
         $query = $db->query($sql);
         if ($db->affectedRows()) {
 	    return true;
@@ -52,9 +52,9 @@ class GroupMemberships {
     
     public static function getMembershipsOfUser($user_id) {
         global $db;
-        $sql = "SELECT group_memberships.group_id, groups.name FROM group_memberships";
-	$sql .= " LEFT JOIN groups ON group_memberships.group_id = groups.id WHERE";
-	$sql .= " group_memberships.user_id = $user_id";
+        $sql = "SELECT class_memberships.class_id, classes.name FROM class_memberships";
+	$sql .= " LEFT JOIN classes ON class_memberships.class_id = classes.id WHERE";
+	$sql .= " class_memberships.user_id = $user_id";
         $query = $db->query($sql);
 	$result_array = array();
 	while ($row = $db->fetchArray($query)) {
@@ -63,10 +63,10 @@ class GroupMemberships {
 	return $result_array;
     }
     
-    public static function doesMembershipExist($user_id, $group_id) {
+    public static function doesMembershipExist($user_id, $class_id) {
         global $db;
-        $sql= "SELECT * FROM group_memberships";
-        $sql .= " WHERE user_id=$user_id AND group_id=$group_id";
+        $sql= "SELECT * FROM class_memberships";
+        $sql .= " WHERE user_id=$user_id AND class_id=$class_id";
         $query = $db->query($sql);
         if ($db->numRows($query)) {
 	    return true;
@@ -75,9 +75,9 @@ class GroupMemberships {
 	}
     }
     
-    public static function deleteMembership($user_id,$group_id){
+    public static function deleteMembership($user_id,$class_id){
         global $db;
-	$sql="DELETE FROM group_memberships WHERE user_id=$user_id AND group_id=$group_id";
+	$sql="DELETE FROM class_memberships WHERE user_id=$user_id AND class_id=$class_id";
 	$query = $db->query($sql);
 	if ($db->affectedRows()) {
 	    return true;

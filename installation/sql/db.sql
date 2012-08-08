@@ -41,19 +41,19 @@ CREATE TABLE classchallenges (
     added datetime
 );
 
-CREATE TABLE groups (
+CREATE TABLE classes (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
     date_created datetime NOT NULL,
     archive int(1) DEFAULT 0
 );
 
-CREATE TABLE group_memberships (
+CREATE TABLE class_memberships (
     id int(11) UNIQUE,
     user_id int(11) NOT NULL ,
-    group_id int(11) NOT NULL ,
+    class_id int(11) NOT NULL ,
     date_created datetime NOT NULL,
-    PRIMARY KEY (user_id,group_id)
+    PRIMARY KEY (user_id,class_id)
 );
 
 CREATE TABLE challenge_attempts (

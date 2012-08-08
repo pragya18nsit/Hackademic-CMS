@@ -36,7 +36,9 @@ class ChallengeBackend extends Challenge{
     
     public static function addchallenge($title,$pkg_name,$description,$author,$category,$date_posted){
 	global $db;
-	$description=mysql_escape_string($description);
+	$description=mysql_escape_string(trim($description));
+	$title=mysql_escape_string(trim($title));
+	$author=mysql_escape_string(trim($author));
 	$sql="INSERT INTO challenges(title,pkg_name,description,author,category,date_posted)";
 	$sql .= "VALUES ('$title','$pkg_name','$description','$author','$category','$date_posted')";
         $query = $db->query($sql);
@@ -49,7 +51,8 @@ class ChallengeBackend extends Challenge{
     
      public static function updateChallenge($id,$title,$description,$visibility,$publish){
 	global $db;
-	$description=mysql_escape_string($description);
+	$description=mysql_escape_string(trim($description));
+	$title=mysql_escape_string(trim($title));
         $sql="UPDATE challenges SET title='$title',description='$description',visibility='$visibility',publish='$publish'";
         $sql .= " WHERE id=$id";
 	$query = $db->query($sql);

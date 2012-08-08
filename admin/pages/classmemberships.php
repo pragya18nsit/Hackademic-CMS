@@ -1,9 +1,9 @@
 <?php
 /**
  *
- * Hackademic-CMS/admin/pages/groupmemberships.php
+ * Hackademic-CMS/admin/pages/classmemberships.php
  *
- * This page calls the Group Memberships Controller
+ * This page calls the Class Memberships Controller
  *
  * Copyright (c) 2012 OWASP
  *
@@ -30,7 +30,7 @@
  *
  */
 require_once("../../init.php");
-require_once(HACKADEMIC_PATH."admin/controller/class.GroupMembershipsController.php");
+require_once(HACKADEMIC_PATH."admin/controller/class.ClassMembershipsController.php");
 
-$controller = new GroupMembershipsController();
+$controller = new ClassMembershipsController();
 echo $controller->go();

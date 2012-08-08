@@ -1,10 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/admin/controller/class.GroupMembershipsController.php
+ * Hackademic-CMS/admin/controller/class.ClassMembershipsController.php
  *
- * Hackademic Group Memberships Controller
- * Class for the Group Memberships page in Backend
+ * Hackademic Class Memberships Controller
+ * Class for the Class Memberships page in Backend
  *
  * Copyright (c) 2012 OWASP
  *
@@ -30,37 +30,37 @@
  * @copyright 2012 OWASP
  *
  */
-require_once(HACKADEMIC_PATH."admin/model/class.GroupMemberships.php");
-require_once(HACKADEMIC_PATH."admin/model/class.Groups.php");
+require_once(HACKADEMIC_PATH."admin/model/class.ClassMemberships.php");
+require_once(HACKADEMIC_PATH."admin/model/class.Classes.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
 
-class GroupMembershipsController extends HackademicBackendController {
+class ClassMembershipsController extends HackademicBackendController {
     
     public function go() {
-        $this->setViewTemplate('groupmembership.tpl');
+        $this->setViewTemplate('classmembership.tpl');
 	$user_id=$_GET['id'];
 	if (isset($_POST['submit'])) {
-	    $group_id=$_POST['group_id'];
-	    if(GroupMemberships::doesMembershipExist($user_id, $group_id))
+	    $class_id=$_POST['class_id'];
+	    if(ClassMemberships::doesMembershipExist($user_id, $class_id))
 	    {
-		$this->addErrorMessage("User is already a member of this group");
+		$this->addErrorMessage("User is already a member of this class");
 	    }
 	    else{
-	    GroupMemberships::addMembership($user_id,$group_id);
-	    $this->addSuccessMessage("User has been added to the group succesfully");
+	    ClassMemberships::addMembership($user_id,$class_id);
+	    $this->addSuccessMessage("User has been added to the class succesfully");
 	    }
 	}
 	elseif (isset($_GET['action']) && $_GET['action']=="del") {
-	    $group_id=$_GET['group_id'];
-	    GroupMemberships::deleteMembership($user_id,$group_id);
-	    $this->addSuccessMessage("User has been deleted from the group succesfully");
+	    $class_id=$_GET['class_id'];
+	    ClassMemberships::deleteMembership($user_id,$class_id);
+	    $this->addSuccessMessage("User has been deleted from the class succesfully");
 	}	
-	$group_memberships = GroupMemberships::getMembershipsOfUser($user_id);
+	$class_memberships = ClassMemberships::getMembershipsOfUser($user_id);
         
-        $groups = Groups::getAllGroups();
-	$this->addToView('groups', $groups);
-	$this->addToView('group_memberships', $group_memberships);
-	$this->setViewTemplate('groupmembership.tpl');
+        $classes = Classes::getAllClasses();
+	$this->addToView('classes', $classes);
+	$this->addToView('class_memberships', $class_memberships);
+	$this->setViewTemplate('classmembership.tpl');
 	$this->generateView();
     }
 }
