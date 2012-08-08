@@ -35,10 +35,11 @@ CREATE TABLE challenges (
     publish int(10) DEFAULT 0
 );
 
-CREATE TABLE classchallenges (
-    class_id int(11),
-    challenge_id int(11),
-    added datetime
+CREATE TABLE class_challenges (
+    id int(11) PRIMARY KEY AUTO_INCREMENT,
+    challenge_id int(11) NOT NULL ,
+    class_id int(11) NOT NULL ,
+    date_created datetime NOT NULL
 );
 
 CREATE TABLE classes (
