@@ -65,7 +65,7 @@ class Challenge {
     
      public static function getChallengesFrontend() {
 	global $db;
-        $sql = "SELECT * FROM challenges WHERE visibility='public' AND publish=1";
+        $sql = "SELECT * FROM challenges WHERE publish=1";
         $result_array=self::findBySQL($sql);
         // return !empty($result_array)?array_shift($result_array):false;
         return $result_array;

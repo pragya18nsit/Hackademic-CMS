@@ -34,6 +34,9 @@ if ($version[0] < 5) {
     echo "The current version of PHP is ".phpversion().".";
     die();
 }
+if (!file_exists('config.inc.php')) {
+    header("Location: ./installation/install.php");
+}
 require_once('init.php');
 require_once(HACKADEMIC_PATH."controller/class.LandingPageController.php");
 
