@@ -31,6 +31,7 @@
  *
  */
 require_once(HACKADEMIC_PATH."model/common/class.HackademicDB.php");
+
 class Challenge {
     public $id;
     public $title;

@@ -32,6 +32,8 @@
  *
  */
 require_once(HACKADEMIC_PATH."/model/common/class.Challenge.php");
+require_once(HACKADEMIC_PATH."admin/model/class.ClassChallenges.php");
+
 class ChallengeBackend extends Challenge{
     
     public static function addchallenge($title,$pkg_name,$description,$author,$category,$date_posted){
@@ -66,6 +68,7 @@ class ChallengeBackend extends Challenge{
 	global $db;
 	$sql = "DELETE FROM challenges WHERE id='$id'";
         $query = $db->query($sql);
+	ClassChallenges::deleteAllMemberships($id);
         if ($db->affectedRows()) {
 	    return true;
         } else {

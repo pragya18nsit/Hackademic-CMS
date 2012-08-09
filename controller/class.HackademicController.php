@@ -186,11 +186,11 @@ abstract class HackademicController {
     }
 
     /**
-     * Return email address of logged-in user
+     * Return username of logged-in user
      *
-     * @return str email
+     * @return str username
      */
-    protected function getLoggedInUser() {
+    public function getLoggedInUser() {
         return Session::getLoggedInUser();
     }
 }

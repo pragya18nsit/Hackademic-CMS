@@ -87,6 +87,28 @@ class ClassChallenges {
 	}
     }
     
+    public static function deleteAllMemberships($challenge_id){
+        global $db;
+	$sql="DELETE FROM class_challenges WHERE challenge_id=$challenge_id";
+	$query = $db->query($sql);
+	if ($db->affectedRows()) {
+	    return true;
+	} else {
+	    return false;
+	}
+    }
+    
+    public static function deleteAllMembershipsOfClass($class_id){
+        global $db;
+	$sql="DELETE FROM class_challenges WHERE class_id=$class_id";
+	$query = $db->query($sql);
+	if ($db->affectedRows()) {
+	    return true;
+	} else {
+	    return false;
+	}
+    }
+    
     public static function getAllMemberships($class_id) {
 	global $db;
 	$sql = "SELECT DISTINCT class_challenges.challenge_id, challenges.title FROM class_challenges ";
@@ -98,5 +120,23 @@ class ClassChallenges {
 	    array_push($result_array, $row);
 	}
 	return $result_array;
+    }
+    
+    public static function isAllowed($challenge_id, $classes) {
+	global $db;
+	$in_these_classes = '';
+	foreach ($classes as $class) {
+	    if ($in_these_classes != '') {
+		$in_these_classes .= " OR ";
+	    }
+	    $in_these_classes .= "class_id = ".$class['class_id'];
+	}
+	$sql = "SELECT * FROM class_challenges WHERE challenge_id = $challenge_id AND (".$in_these_classes.");";
+        $query = $db->query($sql);
+	if ($db->numRows($query)) {
+	    return true;
+        } else {
+	    return false;
+	}
     }
 }

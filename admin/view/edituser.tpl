@@ -64,7 +64,10 @@
 	    
 	    <tr class="submit_btn">
 		<td colspan="2">
-		    <p class="submit"><input type="submit" name="submit" id="submit" value="Add User" /></p>
+		    <p class="submit">
+			<input type="submit" name="submit" id="submit" value="Edit User" />
+			<input type="submit" name="deletesubmit" id="deletesubmit" value="Delete User" />
+		    </p>
 		</td>
 	    </tr>
 	</table>

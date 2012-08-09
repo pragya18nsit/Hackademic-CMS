@@ -87,6 +87,28 @@ class ClassMemberships {
 	}
     }
     
+    public static function deleteAllMemberships($user_id){
+        global $db;
+	$sql="DELETE FROM class_memberships WHERE user_id=$user_id";
+	$query = $db->query($sql);
+	if ($db->affectedRows()) {
+	    return true;
+	} else {
+	    return false;
+	}
+    }
+    
+    public static function deleteAllMembershipsOfClass($class_id){
+        global $db;
+	$sql="DELETE FROM class_memberships WHERE class_id=$class_id";
+	$query = $db->query($sql);
+	if ($db->affectedRows()) {
+	    return true;
+	} else {
+	    return false;
+	}
+    }
+    
     public static function getAllMemberships($class_id) {
 	global $db;
 	$sql = "SELECT class_memberships.user_id, users.username FROM class_memberships ";

@@ -31,6 +31,7 @@
  *
  */
 require_once(HACKADEMIC_PATH."model/common/class.HackademicDB.php");
+require_once(HACKADEMIC_PATH."admin/model/class.ClassMemberships.php");
 
 class User {
     public $id;
@@ -185,6 +186,7 @@ class User {
 	global $db;
 	$sql="DELETE FROM users WHERE id='$id'";
 	$query = $db->query($sql);
+	ClassMemberships::deleteAllMemberships($id);
 	if ($db->affectedRows()) {
 	  return true;
 	} else {
