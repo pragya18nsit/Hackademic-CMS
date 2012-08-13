@@ -53,15 +53,26 @@ class AddChallengeController extends HackademicBackendController {
 	    $zip->extractTo($target);
 	    $zip->close();
             unlink($file_to_open);#deletes the zip file. We no longer need it.
-            if (!file_exists($target."index.php") || !file_exists($target."$name".".xml")) {
+	    if (isset($_GET['type']) && $_GET['type'] == "code") {
+	       $xml_exists = 1;
+	    } else {
+	       $xml_exists = file_exists($target."$name".".xml");
+	    }
+            if (!file_exists($target."index.php") || !$xml_exists) {
                 if (!file_exists($target."index.php")) {
 		    $this->addErrorMessage("Not a valid challenge! Index.php file doesn't exist");
+		    if (isset($_GET['type']) && $_GET['type'] == "code") {
+			 $this->addToView('step', 'step2');
+		    }
 		} else {
 		    $this->addErrorMessage("Not a valid challenge! Can't find XML file.");
 		}
                 self::rrmdir(HACKADEMIC_PATH."challenges/".$name);
                 return false;
-            } 
+            }
+	    if (isset($_GET['type']) && $_GET['type'] == "code") {
+	       return $_SESSION['challenge_arr'];
+	    }
             $xml = simplexml_load_file($target."$name".".xml");
             if ( !isset($xml->title) || !isset($xml->author)|| !isset($xml->description)|| !isset($xml->category)){
                 $this->addErrorMessage("The XML file is not valid.");
@@ -78,6 +89,33 @@ class AddChallengeController extends HackademicBackendController {
     
     public function go() {
         $this->setViewTemplate('addchallenge.tpl');
+	if (isset($_GET['type']) && $_GET['type'] == "code") {
+	  $add_type = "code";
+	} else {
+	  $add_type = "challenge";
+	}
+	if (isset($_POST['continue'])) {
+	  if ($_POST['title']=='') {
+		$this->addErrorMessage("Title of the challenge should not be empty");
+            } elseif ($_POST['description']=='') {
+		$this->addErrorMessage("Description should not be empty");
+	    } elseif ($_POST['authors']=='') {
+		$this->addErrorMessage("Authors field should not be empty");
+	    } elseif ($_POST['category']=='') {
+		$this->addErrorMessage("Category field should not be empty");
+	    } else {
+                
+                $array = array (
+		    'title' => $_POST['title'],
+                    'description' => $_POST['description'],
+		    'authors' => $_POST['authors'],
+		    'category' => $_POST['category']
+		    );
+	        $_SESSION['challenge_arr'] = $array;
+		$this->addSuccessMessage("Now Please upload the challenge code");
+		$this->addToView('step', 'step2');
+	    }
+	}
         if(isset($_FILES['fupload'])) {
 	    $filename = $_FILES['fupload']['name'];
             $source = $_FILES['fupload']['tmp_name'];
@@ -91,12 +129,18 @@ class AddChallengeController extends HackademicBackendController {
             if(isset($name[0])) {
                 $challenge=ChallengeBackend::doesChallengeExist($name[0]);
                 if($challenge==true){
+		    if (isset($_SESSION['challenge_arr'])) {
+			 $this->addToView('step', 'step2');
+		    }
                     $this->addErrorMessage("This file already exists!!");
                     return $this->generateView();
                 }
             }
 	    $okay = strtolower($name[1]) == 'zip' ? true : false;
 	    if(!$okay) {
+		    if (isset($_SESSION['challenge_arr'])) {
+			 $this->addToView('step', 'step2');
+		    }
 		$this->addErrorMessage("Please choose a zip file!");
                 return $this->generateView();
 	    }
@@ -109,9 +153,12 @@ class AddChallengeController extends HackademicBackendController {
                     $date_posted = date("Y-m-d H-i-s");
                     ChallengeBackend::addchallenge($data['title'],$pkg_name,$data['description'],$data['author'],$data['category'],$date_posted);  
                     $this->addSuccessMessage("Challenge has been added succesfully. You can enable the challenge from the Challenge Manager now.");
+		    $this->addToView('finish', true);
+		    unset($_SESSION['challenge_arr']);
 	        } 
             }
-        } 
+        }
+	$this->addToView('type', $add_type);
         return $this->generateView();
     }
 }
