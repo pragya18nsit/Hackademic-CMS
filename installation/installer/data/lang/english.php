@@ -15,7 +15,7 @@ $lang = array(
 'G-07' => "Administrator Details",
 
 # Errors
-'L-01' => "The installer is locked! If you wish to continue with this installation please delete the installer.lock file",
+'L-01' => "The installer is locked! If you wish to continue, please delete the configuration file.",
 'L-02' => "You must pass an array of options to the dbTables method",
 'L-03' => "Please fill in all required fields.",
 'L-04' => "Could not connect to the DB with those parameters",

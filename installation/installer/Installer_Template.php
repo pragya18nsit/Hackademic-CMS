@@ -74,7 +74,11 @@ class Installer_Template
      */
     public function error($error_string)
     {
-        $template_name = 'error';
+        if ($_POST['step'] == "database") {
+            $template_name = "error_db";
+        } else {
+            $template_name = 'error';          
+        }
         $path = TMPL_PATH . DIRECTORY_SEPARATOR . $template_name . '.phtml';
         if(!file_exists($path))
         {
