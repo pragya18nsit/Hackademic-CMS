@@ -45,9 +45,15 @@ class ChallengeManagerController extends HackademicBackendController {
             ChallengeBackend::deleteChallenge($id);
             $this->addSuccessMessage("Challenge has been deleted succesfully");
         }
-        $limit = 3; 
+	if (isset($_GET['limit'])) {
+             $limit =$_GET['limit'];
+	}
+	else{
+	    $limit=3;
+	}
+      
         $total_pages = ChallengeBackend::getNumberOfChallenges();
-	$targetpage = "http://localhost/hackademic/admin/pages/challengemanager.php";
+	$targetpage = SOURCE_ROOT_PATH."admin/pages/challengemanager.php";
 	$stages = 3;
 	$page=0;
 	if(isset($_GET['page'])) {

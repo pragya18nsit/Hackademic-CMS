@@ -18,6 +18,21 @@
 			    <option value="last_modified_by">Last modified by</option> 
 			</select>
 		    </td>
+			<td>
+			<select name="limit">
+	             <option value="limit">Number of articles per page</option>
+                 <option value="5">5</option>
+				 <option value="10">10</option>
+				 <option value="15">15</option>
+				 <option value="20">20</option>
+				 <option value="25">25</option>
+				 <option value="30">30</option>
+				 <option value="40">40</option>
+				 <option value="50">50</option>
+				 <option value="75">75</option>
+				 <option value="100">100</option>
+        	</select>
+			</td>
 		    <td class="submit_btn">
 			<p class="submit"><input type="submit" name="submit" id="submit" value="search" /></p>
 		    </td>
@@ -28,6 +43,9 @@
     
     <div id="usermessage">{include file="_usermessage.tpl"}</div>
     <div id="paginate_div">{include file="_pagination.tpl"}</div>
+	
+	
+	
     <table class="manager_table">
 	<thead> 
 	    <th>Title</th>

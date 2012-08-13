@@ -39,19 +39,26 @@ class ArticleManagerController extends HackademicBackendController {
 	if (isset($_GET['source']) && $_GET['source']=="del") {
             $this->addSuccessMessage("Article has been deleted succesfully");
         }
-        $limit = 3;
+	
 	if (isset($_GET['search']) && isset($_GET['category']) && $_GET['search']!='' && $_GET['category']!='') {
              $total_pages = ArticleBackend::getNumberofArticles($_GET['search'], $_GET['category']);
         } else {
 	$total_pages = ArticleBackend::getNumberOfArticles();
 	}
-	$targetpage = "http://localhost/hackademic/admin/pages/articlemanager.php";
-	$stages = 3;
+	$targetpage = SOURCE_ROOT_PATH."admin/pages/articlemanager.php";
+	$stages = 5;
 	$page=0;
 	
 	if(isset($_GET['page'])) {
 	    $page=$_GET['page'];
 	}
+	if (isset($_GET['limit'])) {
+             $limit =$_GET['limit'];
+	}
+	else{
+	    $limit=3;
+	}
+	
 	if($page) {
 	    $start = ($page - 1) * $limit; 
 	} else {
