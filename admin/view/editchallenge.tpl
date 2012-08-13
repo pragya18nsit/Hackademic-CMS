@@ -88,11 +88,14 @@ tinyMCE.init({
 		    <td>
 			<p class="submit"><input type="submit" name="submit" value="Update Challenge Details" /></p>
 		    </td>
+		    <td>
+		     	<p class="submit right" id="try_me"><a href="{$site_root_path}admin/pages/editcode.php?id={$challenge->id}" name="submit">Edit Code</a></p></td>
 		</tr>
 	    
 </table>
 
 </form>		
+</div>
 </div>
 	   
 {include file="_footer.tpl"}

@@ -38,7 +38,7 @@
     </td>
   </tr>
 </table>
-<p><i><span class="style3"><span lang="el">Anonymous Corporation since 1990. Reg. No: K7827-232-210B/1990</span></span><b><font color="#808000"> </font>&nbsp;<font color="#FFFFFF"><span lang="el">&nbsp;</span>white, rabbit</font></b></i></p>
+<p><i><span class="style3"><span lang="el">Anonymous Corporation since 1990. Reg. No: K7827-232-210B/1990</span></span><b><font color="#808000"> </font> <font color="#FFFFFF"><span lang="el"> </span>white, rabbit</font></b></i></p>
 <form action="./main/index.php" method="post">
   <p align="center">Enter Code / Password
     <input type="text" name="name1" size="20">
@@ -55,7 +55,7 @@
 </form>
 <p align="left"><b><span><i>Enter code and password to enter the transportation system.</i></span><i></span></i></b></p>
 
-<p align="left">&nbsp;</p>
+<p align="left"> </p>
 
 </body>
 

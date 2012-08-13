@@ -109,3 +109,19 @@ img {border:none;}
 #input_form .radio input {
     width: 50px;
 }
+
+#try_me {
+    width: auto;
+    padding: 9px 15px;
+    background: black;
+    border: 0;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-decoration: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+#try_me a {
+    text-decoration: none;
+    color: white;
+}
