@@ -45,11 +45,11 @@ class ChallengeManagerController extends HackademicBackendController {
             ChallengeBackend::deleteChallenge($id);
             $this->addSuccessMessage("Challenge has been deleted succesfully");
         }
-	if (isset($_GET['limit'])) {
-             $limit =$_GET['limit'];
+	if (isset($_GET['limit']) && $_GET['limit']!="") {
+            $limit =$_GET['limit'];
 	}
-	else{
-	    $limit=3;
+	else {
+	    $limit=25;
 	}
       
         $total_pages = ChallengeBackend::getNumberOfChallenges();

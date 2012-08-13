@@ -21,6 +21,8 @@ define('SOURCE_ROOT_PATH', "#YOUR_SOURCE_ROOT_PATH#");
 define('DEBUG',false);
 define('CACHE_PAGES',false);
 
+// Environment
+define('ENVIRONMENT', 'production');
 
 /************************************************/
 /***  DATABASE CONFIG                         ***/
