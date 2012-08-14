@@ -36,54 +36,50 @@ class HackademicDB {
     private $connection;
 	
     public function openConnection() {
-	$this->connection=mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
-	if(!$this->connection) {
-	      die("database connection falied".mysql_error());
-	} else {
-	      $db_select = mysql_select_db(DB_NAME, $this->connection);
-	}
-	if (!$db_select) {
-	      die("Database selection failed: " . mysql_error());
-	}
+	$host = DB_HOST;
+	$dbname = DB_NAME;
+	$user = DB_USER;
+	$pass = DB_PASSWORD;
+	try {
+	    $this->connection = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+	} catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+	$this->connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+	$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     
     public function __construct() {
 	$this->openConnection();
     }
     
-    public function query($sql) {
-	$result=mysql_query($sql,$this->connection);
-	$this->confirmQuery($result);
-	return $result;
+    public function query($sql, $params = NULL) {
+	$statement_handle = $this->connection->prepare($sql);
+	$statement_handle->execute($params);
+	return $statement_handle;
     }
     
-    private function confirmQuery($result_set) {
-	if(!$result_set) {
-	    $output="database query failed".mysql_error()."<br/>";
-	    die($output);
-	}
-    }
-    
-    public function fetchArray($result_set) {
-	return mysql_fetch_array($result_set);
+    public function fetchArray($statement_handle) {
+	$statement_handle->setFetchMode(PDO::FETCH_ASSOC);
+	$row = $statement_handle->fetch();
+	return $row;
     }		  
       
-    public function numRows($result_set) {
-	return mysql_num_rows($result_set);
+    public function numRows($statement_handle) {
+	return $statement_handle->rowCount();
     }              							   		  
 
     public function insertId() {
-	return mysql_insert_id($this->connection);
+	return $this->connection->lastInsertId();
     }
 
-    public function affectedRows() {
-	return mysql_affected_rows($this->connection);
+    public function affectedRows($statement_handle) {
+	return $this->numRows($statement_handle);
     }						 
 
     public function closeConnection() {
 	if(isset($this->connection)) {
-	    mysql_close($this->connection);
-	    unset($this->connection);
+	    $this->connection = null;
 	}
     }
 }

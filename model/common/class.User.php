@@ -47,8 +47,11 @@ class User {
     
     public static function findByUserName($username) {
         global $db;
-		$sql = "SELECT * FROM users WHERE username='{$username}' LIMIT 1";
-		$result_array=self::findBySQL($sql);
+	$sql = "SELECT * FROM users WHERE username=:username LIMIT 1";
+	$params = array(
+	    ':username' => $username
+	);
+	$result_array=self::findBySQL($sql, $params);
         return !empty($result_array)?array_shift($result_array):false;
     }
     
@@ -60,9 +63,9 @@ class User {
 	return $result_array;
     }   
     
-    private static function findBySQL($sql) {
+    private static function findBySQL($sql, $params) {
         global $db;
-        $result_set=$db->query($sql);
+        $result_set=$db->query($sql, $params);
         $object_array=array();
         while($row=$db->fetchArray($result_set)) {
             $object_array[]=self::instantiate($row);
@@ -117,11 +120,15 @@ class User {
     
     public static function updateLastVisit($username){
 	global $db;
-	$last_visit=date("Y-m-d H-i-s");
-	$sql="UPDATE users SET last_visit='$last_visit'";
-	$sql .="WHERE username='$username'";
-	$query = $db->query($sql);
-        if ($db->affectedRows()) {
+	$last_visit = date("Y-m-d H-i-s");
+	$sql = "UPDATE users SET last_visit = :last_visit ";
+	$sql .= "WHERE username = :username";
+	$params = array(
+	    ':last_visit' => $last_visit,
+	    ':username' => $username
+	);
+	$query = $db->query($sql, $params);
+        if ($db->affectedRows($query)) {
 	    return true;
         } else {
 	    return false;
