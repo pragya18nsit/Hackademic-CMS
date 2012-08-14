@@ -11,7 +11,7 @@
 	<table class="user_add">
 	    <tr>
 		<td><label for="name">Username</label></td>
-		<td><input type="text" name="username" value="{$user->username}"/></td>
+		<td><input type="text" name="username" value="{$user->username}" readonly="readonly"/></td>
 	    </tr>
 	    
 	    <tr>

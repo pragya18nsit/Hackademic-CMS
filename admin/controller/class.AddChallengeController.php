@@ -152,9 +152,7 @@ class AddChallengeController extends HackademicBackendController {
                     $pkg_name =$name[0];
                     $date_posted = date("Y-m-d H-i-s");
                     ChallengeBackend::addchallenge($data['title'],$pkg_name,$data['description'],$data['author'],$data['category'],$date_posted);  
-                    $this->addSuccessMessage("Challenge has been added succesfully. You can enable the challenge from the Challenge Manager now.");
-		    $this->addToView('finish', true);
-		    unset($_SESSION['challenge_arr']);
+		    header('Location: '.SOURCE_ROOT_PATH."admin/pages/challengemanager.php?action=add");
 	        } 
             }
         }

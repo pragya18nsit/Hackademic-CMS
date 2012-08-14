@@ -59,5 +59,6 @@ $lang = array(
 'I-28' => "Password",
 'I-29' => "Email",
 'I-30' => "Application Title",
-'I-31' => "You can now login by visiting the following URL in your browser:"
+'I-31' => "You can now login by visiting the following URL in your browser:",
+'I-32' => "Back"
 );
