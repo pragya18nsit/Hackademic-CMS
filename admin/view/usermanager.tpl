@@ -45,7 +45,7 @@
 		    <td>
 			<select name="category">
 			    <option value="username">Username</option> 
-			    <option value="fullname">Full Name</option> 
+			    <option value="full_name">Full Name</option> 
 			    <option value="email">Email</option> 
 			</select>
 		    </td>
