@@ -66,6 +66,7 @@ class Classes {
     
     public static function getNumberOfClasses($search=null,$category=null) {
 	global $db;
+	$params=array(':search' => $search);
         if ($search != null && $category != null) {
         $sql = "SELECT COUNT(*) as num FROM classes WHERE $category LIKE '%$search%'"; 
         } else {

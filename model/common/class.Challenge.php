@@ -113,12 +113,13 @@ class Challenge {
     
     public static function getNumberOfChallenges($search=null,$category=null) {
         global $db;
+	$params=array(':search' => $search,':category' => $category);
 	if ($search != null && $category != null) {
-        $sql = "SELECT COUNT(*) as num FROM challenges WHERE $category LIKE '%$search%'"; 
+        $sql = "SELECT COUNT(*) as num FROM challenges WHERE :category LIKE '%:search%'"; 
         } else {
         $sql = "SELECT COUNT(*) as num FROM challenges";
 	}
-        $query = $db->query($sql);
+        $query = $db->query($sql,$params);
         $result = $db->fetchArray($query);
         return $result['num'];
     }

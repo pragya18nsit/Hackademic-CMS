@@ -154,14 +154,27 @@ class User {
    
     
     public static function getNumberOfUsers($search=null,$category=null) {
-        global $db;
-	$params=array(':search' => $search,':category' => $category);   
+        global $db;  
 	if ($search != null && $category != null) {
-        $sql = "SELECT COUNT(*) as num FROM users WHERE :category LIKE '%:search%'"; 
+	     $params[':search_string'] = '%'.$search.'%';
+	       switch ($category) {
+		case "username":
+		    $sql = "SELECT COUNT(*) as num FROM users WHERE username LIKE :search_string";
+		    break;
+		case "full_name":
+		    $sql = "SELECT COUNT(*) as num FROM users WHERE full_name LIKE :search_string";
+		    break;
+		case "email":
+		    $sql = "SELECT COUNT(*) as num FROM users WHERE email LIKE :search_string";
+		    break;
+		  
+	    }
+	    $query = $db->query($sql,$params);
         } else {
         $sql = "SELECT COUNT(*) as num FROM users";
+	$query = $db->query($sql);
 	}
-        $query = $db->query($sql,$params);
+      
         $result = $db->fetchArray($query);
         return $result['num'];
     }

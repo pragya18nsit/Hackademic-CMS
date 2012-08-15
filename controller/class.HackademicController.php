@@ -185,6 +185,11 @@ abstract class HackademicController {
         return Session::isAdmin();
     }
     
+    /**
+     * Returns whether or not a logged-in Hackademic user is a teacher
+     *
+     * @return bool whether or not logged-in user is an admin
+     */
     protected function isTeacher() {
         return Session::isTeacher();
     }

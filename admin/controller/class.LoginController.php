@@ -42,8 +42,7 @@ class LoginController extends HackademicBackendController {
 	$this->addPageTitle('Log in');
         
 	if ($this->isLoggedIn()) {
-            $controller = new DashboardController();
-            return $controller->go();
+           header('Location: '.SOURCE_ROOT_PATH."admin/pages/dashboard.php");
         } else  {
             if (isset($_POST['submit']) && $_POST['submit']=='Login'
                 && isset($_POST['username']) && isset($_POST['pwd']) ) {
@@ -72,8 +71,7 @@ class LoginController extends HackademicBackendController {
 		    } else {
                         // this sets variables in the session
 		        $session->completeLogin($user);
-                        $controller = new DashboardController(true);
-                        return $controller->go();
+                         header('Location: '.SOURCE_ROOT_PATH."admin/pages/login.php");
                     }
                 }
             } else {
