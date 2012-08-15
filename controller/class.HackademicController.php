@@ -184,6 +184,10 @@ abstract class HackademicController {
     protected function isAdmin() {
         return Session::isAdmin();
     }
+    
+    protected function isTeacher() {
+        return Session::isTeacher();
+    }
 
     /**
      * Return username of logged-in user
