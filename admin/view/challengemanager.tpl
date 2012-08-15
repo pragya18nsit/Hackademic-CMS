@@ -17,7 +17,7 @@
 		    </td>
 		    
 			<td>
-			   <select name="limit" style="width:100px">
+			   <select name="limit" style="width:200px">
 	                          <option value="">Results Per Page</option>
                                   <option value="5">5</option>
 				  <option value="10">10</option>

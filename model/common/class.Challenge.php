@@ -45,8 +45,9 @@ class Challenge {
     
     public function doesChallengeExist($name){
 	global $db;
-	$sql = "SELECT * FROM challenges WHERE pkg_name='$name'";
-	$query = $db->query($sql);
+	$params=array(':name' => $name);
+	$sql = "SELECT * FROM challenges WHERE pkg_name=:name";
+	$query = $db->query($sql,$params);
 	$result = $db->numRows($query);
 	if ($result) {
 	    return true;
@@ -57,16 +58,20 @@ class Challenge {
        
     public static function getChallenge($id) {
 	global $db;
-        $sql = "SELECT * FROM challenges WHERE id='{$id}' LIMIT 1";
-        $result_array=self::findBySQL($sql);
+	$params = array(
+	    ':id' => $id
+	);
+        $sql = "SELECT * FROM challenges WHERE id= :id LIMIT 1";
+        $result_array=self::findBySQL($sql,$params);
         // return !empty($result_array)?array_shift($result_array):false;
         return $result_array;
     }
     
      public static function getChallengesFrontend() {
 	global $db;
-        $sql = "SELECT * FROM challenges WHERE publish=1";
-        $result_array=self::findBySQL($sql);
+	$params=array(':publish' => '1');
+        $sql = "SELECT * FROM challenges WHERE publish=:publish";
+        $result_array=self::findBySQL($sql,$params);
         // return !empty($result_array)?array_shift($result_array):false;
         return $result_array;
     }
@@ -76,9 +81,9 @@ class Challenge {
         return $db->insertId();
     }
     
-    private static function findBySQL($sql) {
+    private static function findBySQL($sql,$params=NULL) {
 	global $db;
-        $result_set=$db->query($sql);
+        $result_set=$db->query($sql,$params);
         $object_array=array();
         while($row=$db->fetchArray($result_set)) {
             $object_array[]=self::instantiate($row);
@@ -88,12 +93,21 @@ class Challenge {
        
     public static function getNchallenges($start, $limit,$search=null,$category=null) {
         global $db;
+	$params = array(
+	    ':start' => $start,
+	    ':limit' => $limit
+	);
 	if ($search != null && $category != null) {
-        $sql = "SELECT * FROM challenges WHERE $category LIKE '%$search%' LIMIT $start, $limit"; 
+	     $params[':search_string'] = '%'.$search.'%';
+	      switch ($category) {
+		case "title":
+		    $sql = "SELECT * FROM challenges WHERE title LIKE :search_string LIMIT :start, :limit";
+		    break;
+	    }
         } else {
-        $sql= "SELECT * FROM challenges LIMIT $start, $limit";
+        $sql= "SELECT * FROM challenges LIMIT :start, :limit";
 	}
-        $result_array=self::findBySQL($sql);
+        $result_array=self::findBySQL($sql,$params);
         return $result_array;
     }
     

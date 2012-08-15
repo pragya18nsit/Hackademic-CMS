@@ -44,15 +44,15 @@ class UserMenuController{
     protected function createMainMenu() {
 	
 	
-	 Session::isAdmin();
 	
     	if(Session::isAdmin()){
-	       $link1 = array ('title'=>'Add Article', 'url'=>'admin/pages/addarticle.php');
+	       $link1 = array ('title'=>'Add Articles', 'url'=>'admin/pages/addarticle.php');
                $link2 = array ('title'=>'Article Manager', 'url'=>'admin/pages/articlemanager.php');
                $link3 = array ('title'=>'User Manager', 'url'=>'admin/pages/usermanager.php');
 	       $link4 = array ('title'=>'Add Challenge', 'url'=>'admin/pages/addchallenge.php');
                $link5 = array ('title'=>'Challenge Manager', 'url'=>'admin/pages/challengemanager.php');
                $link6 = array ('title'=>'Global Configuration', 'url'=>'admin/pages/globalconfiguration.php');
+	     
         
 	    $menu = array(
             $link1,
@@ -63,18 +63,18 @@ class UserMenuController{
             $link6
         );
     } elseif(Session::isTeacher()){
-	  $link1 = array ('title'=>'Create a new class', 'url'=>'admin/pages/addarticle.php');
+	  $link1 = array ('title'=>'Create a new class', 'url'=>'admin/pages/manageclass.php');
           $link2 = array ('title'=>'Add Challenge', 'url'=>'admin/pages/addchallenge.php');
           $link3 = array ('title'=>'See progress of students', 'url'=>'admin/pages/usermanager.php');
 	  $link4 = array ('title'=>'Clone Existing Challenge', 'url'=>'admin/pages/addchallenge.php');
-        
+	  
         $menu = array(
             $link1,
             $link2,
             $link3,
             $link4
         );
-	return $menu;
+	
     }
     else{
           $link1 = array ('title'=>'See Your Progress', 'url'=>'admin/pages/addarticle.php');

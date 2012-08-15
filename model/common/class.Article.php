@@ -45,23 +45,29 @@ class Article {
        
     public static function getArticle($id) {
         global $db;
-        $sql = "SELECT * FROM articles WHERE id='{$id}' LIMIT 1";
-        $result_array=self::findBySQL($sql);
-        // return !empty($result_array)?array_shift($result_array):false;
+        $sql = "SELECT * FROM articles WHERE id = :id LIMIT 1";
+	$params = array(
+	    ':id' => $id
+	);
+        $result_array=self::findBySQL($sql, $params);
         return $result_array;
     }
     
-    public static function getAllArticles($start,$limit) {
+    public static function getAllArticles($start, $limit) {
         global $db;
-        $sql = "SELECT * FROM articles WHERE is_published=1 ORDER BY date_posted DESC LIMIT $start, $limit ";
-        $result_array=self::findBySQL($sql);
+        $sql = "SELECT * FROM articles WHERE is_published = 1 ORDER BY date_posted DESC LIMIT $start, $limit ";
+	$params = array(
+	    ':start' => $start,
+	    ':limit' => $limit
+	);
+        $result_array=self::findBySQL($sql, $params);
 	// return !empty($result_array)?array_shift($result_array):false;
         return $result_array;
     }
     
-    private static function findBySQL($sql) {
+    private static function findBySQL($sql, $params=NULL) {
         global $db;
-        $result_set=$db->query($sql);
+        $result_set=$db->query($sql,$params);
         $object_array=array();
         while($row=$db->fetchArray($result_set)) {
            $object_array[]=self::instantiate($row);
@@ -69,22 +75,38 @@ class Article {
         return $object_array;
     }
     
-    public static function getNarticles ($start, $limit,$search=null,$category=null) {
+    public static function getNarticles ($start, $limit, $search=null, $category=null) {
         global $db;
+	$params = array(
+	    ':start' => $start,
+	    ':limit' => $limit
+	);
 	if ($search != null && $category != null) {
-        $sql = "SELECT * FROM articles WHERE $category LIKE '%$search%' LIMIT $start, $limit"; 
+        $params[':search_string'] = '%'.$search.'%';
+	    switch($category){
+	        case "title":
+		    $sql = "SELECT * FROM articles WHERE title LIKE :search_string LIMIT :start, :limit";
+		    break;
+		case "created_by":
+		    $sql = "SELECT * FROM articles WHERE created_by LIKE :search_string LIMIT :start, :limit";
+		    break;
+		case "last_modified_by":
+		    $sql = "SELECT * FROM articles WHERE last_modified_by LIKE :search_string LIMIT :start, :limit";
+		    break;
+	  } 
         } else {
-        $sql= "SELECT * FROM articles LIMIT $start, $limit";
+                $sql= "SELECT * FROM articles ORDER BY id LIMIT :start, :limit";
 	}
-        $result_array=self::findBySQL($sql);
+        $result_array=self::findBySQL($sql, $params);
         return $result_array;
     }
     
-    public static function getNumberOfArticles($search=null,$category=null) {
+    public static function getNumberOfArticles($search=null, $category=null) {
         global $db;
 	if ($search != null && $category != null) {
-        $sql = "SELECT COUNT(*) as num FROM articles WHERE $category LIKE '%$search%'"; 
-        } else {
+	      $sql = "SELECT COUNT(*) as num FROM articles WHERE $category LIKE '%$search%'"; 
+        } 
+         else {
         $sql = "SELECT COUNT(*) as num FROM articles";
 	}
         $query = $db->query($sql);

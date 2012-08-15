@@ -43,10 +43,12 @@ class Classes {
      
     public static function addClass($class_name, $date_created) {
 	global $db;
+	$params=array(':class_name'=>$class_name,
+		     ':date_created'>$date_created);
 	$sql = "INSERT INTO classes(name,date_created)";
-	$sql .= "VALUES ('$class_name','$date_created')";
-	$query = $db->query($sql);
-	if ($db->affectedRows()) {
+	$sql .= "VALUES (:class_name,:date_created)";
+	$query = $db->query($sql,$params);
+	if ($db->affectedRows($query)) {
 	    return true;
 	} else {
 	    return false;
@@ -55,9 +57,10 @@ class Classes {
     
     public static function getClass($class_id) {
 	global $db;
-	$sql = "SELECT * FROM classes WHERE id=$class_id";
-	$query = $db->query($sql);
-	$result_array=self::findBySQL($sql);
+	$params=array(':id'=>$class_id);
+	$sql = "SELECT * FROM classes WHERE id=:id";
+	$query = $db->query($sql,$params);
+	$result_array=self::findBySQL($sql,$params);
         return !empty($result_array)?array_shift($result_array):false;
     }
     
@@ -83,18 +86,28 @@ class Classes {
     
     public static function getNClasses ($start, $limit,$search=null,$category=null) {
         global $db;
+	$params = array(
+	    ':start' => $start,
+	    ':limit' => $limit
+	);
         if ($search != null && $category != null) {
-        $sql = "SELECT * FROM classes WHERE $category LIKE '%$search%' LIMIT $start, $limit"; 
-        } else {
-        $sql= "SELECT * FROM classes ORDER BY id LIMIT $start, $limit";
+	    $params[':search_string'] = '%'.$search.'%';
+	switch ($category) {
+	    case "title":
+		 $sql = "SELECT * FROM classes WHERE title LIKE :search_string LIMIT :start, :limit";
+		 break;
+	 }
+	} else {
+          $sql= "SELECT * FROM classes ORDER BY id LIMIT :start, :limit";
         }
-        $result_array=self::findBySQL($sql);
+	
+        $result_array=self::findBySQL($sql,$params);
         return $result_array;
     }
      
-    private static function findBySQL($sql) {
+    private static function findBySQL($sql,$params=NULL) {
         global $db;
-        $result_set=$db->query($sql);
+        $result_set=$db->query($sql,$params);
         $object_array=array();
         while($row=$db->fetchArray($result_set)) {
             $object_array[]=self::instantiate($row);
@@ -119,11 +132,12 @@ class Classes {
     
     public static function deleteClass($id){
 	global $db;
-	$sql="DELETE FROM classes WHERE id='$id'";
-	$query = $db->query($sql);
+	$params=array(':id'=>$id);
+	$sql="DELETE FROM classes WHERE id=:id";
+	$query = $db->query($sql,$params);
 	ClassChallenges::deleteAllMembershipsOfClass($id);
 	ClassMemberships::deleteAllMembershipsOfClass($id);
-	if ($db->affectedRows()) {
+	if ($db->affectedRows($query)) {
 	    return true;
 	} else {
 	    return false;
@@ -132,10 +146,11 @@ class Classes {
     
     public static function archiveClass($id){
 	global $db;
+	$params=array(':id'=>$id);
         $sql="UPDATE classes SET archive=1 ";
-	$sql .="WHERE id='$id'";
+	$sql .="WHERE id=:id";
         $query = $db->query($sql);
-	if ($db->affectedRows()) {
+	if ($db->affectedRows($query)) {
 	    return true;
 	} else {
 	    return false;

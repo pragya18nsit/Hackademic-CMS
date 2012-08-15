@@ -41,10 +41,15 @@ class ChallengeAttempts {
    
     public static function addChallengeAttempt($user_id,$challenge_id,$time,$status){
 	global $db;
+	$params=array(':user_id' => $user_id,
+		      ':challenge_id' => $challenge_id,
+		      ':time' => $time,
+		      ':status' => $status
+		      );
 	$sql="INSERT INTO challenge_attempts(user_id,challenge_id,time,status)";
-	$sql .= "VALUES ('$user_id','$challenge_id','$time','$status')";
-        $query = $db->query($sql);
-        if ($db->affectedRows()) {
+	$sql .= "VALUES (:user_id,:challenge_id,:time,:status)";
+        $query = $db->query($sql,$params);
+        if ($db->affectedRows($query)) {
 	    return true;
         } else {
 	    return false;
@@ -53,10 +58,14 @@ class ChallengeAttempts {
     
      public static function updateChallengeAttempt($id,$time,$status){
 	global $db;
-        $sql="UPDATE challenge_attempts SET time='$time',status='$status'";
-        $sql .= " WHERE id=$id";
-	$query = $db->query($sql);
-	if ($db->affectedRows()) {
+	$params=array(':id' => $id,
+		      ':time' => $time,
+		      ':status' => $status
+		      );
+        $sql="UPDATE challenge_attempts SET time=:time, status=:status";
+        $sql .= " WHERE id=:id";
+	$query = $db->query($sql,$params);
+	if ($db->affectedRows($query)) {
 	  return true;
 	} else {
 	  return false;
@@ -64,9 +73,10 @@ class ChallengeAttempts {
     }
     public static function deleteChallengeAttempt($id){
 	global $db;
-	$sql = "DELETE FROM challenge_attempts WHERE id='$id'";
-        $query = $db->query($sql);
-        if ($db->affectedRows()) {
+	$params=array(':id' => $id);
+	$sql = "DELETE FROM challenge_attempts WHERE id=:id";
+        $query = $db->query($sql,$params);
+        if ($db->affectedRows($query)) {
 	    return true;
         } else {
 	    return false;
@@ -74,16 +84,17 @@ class ChallengeAttempts {
     }
      public static function getChallengeAttemptDetails($user_id) {
 	global $db;
+	$params=array(':user_id' => $user_id);
         $sql = "SELECT challenge_id,status,id,pkg_name FROM challenges INNER JOIN challenge_attempts";
-        $sql .=" WHERE challenge_attempts.challenge_id=challenges.id AND challenge_attempts.user_id='{$user_id}' ";
-        $result_array=self::findBySQL($sql);
+        $sql .=" WHERE challenge_attempts.challenge_id=challenges.id AND challenge_attempts.user_id=:user_id ";
+        $result_array=self::findBySQL($sql,$params);
         // return !empty($result_array)?array_shift($result_array):false;
         return $result_array;
     }
     
-     private static function findBySQL($sql) {
+     private static function findBySQL($sql,$params=NULL) {
 	global $db;
-        $result_set=$db->query($sql);
+        $result_set=$db->query($sql,$params);
         $object_array=array();
         while($row=$db->fetchArray($result_set)) {
             $object_array[]=self::instantiate($row);
