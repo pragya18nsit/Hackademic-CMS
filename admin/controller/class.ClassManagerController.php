@@ -53,7 +53,12 @@ class ClassManagerController extends HackademicBackendController {
 	    
 	    
 	}
-        $limit = 3; 
+        if (isset($_GET['limit']) && $_GET['limit']!="") {
+            $limit =$_GET['limit'];
+	}
+	else {
+	    $limit=25;
+	}
 	$targetpage = SOURCE_ROOT_PATH."admin/pages/manageclass.php";
 	$stages = 3;
 	$page=0;
