@@ -41,7 +41,7 @@ class ClassChallenges {
     public static function addMembership($challenge_id,$class_id){
         global $db;
 	$date = date("Y-m-d H:i:s");
-	$params=array(':challenge_id'=>$challenge_id,':class_id'=>$class_id,':date_created'=>$date);
+	$params=array(':challenge_id' => $challenge_id,':class_id' => $class_id,':date_created' => $date);
         $sql="INSERT INTO class_challenges(challenge_id,class_id,date_created)";
 	$sql .= "VALUES (':challenge_id',':class_id',':date_created')";
         $query = $db->query($sql,$params);
@@ -54,7 +54,7 @@ class ClassChallenges {
     
     public static function getMembershipsOfChallenge($challenge_id) {
         global $db;
-	$params=array(':challenge_id'=>$challenge_id);
+	$params=array(':challenge_id' => $challenge_id);
         $sql = "SELECT class_challenges.class_id, classes.name FROM class_challenges";
 	$sql .= " LEFT JOIN classes ON class_challenges.class_id = classes.id WHERE";
 	$sql .= " class_challenges.challenge_id = :challenge_id";
@@ -66,9 +66,9 @@ class ClassChallenges {
 	return $result_array;
     }
     
-    public static function doesMembershipExist($challenge_id, $class_id) {
+    public static function doesMembershipExist($challenge_id,$class_id) {
         global $db;
-	$params=array(':challenge_id'=>$challenge_id,':class_id'=>$class_id);
+	$params=array(':challenge_id' => $challenge_id,':class_id' => $class_id);
         $sql= "SELECT * FROM class_challenges";
         $sql .= " WHERE challenge_id = :challenge_id AND class_id = :class_id";
         $query = $db->query($sql,$params);
@@ -81,8 +81,8 @@ class ClassChallenges {
     
     public static function deleteMembership($challenge_id,$class_id){
         global $db;
-	$params=array(':challenge_id'=>$challenge_id,':class_id'=>$class_id);
-	$sql="DELETE FROM class_challenges WHERE challenge_id=:challenge_id AND class_id=:class_id";
+	$params=array(':challenge_id' => $challenge_id,':class_id' => $class_id);
+	$sql="DELETE FROM class_challenges WHERE challenge_id = :challenge_id AND class_id = :class_id";
 	$query = $db->query($sql,$params);
 	if ($db->affectedRows($query)) {
 	    return true;
@@ -93,8 +93,8 @@ class ClassChallenges {
     
     public static function deleteAllMemberships($challenge_id){
         global $db;
-	$params=array(':challenge_id'=>$challenge_id);
-	$sql="DELETE FROM class_challenges WHERE challenge_id=:challenge_id";
+	$params=array(':challenge_id' => $challenge_id);
+	$sql="DELETE FROM class_challenges WHERE challenge_id = :challenge_id";
 	$query = $db->query($sql,$params);
 	if ($db->affectedRows($query)) {
 	    return true;
@@ -105,8 +105,8 @@ class ClassChallenges {
     
     public static function deleteAllMembershipsOfClass($class_id){
         global $db;
-	$params=array(':class_id'=>$class_id);
-	$sql="DELETE FROM class_challenges WHERE class_id=:class_id";
+	$params=array(':class_id' => $class_id);
+	$sql="DELETE FROM class_challenges WHERE class_id = :class_id";
 	$query = $db->query($sql,$params);
 	if ($db->affectedRows($query)) {
 	    return true;
@@ -117,7 +117,7 @@ class ClassChallenges {
     
     public static function getAllMemberships($class_id) {
 	global $db;
-	$param=array(':class_id'=>$class_id);
+	$param=array(':class_id' => $class_id);
 	$sql = "SELECT DISTINCT class_challenges.challenge_id, challenges.title FROM class_challenges ";
 	$sql .= "LEFT JOIN challenges on class_challenges.challenge_id = challenges.id WHERE ";
 	$sql .= "class_challenges.class_id = :class_id";
@@ -132,7 +132,7 @@ class ClassChallenges {
     public static function isAllowed($challenge_id, $classes) {
 	global $db;
 	$in_these_classes = '';
-	$params=array(':challenge_id'=>$challenge_id);
+	$params=array(':challenge_id' => $challenge_id);
 	foreach ($classes as $class) {
 	    if ($in_these_classes != '') {
 		$in_these_classes .= " OR ";

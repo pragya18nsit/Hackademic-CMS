@@ -46,7 +46,7 @@ class Challenge {
     public function doesChallengeExist($name){
 	global $db;
 	$params=array(':name' => $name);
-	$sql = "SELECT * FROM challenges WHERE pkg_name=:name";
+	$sql = "SELECT * FROM challenges WHERE pkg_name = :name";
 	$query = $db->query($sql,$params);
 	$result = $db->numRows($query);
 	if ($result) {
