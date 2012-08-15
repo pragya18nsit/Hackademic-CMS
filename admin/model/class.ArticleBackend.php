@@ -64,7 +64,7 @@ class ArticleBackend extends Article {
                       ':last_modified_by' => $last_modified_by
 	              );
 	
-	$sql="UPDATE articles SET title = :title, content = :content, date_modified = :date_modified, last_modified_by = :last_modified_by ";
+	$sql="UPDATE articles SET title = :title, content = :content, last_modified = :date_modified, last_modified_by = :last_modified_by ";
 	$sql .= "WHERE id=:id";
 	//yahan pr se execute ni hora h 
         $query = $db->query($sql,$params);

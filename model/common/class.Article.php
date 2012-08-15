@@ -77,10 +77,10 @@ class Article {
     
     public static function getNarticles ($start, $limit, $search=null, $category=null) {
         global $db;
-	$params = array(
-	    ':start' => $start,
-	    ':limit' => $limit
-	);
+     	$params = array(
+	           ':start' => $start,
+	           ':limit' => $limit
+	     );
 	if ($search != null && $category != null) {
         $params[':search_string'] = '%'.$search.'%';
 	    switch($category){
@@ -103,12 +103,12 @@ class Article {
     
     public static function getNumberOfArticles($search=null, $category=null) {
         global $db;
-	if ($search != null && $category != null) {
+    	if ($search != null && $category != null) {
 	      $sql = "SELECT COUNT(*) as num FROM articles WHERE $category LIKE '%$search%'"; 
         } 
          else {
         $sql = "SELECT COUNT(*) as num FROM articles";
-	}
+	    }
         $query = $db->query($sql);
         $result = $db->fetchArray($query);
         return $result['num'];

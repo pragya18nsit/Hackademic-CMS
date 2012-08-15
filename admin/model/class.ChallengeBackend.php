@@ -54,9 +54,7 @@ class ChallengeBackend extends Challenge{
     
      public static function updateChallenge($id,$title,$description,$visibility,$publish){
 	global $db;
-	$description=mysql_escape_string(trim($description));
-	$title=mysql_escape_string(trim($title));
-	$params=array(':id'=>$id',:title'=>$title,':description'=>$description,':visibility'=>$visibility,':publish'=>$publish);
+	$params=array(':id' => $id,':title' => $title,':description' => $description,':visibility' => $visibility,':publish' => $publish);
         $sql="UPDATE challenges SET title=:title,description=:description,visibility=:visibility,publish=:publish";
         $sql .= " WHERE id=:id";
 	$query = $db->query($sql,$params);
