@@ -103,13 +103,14 @@ class Article {
     
     public static function getNumberOfArticles($search=null, $category=null) {
         global $db;
-    	if ($search != null && $category != null) {
-	      $sql = "SELECT COUNT(*) as num FROM articles WHERE $category LIKE '%$search%'"; 
+		$params=array(':search' => $search,':category' => $category);   
+    	if ($search != null && $category != null) {	
+	      $sql = "SELECT COUNT(*) as num FROM articles WHERE :category LIKE '%:search%'"; 
         } 
          else {
         $sql = "SELECT COUNT(*) as num FROM articles";
 	    }
-        $query = $db->query($sql);
+        $query = $db->query($sql,$params);
         $result = $db->fetchArray($query);
         return $result['num'];
       }
