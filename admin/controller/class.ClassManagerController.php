@@ -50,6 +50,8 @@ class ClassManagerController extends HackademicBackendController {
              $total_pages = Classes::getNumberOfClasses($_GET['search'], $_GET['category']);
         } else {
 	    $total_pages =Classes::getNumberOfClasses();
+	    
+	    
 	}
         $limit = 3; 
 	$targetpage = SOURCE_ROOT_PATH."admin/pages/manageclass.php";
