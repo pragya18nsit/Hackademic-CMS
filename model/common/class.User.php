@@ -193,7 +193,7 @@ class User {
 
     public function doesUserExist($username){
 	global $db;
-	$sql = "SELECT * FROM users WHERE username=:username";
+	$sql = "SELECT * FROM users WHERE username = :username";
 	$params = array(
 	    ':username' => $username
 	);

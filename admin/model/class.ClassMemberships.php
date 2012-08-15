@@ -41,9 +41,9 @@ class ClassMemberships {
     public static function addMembership($user_id,$class_id){
         global $db;
 	$date = date('Y-m-d H:i:s');
-	$params=array(':user_id'=>$user_id,':class_id'=>$class_id,':date_created'=>$date);
+	$params=array(':user_id' => $user_id,':class_id' => $class_id,':date_created' => $date);
         $sql="INSERT INTO class_memberships(user_id,class_id,date_created)";
-	$sql .= "VALUES (:user_id,:class_id,:date)";
+	$sql .= "VALUES (:user_id ,:class_id ,:date)";
         $query = $db->query($sql,$params);
         if ($db->affectedRows($query)) {
 	    return true;
@@ -54,7 +54,7 @@ class ClassMemberships {
     
     public static function getMembershipsOfUser($user_id) {
         global $db;
-	$params=array(':user_id'=>$user_id);
+	$params=array(':user_id' => $user_id);
         $sql = "SELECT class_memberships.class_id, classes.name FROM class_memberships";
 	$sql .= " LEFT JOIN classes ON class_memberships.class_id = classes.id WHERE";
 	$sql .= " class_memberships.user_id = :user_id";
@@ -68,9 +68,9 @@ class ClassMemberships {
     
     public static function doesMembershipExist($user_id, $class_id) {
         global $db;
-	$params=array(':user_id'=>$user_id,':class_id'=>$class_id);
+	$params=array(':user_id' => $user_id,':class_id' => $class_id);
         $sql= "SELECT * FROM class_memberships";
-        $sql .= " WHERE user_id=:user_id AND class_id=:class_id";
+        $sql .= " WHERE user_id = :user_id AND class_id = :class_id";
         $query = $db->query($sql,$params);
         if ($db->numRows($query)) {
 	    return true;

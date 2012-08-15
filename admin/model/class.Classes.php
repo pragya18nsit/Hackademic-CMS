@@ -43,10 +43,10 @@ class Classes {
      
     public static function addClass($class_name, $date_created) {
 	global $db;
-	$params=array(':class_name'=>$class_name,
-		     ':date_created'>$date_created);
+	$params=array(':class_name' => $class_name,
+		     ':date_created' => $date_created);
 	$sql = "INSERT INTO classes(name,date_created)";
-	$sql .= "VALUES (:class_name,:date_created)";
+	$sql .= " VALUES (:class_name,:date_created)";
 	$query = $db->query($sql,$params);
 	if ($db->affectedRows($query)) {
 	    return true;
