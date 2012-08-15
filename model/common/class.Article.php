@@ -102,17 +102,28 @@ class Article {
     }
     
     public static function getNumberOfArticles($search=null, $category=null) {
-        global $db;
-		$params=array(':search' => $search,':category' => $category);   
-    	if ($search != null && $category != null) {	
-	      $sql = "SELECT COUNT(*) as num FROM articles WHERE :category LIKE '%:search%'"; 
+        global $db; 
+    	if ($search != null && $category != null) {
+			 $params[':search_string'] = '%'.$search.'%';
+			 switch($category){
+				 case "title":
+		         $sql = "SELECT COUNT(*) as num FROM articles WHERE title LIKE '%:search_string%'";
+		         break;
+		         case "created_by":
+		         $sql = "SELECT COUNT(*) as num FROM articles WHERE created_by LIKE '%:search_string%'";
+		         break;
+		         case "last_modified_by":
+		         $sql = "SELECT COUNT(*) as num FROM articles WHERE last_modified_by LIKE '%:search_string%'";
+		         break;
+			 }
+			  $query = $db->query($sql,$params);
         } 
          else {
-        $sql = "SELECT COUNT(*) as num FROM articles";
+               $sql = "SELECT COUNT(*) as num FROM articles";
+			    $query = $db->query($sql);
 	    }
-        $query = $db->query($sql,$params);
-        $result = $db->fetchArray($query);
-        return $result['num'];
+               $result = $db->fetchArray($query);
+               return $result['num'];
       }
      
     public static function instantiate($record) {

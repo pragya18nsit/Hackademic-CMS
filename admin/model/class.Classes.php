@@ -66,13 +66,18 @@ class Classes {
     
     public static function getNumberOfClasses($search=null,$category=null) {
 	global $db;
-	$params=array(':search' => $search);
-        if ($search != null && $category != null) {
-        $sql = "SELECT COUNT(*) as num FROM classes WHERE $category LIKE '%$search%'"; 
-        } else {
-	$sql = "SELECT COUNT(*) as num FROM classes";
+	if ($search != null && $category != null) {
+	     $params[':search_string'] = '%'.$search.'%';
+        switch($category){
+	    case "name":
+             $sql = "SELECT COUNT(*) as num FROM classes WHERE name LIKE :search_string";
+	     break;
+          }
+	      $query = $db->query($sql,$params);
+	} else {
+	      $sql = "SELECT COUNT(*) as num FROM classes";
+	      $query = $db->query($sql);
         }
-	$query = $db->query($sql);
 	$result = $db->fetchArray($query);
 	return $result['num'];
     }

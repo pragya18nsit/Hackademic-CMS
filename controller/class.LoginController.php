@@ -71,8 +71,7 @@ class LoginController extends HackademicController {
 		      else {
                         // this sets variables in the session
 		        $session->completeLogin($user);
-                        $controller = new LandingPageController(true);
-                        return $controller->go();
+                       header('Location:'.SOURCE_ROOT_PATH."pages/home.php");
                     }
                 }
             } else {
