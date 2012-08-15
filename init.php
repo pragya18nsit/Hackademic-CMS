@@ -31,5 +31,10 @@
 require_once("config.inc.php");
 require_once("model/common/class.Loader.php");
 require_once("model/common/class.HackademicDB.php");
+if (defined('ENVIRONMENT') && ENVIRONMENT == "dev") {
+    ini_set('display_errors', true);
+} else {
+    ini_set('display_errors', false);
+}
 Loader::init();
 $db=new HackademicDB();

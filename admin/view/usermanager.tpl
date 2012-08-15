@@ -45,13 +45,13 @@
 		    <td>
 			<select name="category">
 			    <option value="username">Username</option> 
-			    <option value="fullname">Full Name</option> 
+			    <option value="full_name">Full Name</option> 
 			    <option value="email">Email</option> 
 			</select>
 		    </td>
 			<td>
-			<select name="limit">
-	             <option value="limit">Number of users per page</option>
+			<select name="limit" style="width:100px">
+	             <option value="">Results Per Page</option>
                  <option value="5">5</option>
 				 <option value="10">10</option>
 				 <option value="15">15</option>

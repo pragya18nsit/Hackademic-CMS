@@ -89,9 +89,12 @@ class ClassMemberships {
     
     public static function deleteAllMemberships($user_id){
         global $db;
-	$sql="DELETE FROM class_memberships WHERE user_id=$user_id";
-	$query = $db->query($sql);
-	if ($db->affectedRows()) {
+	$sql = "DELETE FROM class_memberships WHERE user_id=:user_id";
+	$params = array(
+	    ':user_id' => $user_id
+	);
+	$query = $db->query($sql, $params);
+	if ($db->affectedRows($query)) {
 	    return true;
 	} else {
 	    return false;

@@ -44,12 +44,17 @@ class ChallengeManagerController extends HackademicBackendController {
             self::rrmdir(HACKADEMIC_PATH."challenges/".$pkg_name);
             ChallengeBackend::deleteChallenge($id);
             $this->addSuccessMessage("Challenge has been deleted succesfully");
-        }
-	if (isset($_GET['limit'])) {
-             $limit =$_GET['limit'];
+        } else if (isset($_GET['action']) && $_GET['action'] == "add") {
+	    $this->addSuccessMessage("Challenge has been added succesfully. You can enable the challenge now.");
+	    if (isset($_SESSION['challenge_arr'])) {
+		unset($_SESSION['challenge_arr']);
+	    }
 	}
-	else{
-	    $limit=3;
+	if (isset($_GET['limit']) && $_GET['limit']!="") {
+            $limit =$_GET['limit'];
+	}
+	else {
+	    $limit=25;
 	}
       
         $total_pages = ChallengeBackend::getNumberOfChallenges();

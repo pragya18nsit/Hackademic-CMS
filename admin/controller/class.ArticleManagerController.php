@@ -52,11 +52,11 @@ class ArticleManagerController extends HackademicBackendController {
 	if(isset($_GET['page'])) {
 	    $page=$_GET['page'];
 	}
-	if (isset($_GET['limit'])) {
-             $limit =$_GET['limit'];
+	if (isset($_GET['limit']) && $_GET['limit']!="") {
+            $limit =$_GET['limit'];
 	}
-	else{
-	    $limit=3;
+	else {
+	    $limit=25;
 	}
 	
 	if($page) {

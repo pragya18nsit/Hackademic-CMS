@@ -76,7 +76,7 @@ class Installer
         $this->view = new Installer_Template($this->lang);
 
         # Did we run it again?
-        if(file_exists(INSTALLER_PATH . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'installer.lock'))
+        if(file_exists(ROOT_PATH . DIRECTORY_SEPARATOR . 'config.inc.php'))
         {
             $this->view->error($this->lang['L-01']);
         }
@@ -175,11 +175,11 @@ class Installer
         }
 
         # Make sure we have everything we need!
-        $required_db_options = array('dbname', 'dbuser', 'dbpass', 'dbhost');
+        $required_db_options = array('dbname', 'dbuser', 'dbhost');
 
         foreach ($required_db_options as $required_db_option)
         {
-            if(!isset($options[$required_db_option]))
+            if(!isset($options[$required_db_option]) || $options[$required_db_option]=='')
             {
                 $this->view->error($this->lang['L-03']);
             }
