@@ -43,7 +43,7 @@ class ClassMemberships {
 	$date = date('Y-m-d H:i:s');
 	$params=array(':user_id' => $user_id,':class_id' => $class_id,':date_created' => $date);
         $sql="INSERT INTO class_memberships(user_id,class_id,date_created)";
-	$sql .= "VALUES (:user_id ,:class_id ,:date)";
+	$sql .= " VALUES (:user_id ,:class_id ,:date_created)";
         $query = $db->query($sql,$params);
         if ($db->affectedRows($query)) {
 	    return true;
