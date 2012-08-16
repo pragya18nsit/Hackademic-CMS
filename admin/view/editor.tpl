@@ -67,7 +67,7 @@ tinyMCE.init({
             </tr>
             <tr>
                 <td colspan="2">
-                    <p class="submit"><input type="submit" name="submit" id="submit" /></p>
+                    <p class="submit"><input type="submit" name="submit" id="submit" value="Submit" /></p>
                 </td>
             </tr>
         </table>

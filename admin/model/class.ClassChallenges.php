@@ -43,7 +43,7 @@ class ClassChallenges {
 	$date = date("Y-m-d H:i:s");
 	$params=array(':challenge_id' => $challenge_id,':class_id' => $class_id,':date_created' => $date);
         $sql="INSERT INTO class_challenges(challenge_id,class_id,date_created)";
-	$sql .= " VALUES (':challenge_id',':class_id',':date_created')";
+	$sql .= " VALUES ( :challenge_id, :class_id, :date_created)";
         $query = $db->query($sql,$params);
         if ($db->affectedRows($query)) {
 	    return true;
