@@ -37,7 +37,7 @@ require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController
 class ClassChallengesController extends HackademicBackendController {
     
     public function go() {
-        $this->setViewTemplate('classchallenge.tpl');
+        $this->setViewTemplate('classchallenges.tpl');
 	$challenge_id=$_GET['id'];
 	if (isset($_POST['submit'])) {
 	    $class_id=$_POST['class_id'];

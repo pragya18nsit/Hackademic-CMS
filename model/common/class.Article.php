@@ -55,12 +55,12 @@ class Article {
     
     public static function getAllArticles($start, $limit) {
         global $db;
-        $sql = "SELECT * FROM articles WHERE is_published = 1 ORDER BY date_posted DESC LIMIT $start, $limit ";
+        $sql = "SELECT * FROM articles WHERE is_published = 1 ORDER BY date_posted DESC LIMIT :start, :limit ";
 	$params = array(
 	    ':start' => $start,
 	    ':limit' => $limit
 	);
-        $result_array=self::findBySQL($sql, $params);
+        $result_array=self::findBySQL($sql,$params);
 	// return !empty($result_array)?array_shift($result_array):false;
         return $result_array;
     }
