@@ -99,8 +99,8 @@ class Classes {
         if ($search != null && $category != null) {
 	    $params[':search_string'] = '%'.$search.'%';
 	switch ($category) {
-	    case "title":
-		 $sql = "SELECT * FROM classes WHERE title LIKE :search_string  LIMIT :start, :limit";
+	    case "name":
+		 $sql = "SELECT * FROM classes WHERE name LIKE :search_string  LIMIT :start, :limit";
 		 break;
 	 }
 	} else {
