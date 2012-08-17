@@ -34,9 +34,9 @@ CREATE TABLE challenges (
     visibility varchar(255) DEFAULT 'private',
     publish int(10) DEFAULT 0,
 	abstract varchar(255) DEFAULT NULL,
-	level varchar(255),
-	duration time(100),
-	goal varchar(255),
+	level varchar(255) DEFAULT NULL,
+	duration time(100) DEFAULT NULL,
+	goal varchar(255) DEFAULT NULL,
 	solution varchar(255)
 );
 
