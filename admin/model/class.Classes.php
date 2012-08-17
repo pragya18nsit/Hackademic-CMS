@@ -70,7 +70,7 @@ class Classes {
 	     $params[':search_string'] = '%'.$search.'%';
         switch($category){
 	    case "name":
-             $sql = "SELECT COUNT(*) as num FROM classes WHERE name LIKE :search_string and archive = 0";
+             $sql = "SELECT COUNT(*) as num FROM classes WHERE name LIKE :search_string ";
 	     break;
           }
 	      $query = $db->query($sql,$params);
@@ -104,7 +104,7 @@ class Classes {
 		 break;
 	 }
 	} else {
-          $sql= "SELECT * FROM classes ORDER BY id LIMIT :start, :limit";
+          $sql= "SELECT * FROM classes WHERE archive = 0 ORDER BY id LIMIT :start, :limit ";
         }
 	
         $result_array=self::findBySQL($sql,$params);
