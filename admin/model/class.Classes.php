@@ -84,7 +84,7 @@ class Classes {
      
     public static function getAllClasses() {
 	global $db;
-	$sql = "SELECT * FROM classes";
+	$sql = "SELECT * FROM classes ";
 	$query = $db->query($sql);
 	$result_array=self::findBySQL($sql);
         return $result_array;

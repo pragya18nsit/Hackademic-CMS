@@ -14,5 +14,18 @@
 </table>
 
 <div id="paginate_div">{include file="_pagination_frontend.tpl"}</div>
-
+<script type="text/javascript">
+	if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)){
+	    alert('you are browsing with firefox');
+	}
+        if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){
+            alert('you are browsing with ie');
+        }
+        if (/Opera[\/\s](\d+\.\d+)/.test(navigator.userAgent)){
+            alert('you are browsing with opera browser');
+        }
+         if (/Chrome[\/\s](\d+\.\d+)/.test(navigator.userAgent)){
+            alert('you are browsing with chrome browser');
+        }
+</script>
 {include file="_footer_frontend.tpl"}

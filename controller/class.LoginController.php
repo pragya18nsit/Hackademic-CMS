@@ -38,6 +38,7 @@ require_once(HACKADEMIC_PATH."model/common/class.User.php");
 class LoginController extends HackademicController {
 
     public function go() {
+	
 	$this->setViewTemplate('landingpage.tpl');
 	$this->addPageTitle('Log in');
         
@@ -71,7 +72,7 @@ class LoginController extends HackademicController {
 		      else {
                         // this sets variables in the session
 		        $session->completeLogin($user);
-                       header('Location:'.SOURCE_ROOT_PATH."pages/home.php");
+                        header('Location:'.SOURCE_ROOT_PATH."pages/home.php");
                     }
                 }
             } else {
