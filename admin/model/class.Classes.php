@@ -70,12 +70,12 @@ class Classes {
 	     $params[':search_string'] = '%'.$search.'%';
         switch($category){
 	    case "name":
-             $sql = "SELECT COUNT(*) as num FROM classes WHERE name LIKE :search_string";
+             $sql = "SELECT COUNT(*) as num FROM classes WHERE name LIKE :search_string and archive = 0";
 	     break;
           }
 	      $query = $db->query($sql,$params);
 	} else {
-	      $sql = "SELECT COUNT(*) as num FROM classes";
+	      $sql = "SELECT COUNT(*) as num FROM classes WHERE archive =0";
 	      $query = $db->query($sql);
         }
 	$result = $db->fetchArray($query);
@@ -84,7 +84,7 @@ class Classes {
      
     public static function getAllClasses() {
 	global $db;
-	$sql = "SELECT * FROM classes ";
+	$sql = "SELECT * FROM classes WHERE archive = 0 ";
 	$query = $db->query($sql);
 	$result_array=self::findBySQL($sql);
         return $result_array;
@@ -100,7 +100,7 @@ class Classes {
 	    $params[':search_string'] = '%'.$search.'%';
 	switch ($category) {
 	    case "title":
-		 $sql = "SELECT * FROM classes WHERE title LIKE :search_string LIMIT :start, :limit";
+		 $sql = "SELECT * FROM classes WHERE title LIKE :search_string  LIMIT :start, :limit";
 		 break;
 	 }
 	} else {
