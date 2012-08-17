@@ -53,7 +53,6 @@
 	    <th>Author</th>
 	    <th>Last Modified</th>
 	    <th>Last modified by</th>
-	    <th>Order</th>
 	    <th>Published</th>
 	</thead>
 	{foreach from=$articles item=article}
@@ -63,7 +62,6 @@
 		<td>{$article->created_by}</td>
 		<td>{if $article->last_modified}{$article->last_modified|date_format}{else}-{/if}</td>
 		<td>{if $article->last_modified}{$article->last_modified_by}{else}-{/if}</td>
-		<td>{$article->ordering}</td>
 		<td>{if $article->is_published}Yes{else}No{/if}</td>
 	    </tr>
 	{/foreach}
