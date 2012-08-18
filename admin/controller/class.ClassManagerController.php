@@ -45,6 +45,10 @@ class ClassManagerController extends HackademicBackendController {
 	    $id=$_GET['id'];
             Classes::archiveClass($id);
             $this->addSuccessMessage("Class has been archived succesfully");
+	}elseif(isset($_GET["source"]) && ($_GET["source"]=="unarch")) {
+	    $id=$_GET['id'];
+            Classes::unarchiveClass($id);
+            $this->addSuccessMessage("Class has been unarchived succesfully");
 	}
 	if (isset($_GET['search']) && isset($_GET['category']) && $_GET['search']!='' && $_GET['category']!='') {
              $total_pages = Classes::getNumberOfClasses($_GET['search'], $_GET['category']);

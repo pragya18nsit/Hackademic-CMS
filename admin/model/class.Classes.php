@@ -162,4 +162,17 @@ class Classes {
 	    return false;
 	}
     }
+    
+    public static function unarchiveClass($id){
+	global $db;
+	$params=array(':id' => $id);
+        $sql="UPDATE classes SET archive= 0 ";
+	$sql .="WHERE id = :id";
+        $query = $db->query($sql,$params);
+	if ($db->affectedRows($query)) {
+	    return true;
+	} else {
+	    return false;
+	}
+    }
 }
