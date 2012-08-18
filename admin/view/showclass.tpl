@@ -5,9 +5,23 @@
 	<div class="page_title"><h3 class="left">Class Memberships - {$class->name}</h3></div>
     </div><br/>
     <div id="usermessage">{include file="_usermessage.tpl"}</div>
-    
+  
+   <form id="form" name="form" method="post">
+      <table class="manager_table">
+              <tr>
+		     <td><label>Edit Class Name  </label></td>
+		     <td><input type="text" name="updateclassname" value="{$class->name}"/></td>
+            
+                  <td colspan="2">
+		        <p class="submit">
+			   <input type="submit" name="submit" id="submit" value="Edit ClassName" />
+		        </p>
+		      </td>
+	    </tr>
+      </table>
+   </form>  
     <table class="manager_table">
-	<thead> 
+	  <thead>
 	    <th>Username</th>
 	    <th>Remove</th>
 	</thead>

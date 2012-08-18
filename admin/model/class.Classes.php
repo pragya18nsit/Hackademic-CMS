@@ -54,6 +54,20 @@ class Classes {
 	    return false;
 	}
     }
+	
+	public static function updateClassName($class_id , $class_name) {
+	global $db;
+	$params=array(':id' => $class_id,':class_name' => $class_name);
+	$sql = "UPDATE classes SET name = :class_name";
+	$sql .= " WHERE id = :id ";
+	$query = $db->query($sql,$params);
+	if ($db->affectedRows($query)) {
+	    return true;
+	} else {
+	    return false;
+	}
+    }
+    
     
     public static function getClass($class_id) {
 	global $db;

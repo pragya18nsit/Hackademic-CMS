@@ -1,6 +1,6 @@
             </td>
                     <td id="right_bar" valign="top">
-			{if $is_logged_in && isset($challenge_menu)}
+			{if isset($is_logged_in) && isset($challenge_menu)}
 			    {if $challenge_menu|@count > 0}
 				<!-- Challenge Menu -->
 				<div id="menuHeader" class="menubg flt"> 

@@ -43,6 +43,18 @@ class ShowClassController extends HackademicBackendController {
 	    header('Location: '.SOURCE_ROOT_PATH."admin/pages/manageclass.php");
 	}
 	$class_id=$_GET['id'];
+	 if(isset($_POST['submit'])) {
+	 if(isset($_POST['updateclassname'])) {
+            if ($_POST['updateclassname']=='') {
+		$this->addErrorMessage("Name of the class should not be empty"); 
+            }
+	    else {
+                $this->name =$_POST['updateclassname'];
+	        Classes::updateClassName($class_id, $this->name);
+                $this->addSuccessMessage("Name of the class has been updated succesfully");
+	    }
+	 }
+	 }
 	if (isset($_GET['action']) && $_GET['action'] == "del") {
 	    if (isset($_GET['uid'])) {
 		ClassMemberships::deleteMembership($_GET['uid'],$class_id);
