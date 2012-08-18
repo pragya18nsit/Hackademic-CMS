@@ -42,7 +42,7 @@ tinyMCE.init({
         <div class="page_title"><h3 class="left">Add Challenge</h3></div>
     </div><br/>
     <div id="usermessage">{include file="_usermessage.tpl"}</div>
-    {if isset($finish) || $type=="challenge" || (isset($step) && $step=="step2")}
+    {if isset($finish) || (isset($type) && $type=="challenge") || (isset($step) && $step=="step2")}
     <div id="upload_container">
         <form id="input_form" enctype="multipart/form-data" action="" method="post">
             {if isset($finish) || $type=="challenge"}
