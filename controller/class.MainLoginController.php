@@ -37,18 +37,18 @@ require_once(HACKADEMIC_PATH."model/common/class.User.php");
 
 class MainLoginController extends HackademicController {
 
-    public function go() {
-	$this->setViewTemplate('mainlogin.tpl');
-        if(isset($_GET["msg"])){
-            if($_GET["msg"]=="username"){
-                $this->addErrorMessage("The username you entered is incorrect");
-            } elseif($_GET["msg"]=="password"){
-                $this->addErrorMessage("Your password is incorrect!"); 
-            } elseif($_GET["msg"]=="challenge"){
-                $this->addErrorMessage("You must be logged in to try a challenge");
-            }
-            }
-	$this->addPageTitle('Log in');
-        return $this->generateView();
-	    }
+	public function go() {
+		$this->setViewTemplate('mainlogin.tpl');
+		if(isset($_GET["msg"])){
+			if($_GET["msg"]=="username"){
+				$this->addErrorMessage("The username you entered is incorrect");
+			} elseif($_GET["msg"]=="password"){
+				$this->addErrorMessage("Your password is incorrect!"); 
+			} elseif($_GET["msg"]=="challenge"){
+				$this->addErrorMessage("You must be logged in to try a challenge");
+			}
+		}
+		$this->addPageTitle('Log in');
+		return $this->generateView();
+	}
 }

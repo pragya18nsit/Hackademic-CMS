@@ -35,32 +35,32 @@ require_once(HACKADEMIC_PATH."admin/model/class.Classes.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
 
 class ClassMembershipsController extends HackademicBackendController {
-    
-    public function go() {
-        $this->setViewTemplate('classmembership.tpl');
-	$user_id=$_GET['id'];
-	if (isset($_POST['submit'])) {
-	    $class_id=$_POST['class_id'];
-	    if(ClassMemberships::doesMembershipExist($user_id, $class_id))
-	    {
-		$this->addErrorMessage("User is already a member of this class");
-	    }
-	    else{
-	    ClassMemberships::addMembership($user_id,$class_id);
-	    $this->addSuccessMessage("User has been added to the class succesfully");
-	    }
+
+	public function go() {
+		$this->setViewTemplate('classmembership.tpl');
+		$user_id=$_GET['id'];
+		if (isset($_POST['submit'])) {
+			$class_id=$_POST['class_id'];
+			if(ClassMemberships::doesMembershipExist($user_id, $class_id))
+			{
+				$this->addErrorMessage("User is already a member of this class");
+			}
+			else{
+				ClassMemberships::addMembership($user_id,$class_id);
+				$this->addSuccessMessage("User has been added to the class succesfully");
+			}
+		}
+		elseif (isset($_GET['action']) && $_GET['action']=="del") {
+			$class_id=$_GET['class_id'];
+			ClassMemberships::deleteMembership($user_id,$class_id);
+			$this->addSuccessMessage("User has been deleted from the class succesfully");
+		}	
+		$class_memberships = ClassMemberships::getMembershipsOfUser($user_id);
+
+		$classes = Classes::getAllClasses();
+		$this->addToView('classes', $classes);
+		$this->addToView('class_memberships', $class_memberships);
+		$this->setViewTemplate('classmembership.tpl');
+		$this->generateView();
 	}
-	elseif (isset($_GET['action']) && $_GET['action']=="del") {
-	    $class_id=$_GET['class_id'];
-	    ClassMemberships::deleteMembership($user_id,$class_id);
-	    $this->addSuccessMessage("User has been deleted from the class succesfully");
-	}	
-	$class_memberships = ClassMemberships::getMembershipsOfUser($user_id);
-        
-        $classes = Classes::getAllClasses();
-	$this->addToView('classes', $classes);
-	$this->addToView('class_memberships', $class_memberships);
-	$this->setViewTemplate('classmembership.tpl');
-	$this->generateView();
-    }
 }

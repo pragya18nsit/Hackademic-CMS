@@ -32,54 +32,54 @@
  */
 
 class HackademicDB {
-      
-    private $connection;
-	
-    public function openConnection() {
-	$host = DB_HOST;
-	$dbname = DB_NAME;
-	$user = DB_USER;
-	$pass = DB_PASSWORD;
-	try {
-	    $this->connection = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
-	} catch(PDOException $e) {
-            echo $e->getMessage();
-        }
-	$this->connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-	$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    
-    public function __construct() {
-	$this->openConnection();
-    }
-    
-    public function query($sql, $params = NULL) {
-	$statement_handle = $this->connection->prepare($sql);
-	$statement_handle->execute($params);
-	return $statement_handle;
-    }
-    
-    public function fetchArray($statement_handle) {
-	$statement_handle->setFetchMode(PDO::FETCH_ASSOC);
-	$row = $statement_handle->fetch();
-	return $row;
-    }		  
-      
-    public function numRows($statement_handle) {
-	return $statement_handle->rowCount();
-    }              							   		  
 
-    public function insertId() {
-	return $this->connection->lastInsertId();
-    }
+	private $connection;
 
-    public function affectedRows($statement_handle) {
-	return $this->numRows($statement_handle);
-    }						 
-
-    public function closeConnection() {
-	if(isset($this->connection)) {
-	    $this->connection = null;
+	public function openConnection() {
+		$host = DB_HOST;
+		$dbname = DB_NAME;
+		$user = DB_USER;
+		$pass = DB_PASSWORD;
+		try {
+			$this->connection = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+		$this->connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+		$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
-    }
+
+	public function __construct() {
+		$this->openConnection();
+	}
+
+	public function query($sql, $params = NULL) {
+		$statement_handle = $this->connection->prepare($sql);
+		$statement_handle->execute($params);
+		return $statement_handle;
+	}
+
+	public function fetchArray($statement_handle) {
+		$statement_handle->setFetchMode(PDO::FETCH_ASSOC);
+		$row = $statement_handle->fetch();
+		return $row;
+	}		  
+
+	public function numRows($statement_handle) {
+		return $statement_handle->rowCount();
+	}              							   		  
+
+	public function insertId() {
+		return $this->connection->lastInsertId();
+	}
+
+	public function affectedRows($statement_handle) {
+		return $this->numRows($statement_handle);
+	}						 
+
+	public function closeConnection() {
+		if(isset($this->connection)) {
+			$this->connection = null;
+		}
+	}
 }

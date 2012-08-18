@@ -35,74 +35,74 @@ require_once(HACKADEMIC_PATH."admin/model/class.Classes.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
 
 class ClassManagerController extends HackademicBackendController {
-    
-    public function go() {
-	if (isset($_GET["source"]) && ($_GET["source"]=="del")) {
-            $id=$_GET['id'];
-            Classes::deleteClass($id);
-            $this->addSuccessMessage("Class has been deleted succesfully");
-        } elseif(isset($_GET["source"]) && ($_GET["source"]=="arch")) {
-	    $id=$_GET['id'];
-            Classes::archiveClass($id);
-            $this->addSuccessMessage("Class has been archived succesfully");
-	}elseif(isset($_GET["source"]) && ($_GET["source"]=="unarch")) {
-	    $id=$_GET['id'];
-            Classes::unarchiveClass($id);
-            $this->addSuccessMessage("Class has been unarchived succesfully");
-	}
-	if (isset($_GET['search']) && isset($_GET['category']) && $_GET['search']!='' && $_GET['category']!='') {
-             $total_pages = Classes::getNumberOfClasses($_GET['search'], $_GET['category']);
-        } else {
-	    $total_pages =Classes::getNumberOfClasses();
-	    
-	    
-	}
-        if (isset($_GET['limit']) && $_GET['limit']!="") {
-            $limit =$_GET['limit'];
-	}
-	else {
-	    $limit=25;
-	}
-	$targetpage = SOURCE_ROOT_PATH."admin/pages/manageclass.php";
-	$stages = 3;
-	$page=0;
-	if(isset($_GET['page'])) {
-	    $page=$_GET['page'];
-	}
-	if($page) {
-	    $start = ($page - 1) * $limit; 
-	} else {
-	    $start = 0;
-	}	
 
-	// Initial page num setup
-	if ($page == 0){$page = 1;}
-	$prev = $page - 1;	
-	$next = $page + 1;							
-	$lastpage = ceil($total_pages/$limit);		
-	$LastPagem1 = $lastpage - 1;					
-	
-        $pagination = array (
-            'lastpage' => $lastpage,
-            'page' => $page,
-            'targetpage' => $targetpage,
-            'prev' => $prev,
-            'next' => $next,
-            'stages' => $stages,
-            'last_page_m1' => $LastPagem1
-        );
-         if (isset($_GET['search']) && isset($_GET['category']) && $_GET['search']!='' && $_GET['category']!='') {
-             $classes= Classes::getNClasses($start,$limit,$_GET['search'],$_GET['category']);
-        } else {
-        $classes = Classes::getNClasses($start, $limit);
+	public function go() {
+		if (isset($_GET["source"]) && ($_GET["source"]=="del")) {
+			$id=$_GET['id'];
+			Classes::deleteClass($id);
+			$this->addSuccessMessage("Class has been deleted succesfully");
+		} elseif(isset($_GET["source"]) && ($_GET["source"]=="arch")) {
+			$id=$_GET['id'];
+			Classes::archiveClass($id);
+			$this->addSuccessMessage("Class has been archived succesfully");
+		}elseif(isset($_GET["source"]) && ($_GET["source"]=="unarch")) {
+			$id=$_GET['id'];
+			Classes::unarchiveClass($id);
+			$this->addSuccessMessage("Class has been unarchived succesfully");
+		}
+		if (isset($_GET['search']) && isset($_GET['category']) && $_GET['search']!='' && $_GET['category']!='') {
+			$total_pages = Classes::getNumberOfClasses($_GET['search'], $_GET['category']);
+		} else {
+			$total_pages =Classes::getNumberOfClasses();
+
+
+		}
+		if (isset($_GET['limit']) && $_GET['limit']!="") {
+			$limit =$_GET['limit'];
+		}
+		else {
+			$limit=25;
+		}
+		$targetpage = SOURCE_ROOT_PATH."admin/pages/manageclass.php";
+		$stages = 3;
+		$page=0;
+		if(isset($_GET['page'])) {
+			$page=$_GET['page'];
+		}
+		if($page) {
+			$start = ($page - 1) * $limit; 
+		} else {
+			$start = 0;
+		}	
+
+		// Initial page num setup
+		if ($page == 0){$page = 1;}
+		$prev = $page - 1;	
+		$next = $page + 1;							
+		$lastpage = ceil($total_pages/$limit);		
+		$LastPagem1 = $lastpage - 1;					
+
+		$pagination = array (
+				'lastpage' => $lastpage,
+				'page' => $page,
+				'targetpage' => $targetpage,
+				'prev' => $prev,
+				'next' => $next,
+				'stages' => $stages,
+				'last_page_m1' => $LastPagem1
+				);
+		if (isset($_GET['search']) && isset($_GET['category']) && $_GET['search']!='' && $_GET['category']!='') {
+			$classes= Classes::getNClasses($start,$limit,$_GET['search'],$_GET['category']);
+		} else {
+			$classes = Classes::getNClasses($start, $limit);
+		}
+		if (isset($_GET['search'])) {
+			$this->addToView('search_string', $_GET['search']);
+		}
+		$this->addToView('classes', $classes);
+		$this->addToView('total_pages', $total_pages);
+		$this->addToView('pagination', $pagination);
+		$this->setViewTemplate('classmanager.tpl');
+		$this->generateView();
 	}
-	if (isset($_GET['search'])) {
-	    $this->addToView('search_string', $_GET['search']);
-	}
-	$this->addToView('classes', $classes);
-	$this->addToView('total_pages', $total_pages);
-        $this->addToView('pagination', $pagination);
-	$this->setViewTemplate('classmanager.tpl');
-	$this->generateView();
-    }
 }

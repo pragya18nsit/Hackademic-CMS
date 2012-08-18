@@ -36,46 +36,46 @@ require_once(HACKADEMIC_PATH."admin/model/class.Classes.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
 
 class ShowClassController extends HackademicBackendController {
-    
-    public function go() {
-        $this->setViewTemplate('showclass.tpl');
-	if (!isset($_GET['id'])) {
-	    header('Location: '.SOURCE_ROOT_PATH."admin/pages/manageclass.php");
+
+	public function go() {
+		$this->setViewTemplate('showclass.tpl');
+		if (!isset($_GET['id'])) {
+			header('Location: '.SOURCE_ROOT_PATH."admin/pages/manageclass.php");
+		}
+		$class_id=$_GET['id'];
+		if(isset($_POST['submit'])) {
+			if(isset($_POST['updateclassname'])) {
+				if ($_POST['updateclassname']=='') {
+					header('Location: '.SOURCE_ROOT_PATH."admin/pages/showclass.php?id=$class_id&action=editerror");
+				}
+				else {
+					$this->name =$_POST['updateclassname'];
+					Classes::updateClassName($class_id, $this->name);
+					header('Location: '.SOURCE_ROOT_PATH."admin/pages/showclass.php?id=$class_id&action=editsuccess");
+				}
+			}
+		}
+		if (isset($_GET['action']) && $_GET['action'] == "editerror") {
+			$this->addErrorMessage("Class name should not be empty");
+		}
+		if (isset($_GET['action']) && $_GET['action'] == "editsuccess") {
+			$this->addSuccessMessage("Class name updated successfully");
+		}
+		if (isset($_GET['action']) && $_GET['action'] == "del") {
+			if (isset($_GET['uid'])) {
+				ClassMemberships::deleteMembership($_GET['uid'],$class_id);
+				$this->addSuccessMessage("User has been deleted from the class succesfully");
+			} else if (isset($_GET['cid'])) {
+				ClassChallenges::deleteMembership($_GET['cid'],$class_id);
+				$this->addSuccessMessage("Challenge has been deleted from the class succesfully");
+			}
+		}
+		$class = Classes::getClass($class_id);
+		$user_members = ClassMemberships::getAllMemberships($class_id);
+		$challenges_assigned = ClassChallenges::getAllMemberships($class_id);
+		$this->addToView('class', $class);
+		$this->addToView('users', $user_members);
+		$this->addToView('challenges', $challenges_assigned);
+		return $this->generateView();
 	}
-	$class_id=$_GET['id'];
-	 if(isset($_POST['submit'])) {
-	 if(isset($_POST['updateclassname'])) {
-            if ($_POST['updateclassname']=='') {
-		header('Location: '.SOURCE_ROOT_PATH."admin/pages/showclass.php?id=$class_id&action=editerror");
-            }
-	    else {
-                $this->name =$_POST['updateclassname'];
-	        Classes::updateClassName($class_id, $this->name);
-                header('Location: '.SOURCE_ROOT_PATH."admin/pages/showclass.php?id=$class_id&action=editsuccess");
-	    }
-	 }
-	 }
-	 if (isset($_GET['action']) && $_GET['action'] == "editerror") {
-	    $this->addErrorMessage("Class name should not be empty");
-	 }
-	 if (isset($_GET['action']) && $_GET['action'] == "editsuccess") {
-	    $this->addSuccessMessage("Class name updated successfully");
-	 }
-	if (isset($_GET['action']) && $_GET['action'] == "del") {
-	    if (isset($_GET['uid'])) {
-		ClassMemberships::deleteMembership($_GET['uid'],$class_id);
-		$this->addSuccessMessage("User has been deleted from the class succesfully");
-	    } else if (isset($_GET['cid'])) {
-		ClassChallenges::deleteMembership($_GET['cid'],$class_id);
-		$this->addSuccessMessage("Challenge has been deleted from the class succesfully");
-	    }
-	}
-	$class = Classes::getClass($class_id);
-	$user_members = ClassMemberships::getAllMemberships($class_id);
-	$challenges_assigned = ClassChallenges::getAllMemberships($class_id);
-	$this->addToView('class', $class);
-	$this->addToView('users', $user_members);
-	$this->addToView('challenges', $challenges_assigned);
-	return $this->generateView();
-    }
 }

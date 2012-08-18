@@ -37,28 +37,28 @@ require_once(HACKADEMIC_PATH."admin/model/class.ClassChallenges.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
 
 class ShowChallengeController extends HackademicController {
-    
-    public function go() {
-	if (isset($_GET['id'])) {
-	  $id=$_GET['id'];
-        }
-        $challenge=Challenge::getChallenge($id);
-        $this->setViewTemplate('showChallenge.tpl');
-	$this->addToView('challenge', $challenge[0]);
-	if (!$this->isLoggedIn()) {
-	    $this->addErrorMessage("You must login to be able to take the challenge");
-	} else if ($this->isAdmin() || self::IsAllowed($this->getLoggedInUser(), $challenge[0]->id)) {
-	    $this->addToView('is_allowed', true);
-	} else {
-	    $this->addErrorMessage('You cannot take the challenge as you are not a member
-				   of any class to which this challenge is assigned.');
+
+	public function go() {
+		if (isset($_GET['id'])) {
+			$id=$_GET['id'];
+		}
+		$challenge=Challenge::getChallenge($id);
+		$this->setViewTemplate('showChallenge.tpl');
+		$this->addToView('challenge', $challenge[0]);
+		if (!$this->isLoggedIn()) {
+			$this->addErrorMessage("You must login to be able to take the challenge");
+		} else if ($this->isAdmin() || self::IsAllowed($this->getLoggedInUser(), $challenge[0]->id)) {
+			$this->addToView('is_allowed', true);
+		} else {
+			$this->addErrorMessage('You cannot take the challenge as you are not a member
+					of any class to which this challenge is assigned.');
+		}
+		$this->generateView();
 	}
-        $this->generateView();
-    }
-    
-    protected static function isAllowed($username, $challenge_id) {
-	$user = User::findByUserName($username);
-	$classes = ClassMemberships::getMembershipsOfUser($user->id);
-	return ClassChallenges::isAllowed($challenge_id, $classes);
-    }
+
+	protected static function isAllowed($username, $challenge_id) {
+		$user = User::findByUserName($username);
+		$classes = ClassMemberships::getMembershipsOfUser($user->id);
+		return ClassChallenges::isAllowed($challenge_id, $classes);
+	}
 }

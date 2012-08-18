@@ -33,49 +33,49 @@
 require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
 
 class DownloadController extends HackademicBackendController {
-    
-    public function go() {
-        if(isset($_GET['ch'])) {
-            $folder = $_GET['ch'];
-            $source = HACKADEMIC_PATH."challenges/".$folder;
-            $dest = HACKADEMIC_PATH."view/compiled_view/".$folder.".zip";
-            self::Zip($source, $dest);
-            header("Content-Type: archive/zip");
-            // filename for the browser to save the zip file
-            header("Content-Disposition: attachment; filename=$folder".".zip");
-            $filesize = filesize($dest);
-            header("Content-Length: $filesize");
-            $fp = fopen("$dest","r");
-            echo fpassthru($fp);
-            fcloae($fp);
-            unlink($dest);
-        }
-    }
-    
-    private static function Zip($source, $destination) {
-        if (!extension_loaded('zip') || !file_exists($source)) {
-            return false;
-        }
-        $zip = new ZipArchive();
-        if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
-            return false;
-        }
-        $source = str_replace('\\', '/', realpath($source));
-        if (is_dir($source) === true) {
-            $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
-            foreach ($files as $file)
-            {
-                $file = str_replace('\\', '/', realpath($file));
-                if (is_dir($file) === true) {
-                    $zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
-                }
-                else if (is_file($file) === true) {
-                    $zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
-                }
-            }
-        } else if (is_file($source) === true) {
-            $zip->addFromString(basename($source), file_get_contents($source));
-        }
-        return $zip->close();
-    }
+
+	public function go() {
+		if(isset($_GET['ch'])) {
+			$folder = $_GET['ch'];
+			$source = HACKADEMIC_PATH."challenges/".$folder;
+			$dest = HACKADEMIC_PATH."view/compiled_view/".$folder.".zip";
+			self::Zip($source, $dest);
+			header("Content-Type: archive/zip");
+			// filename for the browser to save the zip file
+			header("Content-Disposition: attachment; filename=$folder".".zip");
+			$filesize = filesize($dest);
+			header("Content-Length: $filesize");
+			$fp = fopen("$dest","r");
+			echo fpassthru($fp);
+			fcloae($fp);
+			unlink($dest);
+		}
+	}
+
+	private static function Zip($source, $destination) {
+		if (!extension_loaded('zip') || !file_exists($source)) {
+			return false;
+		}
+		$zip = new ZipArchive();
+		if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
+			return false;
+		}
+		$source = str_replace('\\', '/', realpath($source));
+		if (is_dir($source) === true) {
+			$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
+			foreach ($files as $file)
+			{
+				$file = str_replace('\\', '/', realpath($file));
+				if (is_dir($file) === true) {
+					$zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
+				}
+				else if (is_file($file) === true) {
+					$zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
+				}
+			}
+		} else if (is_file($source) === true) {
+			$zip->addFromString(basename($source), file_get_contents($source));
+		}
+		return $zip->close();
+	}
 }

@@ -33,11 +33,11 @@
 require_once(HACKADEMIC_PATH."controller/class.ChallengeMenuController.php");
 require_once(HACKADEMIC_PATH."controller/class.HackademicController.php");
 class ChallengeListController extends HackademicController {
-    
-    public function go() {
-        $list = ChallengeMenuController::go();
-        $this->addToView('list', $list);
-        $this->setViewTemplate('challenge_list.tpl');
-        return $this->generateView();
-    }
+
+	public function go() {
+		$list = ChallengeMenuController::go();
+		$this->addToView('list', $list);
+		$this->setViewTemplate('challenge_list.tpl');
+		return $this->generateView();
+	}
 }

@@ -35,37 +35,37 @@ require_once(HACKADEMIC_PATH."admin/model/class.ChallengeBackend.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
 
 class EditCodeController extends HackademicBackendController {
-    
-    public function go() {
-        if (isset($_GET['id'])) {
-	    $id=$_GET['id'];
-            $challenges=Challenge::getChallenge($id);
-            $title = $challenges[0]->title;
-            $url = HACKADEMIC_PATH."challenges/".$challenges[0]->pkg_name."/index.php";
-            if(isset($_POST['submit'])) {
-                $contents = $_POST['code'];
-                file_put_contents($url, $contents);
-                $this->addSuccessMessage("File has been updated successfully !");
-            }
-            
-            if (!file_exists($url)) {
-                $this->addErrorMessage("File does not exist");
-                $file_contents = '';
-            } else {
-                $file_contents = file_get_contents($url);
-            }
-            $folder = $challenges[0]->pkg_name;
-        } else {
-            $title = "Unknown Challenge";
-            $file_contents = '';
-            $folder = null;
-            $this->addErrorMessage("You need to select a challenge to edit.");
-        }
-        $this->setViewTemplate('editcode.tpl');
-	$this->addToView('file_contents', $file_contents);
-        $this->addToView('title', $title);
-        $this->addToView('folder', $folder);
-        $this->generateView();
-    }
-    
+
+	public function go() {
+		if (isset($_GET['id'])) {
+			$id=$_GET['id'];
+			$challenges=Challenge::getChallenge($id);
+			$title = $challenges[0]->title;
+			$url = HACKADEMIC_PATH."challenges/".$challenges[0]->pkg_name."/index.php";
+			if(isset($_POST['submit'])) {
+				$contents = $_POST['code'];
+				file_put_contents($url, $contents);
+				$this->addSuccessMessage("File has been updated successfully !");
+			}
+
+			if (!file_exists($url)) {
+				$this->addErrorMessage("File does not exist");
+				$file_contents = '';
+			} else {
+				$file_contents = file_get_contents($url);
+			}
+			$folder = $challenges[0]->pkg_name;
+		} else {
+			$title = "Unknown Challenge";
+			$file_contents = '';
+			$folder = null;
+			$this->addErrorMessage("You need to select a challenge to edit.");
+		}
+		$this->setViewTemplate('editcode.tpl');
+		$this->addToView('file_contents', $file_contents);
+		$this->addToView('title', $title);
+		$this->addToView('folder', $folder);
+		$this->generateView();
+	}
+
 }

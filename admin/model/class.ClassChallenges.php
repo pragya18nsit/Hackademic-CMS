@@ -33,118 +33,118 @@
 require_once(HACKADEMIC_PATH."model/common/class.HackademicDB.php");
 
 class ClassChallenges {
-    public $id;
-    public $challenge_id;
-    public $class_id;
-    public $date_created;
-     
-    public static function addMembership($challenge_id,$class_id){
-        global $db;
-	$date = date("Y-m-d H:i:s");
-	$params=array(':challenge_id' => $challenge_id,':class_id' => $class_id,':date_created' => $date);
-        $sql="INSERT INTO class_challenges(challenge_id,class_id,date_created)";
-	$sql .= " VALUES ( :challenge_id, :class_id, :date_created)";
-        $query = $db->query($sql,$params);
-        if ($db->affectedRows($query)) {
-	    return true;
-        } else {
-	    return false;
+	public $id;
+	public $challenge_id;
+	public $class_id;
+	public $date_created;
+
+	public static function addMembership($challenge_id,$class_id){
+		global $db;
+		$date = date("Y-m-d H:i:s");
+		$params=array(':challenge_id' => $challenge_id,':class_id' => $class_id,':date_created' => $date);
+		$sql="INSERT INTO class_challenges(challenge_id,class_id,date_created)";
+		$sql .= " VALUES ( :challenge_id, :class_id, :date_created)";
+		$query = $db->query($sql,$params);
+		if ($db->affectedRows($query)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-    }
-    
-    public static function getMembershipsOfChallenge($challenge_id) {
-        global $db;
-	$params=array(':challenge_id' => $challenge_id);
-        $sql = "SELECT class_challenges.class_id, classes.name FROM class_challenges";
-	$sql .= " LEFT JOIN classes ON class_challenges.class_id = classes.id WHERE";
-	$sql .= " class_challenges.challenge_id = :challenge_id";
-        $query = $db->query($sql,$params);
-	$result_array = array();
-	while ($row = $db->fetchArray($query)) {
-	    array_push($result_array, $row);
+
+	public static function getMembershipsOfChallenge($challenge_id) {
+		global $db;
+		$params=array(':challenge_id' => $challenge_id);
+		$sql = "SELECT class_challenges.class_id, classes.name FROM class_challenges";
+		$sql .= " LEFT JOIN classes ON class_challenges.class_id = classes.id WHERE";
+		$sql .= " class_challenges.challenge_id = :challenge_id";
+		$query = $db->query($sql,$params);
+		$result_array = array();
+		while ($row = $db->fetchArray($query)) {
+			array_push($result_array, $row);
+		}
+		return $result_array;
 	}
-	return $result_array;
-    }
-    
-    public static function doesMembershipExist($challenge_id,$class_id) {
-        global $db;
-	$params=array(':challenge_id' => $challenge_id,':class_id' => $class_id);
-        $sql= "SELECT * FROM class_challenges";
-        $sql .= " WHERE challenge_id = :challenge_id AND class_id = :class_id";
-        $query = $db->query($sql,$params);
-        if ($db->numRows($query)) {
-	    return true;
-        } else {
-	    return false;
+
+	public static function doesMembershipExist($challenge_id,$class_id) {
+		global $db;
+		$params=array(':challenge_id' => $challenge_id,':class_id' => $class_id);
+		$sql= "SELECT * FROM class_challenges";
+		$sql .= " WHERE challenge_id = :challenge_id AND class_id = :class_id";
+		$query = $db->query($sql,$params);
+		if ($db->numRows($query)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-    }
-    
-    public static function deleteMembership($challenge_id,$class_id){
-        global $db;
-	$params=array(':challenge_id' => $challenge_id,':class_id' => $class_id);
-	$sql="DELETE FROM class_challenges WHERE challenge_id = :challenge_id AND class_id = :class_id";
-	$query = $db->query($sql,$params);
-	if ($db->affectedRows($query)) {
-	    return true;
-	} else {
-	    return false;
+
+	public static function deleteMembership($challenge_id,$class_id){
+		global $db;
+		$params=array(':challenge_id' => $challenge_id,':class_id' => $class_id);
+		$sql="DELETE FROM class_challenges WHERE challenge_id = :challenge_id AND class_id = :class_id";
+		$query = $db->query($sql,$params);
+		if ($db->affectedRows($query)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-    }
-    
-    public static function deleteAllMemberships($challenge_id){
-        global $db;
-	$params=array(':challenge_id' => $challenge_id);
-	$sql="DELETE FROM class_challenges WHERE challenge_id = :challenge_id";
-	$query = $db->query($sql,$params);
-	if ($db->affectedRows($query)) {
-	    return true;
-	} else {
-	    return false;
+
+	public static function deleteAllMemberships($challenge_id){
+		global $db;
+		$params=array(':challenge_id' => $challenge_id);
+		$sql="DELETE FROM class_challenges WHERE challenge_id = :challenge_id";
+		$query = $db->query($sql,$params);
+		if ($db->affectedRows($query)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-    }
-    
-    public static function deleteAllMembershipsOfClass($class_id){
-        global $db;
-	$params=array(':class_id' => $class_id);
-	$sql="DELETE FROM class_challenges WHERE class_id = :class_id";
-	$query = $db->query($sql,$params);
-	if ($db->affectedRows($query)) {
-	    return true;
-	} else {
-	    return false;
+
+	public static function deleteAllMembershipsOfClass($class_id){
+		global $db;
+		$params=array(':class_id' => $class_id);
+		$sql="DELETE FROM class_challenges WHERE class_id = :class_id";
+		$query = $db->query($sql,$params);
+		if ($db->affectedRows($query)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-    }
-    
-    public static function getAllMemberships($class_id) {
-	global $db;
-	$param=array(':class_id' => $class_id);
-	$sql = "SELECT DISTINCT class_challenges.challenge_id, challenges.title FROM class_challenges ";
-	$sql .= "LEFT JOIN challenges on class_challenges.challenge_id = challenges.id WHERE ";
-	$sql .= "class_challenges.class_id = :class_id";
-	$query = $db->query($sql,$param);
-	$result_array = array();
-	while ($row = $db->fetchArray($query)) {
-	    array_push($result_array, $row);
+
+	public static function getAllMemberships($class_id) {
+		global $db;
+		$param=array(':class_id' => $class_id);
+		$sql = "SELECT DISTINCT class_challenges.challenge_id, challenges.title FROM class_challenges ";
+		$sql .= "LEFT JOIN challenges on class_challenges.challenge_id = challenges.id WHERE ";
+		$sql .= "class_challenges.class_id = :class_id";
+		$query = $db->query($sql,$param);
+		$result_array = array();
+		while ($row = $db->fetchArray($query)) {
+			array_push($result_array, $row);
+		}
+		return $result_array;
 	}
-	return $result_array;
-    }
-    
-    public static function isAllowed($challenge_id, $classes) {
-	global $db;
-	$in_these_classes = '';
-	$params=array(':challenge_id' => $challenge_id);
-	foreach ($classes as $class) {
-	    if ($in_these_classes != '') {
-		$in_these_classes .= " OR ";
-	    }
-	    $in_these_classes .= "class_id = ".$class['class_id'];
+
+	public static function isAllowed($challenge_id, $classes) {
+		global $db;
+		$in_these_classes = '';
+		$params=array(':challenge_id' => $challenge_id);
+		foreach ($classes as $class) {
+			if ($in_these_classes != '') {
+				$in_these_classes .= " OR ";
+			}
+			$in_these_classes .= "class_id = ".$class['class_id'];
+		}
+		$sql = "SELECT * FROM class_challenges WHERE challenge_id = :challenge_id AND (".$in_these_classes.");";
+		$query = $db->query($sql,$params);
+		if ($db->numRows($query)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-	$sql = "SELECT * FROM class_challenges WHERE challenge_id = :challenge_id AND (".$in_these_classes.");";
-        $query = $db->query($sql,$params);
-	if ($db->numRows($query)) {
-	    return true;
-        } else {
-	    return false;
-	}
-    }
 }

@@ -33,14 +33,14 @@
 require_once(HACKADEMIC_PATH."model/common/class.Challenge.php");
 require_once(HACKADEMIC_PATH."/controller/class.HackademicController.php");
 class ChallengeMenuController {
-    
-    public function go() {
-	$challenges=Challenge::getChallengesFrontend();
-	$menu=array();
-	foreach( $challenges as $challenge){
-	    $link = array ('id'=>$challenge->id, 'title'=>$challenge->title, 'url'=>'challenges/'.$challenge->pkg_name.'/index.php');
-	    array_push($menu,$link);
+
+	public function go() {
+		$challenges=Challenge::getChallengesFrontend();
+		$menu=array();
+		foreach( $challenges as $challenge){
+			$link = array ('id'=>$challenge->id, 'title'=>$challenge->title, 'url'=>'challenges/'.$challenge->pkg_name.'/index.php');
+			array_push($menu,$link);
+		}
+		return $menu;
 	}
-	return $menu;
-    }
 }

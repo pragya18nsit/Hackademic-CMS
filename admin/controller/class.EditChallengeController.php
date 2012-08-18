@@ -35,31 +35,31 @@ require_once(HACKADEMIC_PATH."admin/model/class.ChallengeBackend.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
 
 class EditChallengeController extends HackademicBackendController {
-    public function go() {
-	if (isset($_GET['id'])) {
-	  $id=$_GET['id'];
-        }
-        if(isset($_POST['submit'])) {
-            if ($_POST['title']=='') {
-		$this->addErrorMessage("Title of the challenge should not be empty");
-            } elseif ($_POST['description']=='') {
-		$this->addErrorMessage("Description should not be empty");
-	    } elseif ($_POST['visibility']=='') {
-		$this->addErrorMessage("Visibility field should not be empty");
-	    } else {
-                
-                $this->title =$_POST['title'];
-                $this->description=$_POST['description'];
-		$this->visibility=$_POST['visibility'];
-                $this->publish=$_POST['publish'];            
-                ChallengeBackend::updateChallenge($id,$this->title,$this->description,$this->visibility,$this->publish);
-                $this->addSuccessMessage("Challenge details have been updated succesfully");
-	    }
-        }
-	$challenges=Challenge::getChallenge($id);
-	$this->setViewTemplate('editchallenge.tpl');
-	$this->addToView('challenge', $challenges[0]);
-        $this->generateView();
-	
-    }
+	public function go() {
+		if (isset($_GET['id'])) {
+			$id=$_GET['id'];
+		}
+		if(isset($_POST['submit'])) {
+			if ($_POST['title']=='') {
+				$this->addErrorMessage("Title of the challenge should not be empty");
+			} elseif ($_POST['description']=='') {
+				$this->addErrorMessage("Description should not be empty");
+			} elseif ($_POST['visibility']=='') {
+				$this->addErrorMessage("Visibility field should not be empty");
+			} else {
+
+				$this->title =$_POST['title'];
+				$this->description=$_POST['description'];
+				$this->visibility=$_POST['visibility'];
+				$this->publish=$_POST['publish'];            
+				ChallengeBackend::updateChallenge($id,$this->title,$this->description,$this->visibility,$this->publish);
+				$this->addSuccessMessage("Challenge details have been updated succesfully");
+			}
+		}
+		$challenges=Challenge::getChallenge($id);
+		$this->setViewTemplate('editchallenge.tpl');
+		$this->addToView('challenge', $challenges[0]);
+		$this->generateView();
+
+	}
 }

@@ -37,41 +37,41 @@ require_once(HACKADEMIC_PATH."model/common/class.Utils.php");
 
 
 class ResetPasswordController extends HackademicController {
-  
-    
-    public function go() {
-	 $this->setViewTemplate('resetpw.tpl');
-           if (isset($_GET['username'])) {
-             $username=$_GET['username'];
-           }
-            if (isset($_GET['token'])) {
-             $token=$_GET['token'];
-           }
-           if(!(User::validateToken($username,$token))){
-             $this->addErrorMessage("The token is invalid");
-           }
-           else{
-              if (isset($_POST['submit'])) {
-                if ($_POST['newpassword']=='') {
-		$this->addErrorMessage("Password should not be empty");
-	      } elseif ($_POST['confirmnewpassword']=='') {
-		$this->addErrorMessage("Confirm password field should not be empty");
-	      }  else {
-		$password = $_POST['newpassword'];
-		$confirmpassword=$_POST['confirmnewpassword'];
-		if(!($password==$confirmpassword)) {
-		    $this->addErrorMessage("The two passwords dont match!");
+
+
+	public function go() {
+		$this->setViewTemplate('resetpw.tpl');
+		if (isset($_GET['username'])) {
+			$username=$_GET['username'];
 		}
-                else{
-                    if(!(User::updatePassword($password,$username)))
-                    $this->addErrorMessage("An error occured while updating the password");
-                    else{
-                    $this->addSuccessMessage("Password has been updated successfully!You can now login with your new password");
-                    }
-                }
-           }
-         }
-      }
-      return $this->generateView();
-}
+		if (isset($_GET['token'])) {
+			$token=$_GET['token'];
+		}
+		if(!(User::validateToken($username,$token))){
+			$this->addErrorMessage("The token is invalid");
+		}
+		else{
+			if (isset($_POST['submit'])) {
+				if ($_POST['newpassword']=='') {
+					$this->addErrorMessage("Password should not be empty");
+				} elseif ($_POST['confirmnewpassword']=='') {
+					$this->addErrorMessage("Confirm password field should not be empty");
+				}  else {
+					$password = $_POST['newpassword'];
+					$confirmpassword=$_POST['confirmnewpassword'];
+					if(!($password==$confirmpassword)) {
+						$this->addErrorMessage("The two passwords dont match!");
+					}
+					else{
+						if(!(User::updatePassword($password,$username)))
+							$this->addErrorMessage("An error occured while updating the password");
+						else{
+							$this->addSuccessMessage("Password has been updated successfully!You can now login with your new password");
+						}
+					}
+				}
+			}
+		}
+		return $this->generateView();
+	}
 }

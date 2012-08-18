@@ -33,114 +33,114 @@
 require_once(HACKADEMIC_PATH."model/common/class.HackademicDB.php");
 
 class Challenge {
-    public $id;
-    public $title;
-    public $date_posted;
-    public $pkg_name;
-    public $description;
-    public $author;
-    public $category;
-    public $visibility;
-    public $publish;
-    
-    public function doesChallengeExist($name){
-	global $db;
-	$params=array(':name' => $name);
-	$sql = "SELECT * FROM challenges WHERE pkg_name = :name";
-	$query = $db->query($sql,$params);
-	$result = $db->numRows($query);
-	if ($result) {
-	    return true;
-	} else {
-	    return false;
+	public $id;
+	public $title;
+	public $date_posted;
+	public $pkg_name;
+	public $description;
+	public $author;
+	public $category;
+	public $visibility;
+	public $publish;
+
+	public function doesChallengeExist($name){
+		global $db;
+		$params=array(':name' => $name);
+		$sql = "SELECT * FROM challenges WHERE pkg_name = :name";
+		$query = $db->query($sql,$params);
+		$result = $db->numRows($query);
+		if ($result) {
+			return true;
+		} else {
+			return false;
+		}
+	} 
+
+	public static function getChallenge($id) {
+		global $db;
+		$params = array(
+				':id' => $id
+			       );
+		$sql = "SELECT * FROM challenges WHERE id= :id LIMIT 1";
+		$result_array=self::findBySQL($sql,$params);
+		// return !empty($result_array)?array_shift($result_array):false;
+		return $result_array;
 	}
-    } 
-       
-    public static function getChallenge($id) {
-	global $db;
-	$params = array(
-	    ':id' => $id
-	);
-        $sql = "SELECT * FROM challenges WHERE id= :id LIMIT 1";
-        $result_array=self::findBySQL($sql,$params);
-        // return !empty($result_array)?array_shift($result_array):false;
-        return $result_array;
-    }
-    
-     public static function getChallengesFrontend() {
-	global $db;
-	$params=array(':publish' => '1');
-        $sql = "SELECT * FROM challenges WHERE publish=:publish";
-        $result_array=self::findBySQL($sql,$params);
-        // return !empty($result_array)?array_shift($result_array):false;
-        return $result_array;
-    }
-       
-    public static function insertId() {
-        global $db;
-        return $db->insertId();
-    }
-    
-    private static function findBySQL($sql,$params=NULL) {
-	global $db;
-        $result_set=$db->query($sql,$params);
-        $object_array=array();
-        while($row=$db->fetchArray($result_set)) {
-            $object_array[]=self::instantiate($row);
-        }
-        return $object_array;
-    }
-       
-    public static function getNchallenges($start, $limit,$search=null,$category=null) {
-        global $db;
-	$params = array(
-	    ':start' => $start,
-	    ':limit' => $limit
-	);
-	if ($search != null && $category != null) {
-	     $params[':search_string'] = '%'.$search.'%';
-	      switch ($category) {
-		case "title":
-		    $sql = "SELECT * FROM challenges WHERE title LIKE :search_string LIMIT :start, :limit";
-		    break;
-	    }
-        } else {
-        $sql= "SELECT * FROM challenges LIMIT :start, :limit";
+
+	public static function getChallengesFrontend() {
+		global $db;
+		$params=array(':publish' => '1');
+		$sql = "SELECT * FROM challenges WHERE publish=:publish";
+		$result_array=self::findBySQL($sql,$params);
+		// return !empty($result_array)?array_shift($result_array):false;
+		return $result_array;
 	}
-        $result_array=self::findBySQL($sql,$params);
-        return $result_array;
-    }
-    
-    public static function getNumberOfChallenges($search=null,$category=null) {
-        global $db;
-	if ($search != null && $category != null) {
-	    $params[':search_string'] = '%'.$search.'%';
-	     switch ($category) {
-		case "title":
-		    $sql = "SELECT COUNT(*) as num FROM challenges WHERE title LIKE :search_string ";
-		    break;
-	    }
-	    $query = $db->query($sql,$params);
-        } else {
-        $sql = "SELECT COUNT(*) as num FROM challenges";
-	$query = $db->query($sql);
+
+	public static function insertId() {
+		global $db;
+		return $db->insertId();
 	}
-        $result = $db->fetchArray($query);
-        return $result['num'];
-    }
-    
-    public static function instantiate($record) {
-        $object=new self;
-        foreach($record as $attribute=>$value) {
-            if($object->hasAttribute($attribute)) {
-                $object->$attribute=$value;
-            }
-        }
-        return $object;
-    }
-	
-    private function hasAttribute($attribute) {
-        $object_vars=get_object_vars($this);
-        return array_key_exists($attribute,$object_vars);
-    }
+
+	private static function findBySQL($sql,$params=NULL) {
+		global $db;
+		$result_set=$db->query($sql,$params);
+		$object_array=array();
+		while($row=$db->fetchArray($result_set)) {
+			$object_array[]=self::instantiate($row);
+		}
+		return $object_array;
+	}
+
+	public static function getNchallenges($start, $limit,$search=null,$category=null) {
+		global $db;
+		$params = array(
+				':start' => $start,
+				':limit' => $limit
+			       );
+		if ($search != null && $category != null) {
+			$params[':search_string'] = '%'.$search.'%';
+			switch ($category) {
+				case "title":
+					$sql = "SELECT * FROM challenges WHERE title LIKE :search_string LIMIT :start, :limit";
+					break;
+			}
+		} else {
+			$sql= "SELECT * FROM challenges LIMIT :start, :limit";
+		}
+		$result_array=self::findBySQL($sql,$params);
+		return $result_array;
+	}
+
+	public static function getNumberOfChallenges($search=null,$category=null) {
+		global $db;
+		if ($search != null && $category != null) {
+			$params[':search_string'] = '%'.$search.'%';
+			switch ($category) {
+				case "title":
+					$sql = "SELECT COUNT(*) as num FROM challenges WHERE title LIKE :search_string ";
+					break;
+			}
+			$query = $db->query($sql,$params);
+		} else {
+			$sql = "SELECT COUNT(*) as num FROM challenges";
+			$query = $db->query($sql);
+		}
+		$result = $db->fetchArray($query);
+		return $result['num'];
+	}
+
+	public static function instantiate($record) {
+		$object=new self;
+		foreach($record as $attribute=>$value) {
+			if($object->hasAttribute($attribute)) {
+				$object->$attribute=$value;
+			}
+		}
+		return $object;
+	}
+
+	private function hasAttribute($attribute) {
+		$object_vars=get_object_vars($this);
+		return array_key_exists($attribute,$object_vars);
+	}
 }

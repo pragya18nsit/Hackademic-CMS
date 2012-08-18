@@ -35,32 +35,32 @@ require_once(HACKADEMIC_PATH."admin/model/class.Classes.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
 
 class ClassChallengesController extends HackademicBackendController {
-    
-    public function go() {
-        $this->setViewTemplate('classchallenges.tpl');
-	$challenge_id=$_GET['id'];
-	if (isset($_POST['submit'])) {
-	    $class_id=$_POST['class_id'];
-	    if(ClassChallenges::doesMembershipExist($challenge_id, $class_id))
-	    {
-		$this->addErrorMessage("Challenge is already a member of this class");
-	    }
-	    else{
-	    ClassChallenges::addMembership($challenge_id,$class_id);
-	    $this->addSuccessMessage("Challenge has been added to the class succesfully");
-	    }
+
+	public function go() {
+		$this->setViewTemplate('classchallenges.tpl');
+		$challenge_id=$_GET['id'];
+		if (isset($_POST['submit'])) {
+			$class_id=$_POST['class_id'];
+			if(ClassChallenges::doesMembershipExist($challenge_id, $class_id))
+			{
+				$this->addErrorMessage("Challenge is already a member of this class");
+			}
+			else{
+				ClassChallenges::addMembership($challenge_id,$class_id);
+				$this->addSuccessMessage("Challenge has been added to the class succesfully");
+			}
+		}
+		elseif (isset($_GET['action']) && $_GET['action']=="del") {
+			$class_id=$_GET['class_id'];
+			ClassChallenges::deleteMembership($challenge_id,$class_id);
+			$this->addSuccessMessage("Challenge has been deleted from the class succesfully");
+		}	
+		$class_memberships = ClassChallenges::getMembershipsOfChallenge($challenge_id);
+
+		$classes = Classes::getAllClasses();
+		$this->addToView('classes', $classes);
+		$this->addToView('class_memberships', $class_memberships);
+		$this->setViewTemplate('classchallenges.tpl');
+		$this->generateView();
 	}
-	elseif (isset($_GET['action']) && $_GET['action']=="del") {
-	    $class_id=$_GET['class_id'];
-	    ClassChallenges::deleteMembership($challenge_id,$class_id);
-	    $this->addSuccessMessage("Challenge has been deleted from the class succesfully");
-	}	
-	$class_memberships = ClassChallenges::getMembershipsOfChallenge($challenge_id);
-        
-        $classes = Classes::getAllClasses();
-	$this->addToView('classes', $classes);
-	$this->addToView('class_memberships', $class_memberships);
-	$this->setViewTemplate('classchallenges.tpl');
-	$this->generateView();
-    }
 }

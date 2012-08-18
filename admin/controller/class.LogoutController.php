@@ -35,9 +35,9 @@ require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController
 
 class LogoutController extends HackademicBackendController{
 
-    public function go() {
-        Session::logout();
-	header('Location:'.SOURCE_ROOT_PATH);
-    }
+	public function go() {
+		Session::logout();
+		header('Location:'.SOURCE_ROOT_PATH);
+	}
 
 }

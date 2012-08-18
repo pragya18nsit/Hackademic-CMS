@@ -31,11 +31,11 @@
  *
  */
 require_once(HACKADEMIC_PATH."controller/class.UserMenuController.php");
- 
+
 class MenuController {
-    
-    public function go() {
-        $menu = UserMenuController::go();
-        return $menu;
-    }
+
+	public function go() {
+		$menu = UserMenuController::go();
+		return $menu;
+	}
 }

@@ -37,30 +37,30 @@ require_once(HACKADEMIC_PATH."model/common/class.Utils.php");
 
 
 class ForgotPasswordController extends HackademicController {
-  
-    
-    public function go() {
-	 $this->setViewTemplate('forgotpw.tpl');
-        if (isset($_POST['submit'])) {
-            if ($_POST['username']=='') {
-	        $this->addErrorMessage("Username should not be empty");    
-	    } else {
-                $username = $_POST['username'];
-		//$is_activated = $_POST['is_activated'];
-		if (!(User::doesUserExist($username))) {
-	            $this->addErrorMessage("Username does not exist");
-	        }
-		else{
-                    $token=rand(1,getrandmax());
-                    $subject="Hackademic new password link activation";
-		    $message="Please click on the following link below to reset your password";
-		    //Mailer::mail($email,$subject,$message);
-		    $result = User::addToken($username,$token);
-		    $this->addSuccessMessage("A mail has been send to your email id. click on the link below to activate your account");
-                    header("Location: ResetPassword.php?username=$username&token=$token");
-                }
-	    }
+
+
+	public function go() {
+		$this->setViewTemplate('forgotpw.tpl');
+		if (isset($_POST['submit'])) {
+			if ($_POST['username']=='') {
+				$this->addErrorMessage("Username should not be empty");    
+			} else {
+				$username = $_POST['username'];
+				//$is_activated = $_POST['is_activated'];
+				if (!(User::doesUserExist($username))) {
+					$this->addErrorMessage("Username does not exist");
+				}
+				else{
+					$token=rand(1,getrandmax());
+					$subject="Hackademic new password link activation";
+					$message="Please click on the following link below to reset your password";
+					//Mailer::mail($email,$subject,$message);
+					$result = User::addToken($username,$token);
+					$this->addSuccessMessage("A mail has been send to your email id. click on the link below to activate your account");
+					header("Location: ResetPassword.php?username=$username&token=$token");
+				}
+			}
+		}
+		return $this->generateView();
 	}
-        return $this->generateView();
-    }
 }

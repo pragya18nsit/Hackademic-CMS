@@ -10,7 +10,7 @@
  * 
  */
 session_start();
- 
+
 # Define root path
 define('ROOT_PATH', dirname(dirname(__FILE__)));
 
@@ -19,7 +19,7 @@ define('INSTALLER_PATH', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'installer');
 # Define templates path
 if(!defined('TMPL_PATH'))
 {
-    define('TMPL_PATH', INSTALLER_PATH . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR);
+	define('TMPL_PATH', INSTALLER_PATH . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR);
 }
 
 # Define base url

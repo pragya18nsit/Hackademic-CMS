@@ -35,21 +35,21 @@ require_once(HACKADEMIC_PATH."admin/model/class.Classes.php");
 require_once(HACKADEMIC_PATH."/admin/controller/class.HackademicBackendController.php");
 
 class AddClassController extends HackademicBackendController {
-   
-    public function go() {
-        $this->setViewTemplate('addclass.tpl');
-        if(isset($_POST['submit'])) {
-            if ($_POST['classname']=='') {
-	        $this->addErrorMessage("Name of the class should not be empty");
-	    } else {
-		// $this->created_by= Session::getLoggedInUser();
-                $this->classname =$_POST['classname'];
-                $this->date_created = date("Y-m-d H:i:s");
-                Classes::addClass($this->classname,$this->date_created);
-                $this->addSuccessMessage("Class has been created succesfully");
-                header('Location: '.SOURCE_ROOT_PATH."admin/pages/usermanager.php?source=addclass");
-            }
-        }
-        $this->generateView();
-    }
+
+	public function go() {
+		$this->setViewTemplate('addclass.tpl');
+		if(isset($_POST['submit'])) {
+			if ($_POST['classname']=='') {
+				$this->addErrorMessage("Name of the class should not be empty");
+			} else {
+				// $this->created_by= Session::getLoggedInUser();
+				$this->classname =$_POST['classname'];
+				$this->date_created = date("Y-m-d H:i:s");
+				Classes::addClass($this->classname,$this->date_created);
+				$this->addSuccessMessage("Class has been created succesfully");
+				header('Location: '.SOURCE_ROOT_PATH."admin/pages/usermanager.php?source=addclass");
+			}
+		}
+		$this->generateView();
+	}
 } 
