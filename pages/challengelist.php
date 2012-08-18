@@ -1,11 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/admin/controller/class.MenuController.php
+ * Hackademic-CMS/pages/login.php
  *
- * Hackademic Backend Menu Controller
- * Class for creating the Main Menu
- *
+ * The page for calling the Hackademic Login Controller
+ * 
  * Copyright (c) 2012 OWASP
  *
  * LICENSE:
@@ -30,12 +29,8 @@
  * @copyright 2012 OWASP
  *
  */
-require_once(HACKADEMIC_PATH."controller/class.UserMenuController.php");
- 
-class MenuController {
-    
-    public function go() {
-        $menu = UserMenuController::go();
-        return $menu;
-    }
-}
+require_once("../init.php");
+require_once(HACKADEMIC_PATH."controller/class.ChallengeListController.php");
+
+$controller = new ChallengeListController();
+echo $controller->go();

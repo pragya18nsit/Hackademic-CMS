@@ -42,51 +42,57 @@ class UserMenuController{
      * Create Main Menu
      */
     protected function createMainMenu() {
-	
-	
-	
     	if(Session::isAdmin()){
-	       $link1 = array ('title'=>'Add Articles', 'url'=>'admin/pages/addarticle.php');
-               $link2 = array ('title'=>'Article Manager', 'url'=>'admin/pages/articlemanager.php');
-               $link3 = array ('title'=>'User Manager', 'url'=>'admin/pages/usermanager.php');
-	       $link4 = array ('title'=>'Add Challenge', 'url'=>'admin/pages/addchallenge.php');
-               $link5 = array ('title'=>'Challenge Manager', 'url'=>'admin/pages/challengemanager.php');
-               $link6 = array ('title'=>'Global Configuration', 'url'=>'admin/pages/globalconfiguration.php');
-	     
-        
+	    $link0 = array ('title'=>'Admin Dashboard', 'url'=>'admin/');
+	    $link1 = array ('title'=>'Add New Articles', 'url'=>'admin/pages/addarticle.php');
+            $link2 = array ('title'=>'Article Manager', 'url'=>'admin/pages/articlemanager.php');
+            $link3 = array ('title'=>'User Manager', 'url'=>'admin/pages/usermanager.php');
+	    $link4 = array ('title'=>'Add New Challenge', 'url'=>'admin/pages/addchallenge.php');
+            $link5 = array ('title'=>'Challenge Manager', 'url'=>'admin/pages/challengemanager.php');
+            $link6 = array ('title'=>'Logout', 'url'=>'pages/logout.php');
+
 	    $menu = array(
-            $link1,
-            $link2,
-            $link3,
-            $link4,
-            $link5,
-            $link6
-        );
-    } elseif(Session::isTeacher()){
-	  $link1 = array ('title'=>'Create a new class', 'url'=>'admin/pages/manageclass.php');
-          $link2 = array ('title'=>'Add Challenge', 'url'=>'admin/pages/addchallenge.php');
-          $link3 = array ('title'=>'See progress of students', 'url'=>'admin/pages/usermanager.php');
-	  $link4 = array ('title'=>'Clone Existing Challenge', 'url'=>'admin/pages/addchallenge.php');
-	  
-        $menu = array(
-            $link1,
-            $link2,
-            $link3,
-            $link4
-        );
-	
-    }
-    else{
-          $link1 = array ('title'=>'See Your Progress', 'url'=>'admin/pages/addarticle.php');
-          $link2 = array ('title'=>'Current Score', 'url'=>'admin/pages/articlemanager.php');
-          $link3 = array ('title'=>'Ranking', 'url'=>'admin/pages/usermanager.php');
-        
-        $menu = array(
-            $link1,
-            $link2,
-            $link3
-        );
-    }
+		$link0,
+		$link1,
+		$link2,
+		$link3,
+		$link4,
+		$link5,
+		$link6
+	    );
+	} elseif(Session::isTeacher()) {
+	    $link1 = array ('title'=>'Admin Dashboard', 'url'=>'admin');
+            $link2 = array ('title'=>'Article Manager', 'url'=>'admin/pages/articlemanager.php');
+            $link3 = array ('title'=>'User Manager', 'url'=>'admin/pages/usermanager.php');
+	    $link4 = array ('title'=>'Create Class', 'url'=>'admin/pages/manageclass.php');
+	    $link5 = array ('title'=>'Add Challenge', 'url'=>'admin/pages/addchallenge.php');
+	    $link6 = array ('title'=>'Monitor Students', 'url'=>'admin/pages/usermanager.php');
+	    $link7 = array ('title'=>'Clone Challenge', 'url'=>'admin/pages/addchallenge.php');
+            $link8 = array ('title'=>'Logout', 'url'=>'pages/logout.php');
+		
+	    $menu = array(
+		$link1,
+		$link2,
+		$link3,
+		$link4,
+		$link5,
+		$link6,
+		$link7,
+		$link8
+	    );
+	} else {
+	    $link1 = array ('title'=>'See Your Progress', 'url'=>'admin/pages/addarticle.php');
+	    $link2 = array ('title'=>'Current Score', 'url'=>'admin/pages/articlemanager.php');
+	    $link3 = array ('title'=>'Ranking', 'url'=>'admin/pages/usermanager.php');
+            $link4 = array ('title'=>'Logout', 'url'=>'pages/logout.php');
+		
+	    $menu = array(
+		$link1,
+		$link2,
+		$link3,
+		$link4
+	    );
+	}
 	return $menu;
     }
 }

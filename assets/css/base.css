@@ -9,6 +9,14 @@ body {height:95%;}
    -webkit-border-radius: 30px;
 }
 #usermessage {width: 60%; margin: auto;}
+#username {
+    float: left;
+    margin-top:15px;
+    margin-left: 20px;
+    margin-bottom: -10px;
+    font-size:13px;
+    font-weight:bold;
+}
 
 .left {float: left;}
 .right {float: right;}

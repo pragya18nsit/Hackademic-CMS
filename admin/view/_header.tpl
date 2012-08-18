@@ -22,14 +22,16 @@
 		</div>
 	    </div>
 	    <div class="center pad_25">
-		<a href="{$site_root_path}admin/">
+		<a href="{$site_root_path}">
 		    <img id="logo" src="{$site_root_path}assets/images/logo.png">
 		</a>
 	    </div>     
 	</div>	
 	<div id="content">
 	    {if isset($main_menu_admin)}
-	    <div id="username">Hi {$logged_in_user},</div><br/>
+	    <div>
+		<div id="username" class="left">Hi {$logged_in_user},</div>
+	    </div><br/>
 	    <!-- Main Menu -->
 	    <div id="menuHeader"> 
 		<ul id="mainMenu">

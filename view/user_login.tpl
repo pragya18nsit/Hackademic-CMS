@@ -3,7 +3,7 @@
 	<fieldset id="inputs">
 	    <legend>Login Details</legend>
 	    <label>Username</label>
-	    <input name="username" id="username" type="text" autofocus required>
+	    <input name="username" type="text" autofocus required>
 	    <label>Password</label>
 	    <input name="pwd" id="password" type="password" required>
 	    <input class="submit" name="submit" type="submit" id="submit" value="Login"><br/>

@@ -1,10 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/admin/controller/class.MenuController.php
+ * Hackademic-CMS/controller/class.ChallengeMenuController.php
  *
- * Hackademic Backend Menu Controller
- * Class for creating the Main Menu
+ * Hackademic Challenge Menu Controller
+ * Class for creating the Challenge Main Menu
  *
  * Copyright (c) 2012 OWASP
  *
@@ -30,12 +30,14 @@
  * @copyright 2012 OWASP
  *
  */
-require_once(HACKADEMIC_PATH."controller/class.UserMenuController.php");
- 
-class MenuController {
+require_once(HACKADEMIC_PATH."controller/class.ChallengeMenuController.php");
+require_once(HACKADEMIC_PATH."controller/class.HackademicController.php");
+class ChallengeListController extends HackademicController {
     
     public function go() {
-        $menu = UserMenuController::go();
-        return $menu;
+        $list = ChallengeMenuController::go();
+        $this->addToView('list', $list);
+        $this->setViewTemplate('challenge_list.tpl');
+        return $this->generateView();
     }
 }

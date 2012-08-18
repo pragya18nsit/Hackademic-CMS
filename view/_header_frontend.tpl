@@ -26,9 +26,21 @@
 	    </div>     
 	</div>	
 	<div id="content">
+	    {if isset($user_menu)}
+	    	<div id="username">Hi {$logged_in_user},</div><br/>
+		<div id="topMenuHeader"> 
+		    <ul id="topMenu">
+			{foreach from=$user_menu item=foo}
+			    <li>
+				<a href="{$site_root_path}{$foo['url']}">{$foo['title']}</a>
+			    </li>
+			{/foreach}
+		    </ul>
+		</div>
+	    {/if}
 	    <table id="mainTable">
 		<tr>
-		    <td id="left_bar" valign="top">
+		    <td id="left_bar" valign="top">			
 			{if isset($main_menu)}
 			<!-- Main Menu -->
 			<div id="menuHeader" class="menubg flt"> 
@@ -36,17 +48,6 @@
 				{foreach from=$main_menu item=foo}
 				<li>
 				<a class="width100" href="{if !isset($foo['external'])}{$site_root_path}{/if}{$foo['url']}"><span class="padding_menu">{$foo['title']}</span></a></li>
-				{/foreach}
-			    </ul>
-			</div>
-			<br/>{/if}<br/>
-			{if isset($challenge_menu)}
-			<!-- Challenge Menu -->
-			<div id="menuHeader" class="menubg flt"> 
-			    <ul id="mainMenu" class="menu flt">
-				{foreach from=$challenge_menu item=foo}
-				<li>
-				<a class="width100" href="{$site_root_path}pages/showchallenges.php?id={$foo['id']}"><span class="padding_menu">{$foo['title']}</span></a></li>
 				{/foreach}
 			    </ul>
 			</div>
