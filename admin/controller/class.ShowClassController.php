@@ -46,14 +46,20 @@ class ShowClassController extends HackademicBackendController {
 	 if(isset($_POST['submit'])) {
 	 if(isset($_POST['updateclassname'])) {
             if ($_POST['updateclassname']=='') {
-		$this->addErrorMessage("Name of the class should not be empty"); 
+		header('Location: '.SOURCE_ROOT_PATH."admin/pages/showclass.php?id=$class_id&action=editerror");
             }
 	    else {
                 $this->name =$_POST['updateclassname'];
 	        Classes::updateClassName($class_id, $this->name);
-                $this->addSuccessMessage("Name of the class has been updated succesfully");
+                header('Location: '.SOURCE_ROOT_PATH."admin/pages/showclass.php?id=$class_id&action=editsuccess");
 	    }
 	 }
+	 }
+	 if (isset($_GET['action']) && $_GET['action'] == "editerror") {
+	    $this->addErrorMessage("Class name should not be empty");
+	 }
+	 if (isset($_GET['action']) && $_GET['action'] == "editsuccess") {
+	    $this->addSuccessMessage("Class name updated successfully");
 	 }
 	if (isset($_GET['action']) && $_GET['action'] == "del") {
 	    if (isset($_GET['uid'])) {
