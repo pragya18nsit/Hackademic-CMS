@@ -11,6 +11,7 @@ img {border:none;}
     padding: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    border-radius: 5px;
     font-family:"Courier New", Courier, monospace;
     font-stretch:extra-condensed;
     font-size:18px;
@@ -23,6 +24,7 @@ img {border:none;}
     padding: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    border-radius: 5px;
     font-family:"Courier New", Courier, monospace;
     font-stretch:extra-condensed;
     font-size:18px;
@@ -88,6 +90,7 @@ img {border:none;}
     border-color: #C9C9C9;
     -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
     -moz-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
 }
 
 #input_form label {
@@ -105,6 +108,7 @@ img {border:none;}
     color: #FFFFFF;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 
 #input_form .radio input {
@@ -121,6 +125,7 @@ img {border:none;}
     text-decoration: none;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 #try_me a {
     text-decoration: none;

@@ -40,6 +40,7 @@ img {border:none;}
     padding: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    border-radius: 5px;
     font-family:"Courier New", Courier, monospace;
     font-stretch:extra-condensed;
     font-size:18px;
@@ -52,6 +53,7 @@ img {border:none;}
     padding: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    border-radius: 5px;
     font-family:"Courier New", Courier, monospace;
     font-stretch:extra-condensed;
     font-size:18px;
@@ -63,6 +65,7 @@ img {border:none;}
     padding-top:1px;
     padding-bottom: 1px;
     width:95%;
+    border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     margin: auto;
@@ -101,6 +104,7 @@ img {border:none;}
     font:0.8em arial, sans-serif;
     -moz-border-radius:0.4em;
     -khtml-border-radius:0.4em;
+    border-radius:0.4em;
 }
 #login input:hover, #login input:focus { border-color:#c5c5c5; background:#f6f6f6;} 
 #login fieldset { border:1px solid #ddd; padding:0 0.5em 0.5em; }
@@ -113,6 +117,7 @@ img {border:none;}
     color: #FFFFFF;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 #login a { font-size: 0.7em; text-decoration: none; color:black; }
 
@@ -136,6 +141,7 @@ img {border:none;}
     box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
     -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
     -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
 }
 
 #input_form textarea {
@@ -147,6 +153,7 @@ img {border:none;}
     border-color: #C9C9C9;
     -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
     -moz-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
 }
 
 #input_form label {
@@ -164,6 +171,7 @@ img {border:none;}
     color: #FFFFFF;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 
 #input_form .radio input {
@@ -180,6 +188,7 @@ img {border:none;}
     text-decoration: none;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 .description {
     width: 90%;

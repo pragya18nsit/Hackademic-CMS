@@ -8,6 +8,7 @@ body {height:95%;}
     min-height: 98%;
    -webkit-border-radius: 30px;
    -moz-border-radius: 30px;
+   border-radius: 30px;
 }
 #usermessage {width: 60%; margin: auto;}
 #username {
@@ -47,5 +48,6 @@ body {height:95%;}
     margin: auto;
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
+    border-radius: 15px;
 }
 .page_title {margin-left: 10px; display: block;}

@@ -8,6 +8,7 @@ body {height:95%;}
     min-height: 98%;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
+    border-radius: 30px;
     background: white;
 }
 
@@ -27,6 +28,7 @@ body {height:95%;}
     margin: auto;
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
+    border-radius: 15px;
 }
 .page_title {color: #146295; margin-left: 10px; display: block;}
 img {border:none;}
@@ -78,6 +80,7 @@ img {border:none;}
     border-color: #C9C9C9;
     -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
     -moz-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
 }
 
 #input_form label {
@@ -95,6 +98,7 @@ img {border:none;}
     color: #FFFFFF;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 
 #input_form .radio input {
@@ -111,6 +115,7 @@ img {border:none;}
     text-decoration: none;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 
 /** BEGIN content **/
@@ -198,6 +203,7 @@ img {border:none;}
 	padding: 10px 0;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
+	border-radius: 10px;
 	margin-top: 20px;
 }
 #sidebar hr {
