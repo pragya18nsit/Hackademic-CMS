@@ -17,7 +17,7 @@ img {border:none;}
     font-weight:bold;
 }
 #topMenu a.first:hover {
-    -moz-border-radius-topleft:6px;
+    -moz-border-radius-topleft-radius:6px;
     -webkit-border-top-left-radius:6px;
     border-top-left-radius: 6px;
 } 
@@ -146,6 +146,7 @@ img {border:none;}
 #input_form input:hover, #user_form input:focus {
     border-color: #C9C9C9;
     -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
 }
 
 #input_form label {
