@@ -107,13 +107,13 @@ class AddChallengeController extends HackademicBackendController {
 
 				       $array = array (
 				       'title' => $_POST['title'],
-			'description' => $_POST['description'],
-			'authors' => $_POST['authors'],
-			'category' => $_POST['category']
-				);
-		$_SESSION['challenge_arr'] = $array;
-		$this->addSuccessMessage("Now Please upload the challenge code");
-		$this->addToView('step', 'step2');
+			               'description' => $_POST['description'],
+			               'authors' => $_POST['authors'],
+			               'category' => $_POST['category']
+				        );
+	                        	$_SESSION['challenge_arr'] = $array;
+	       $this->addSuccessMessage("Now Please upload the challenge code");
+	       $this->addToView('step', 'step2');
 	}
 	}
 	if(isset($_FILES['fupload'])) {

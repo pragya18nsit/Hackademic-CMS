@@ -33,11 +33,11 @@ CREATE TABLE challenges (
     date_posted datetime NOT NULL,
     visibility varchar(255) DEFAULT 'private',
     publish int(10) DEFAULT 0,
-	abstract varchar(255) DEFAULT NULL,
-	level varchar(255) DEFAULT NULL,
-	duration time(100) DEFAULT NULL,
-	goal varchar(255) DEFAULT NULL,
-	solution varchar(255)
+    abstract varchar(255) DEFAULT NULL,
+    level varchar(255) DEFAULT NULL,
+    duration time DEFAULT NULL,
+    goal varchar(255) DEFAULT NULL,
+    solution varchar(255)DEFAULT NULL
 );
 
 CREATE TABLE class_challenges (
