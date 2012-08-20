@@ -41,7 +41,9 @@ class ClassManagerController extends HackademicBackendController {
 			$id=$_GET['id'];
 			Classes::deleteClass($id);
 			$this->addSuccessMessage("Class has been deleted succesfully");
-		} elseif(isset($_GET["source"]) && ($_GET["source"]=="arch")) {
+		} elseif(isset($_GET["source"]) && ($_GET["source"]=="addclass")) {
+		    $this->addSuccessMessage("Class has been created succesfully");
+		}elseif(isset($_GET["source"]) && ($_GET["source"]=="arch")) {
 			$id=$_GET['id'];
 			Classes::archiveClass($id);
 			$this->addSuccessMessage("Class has been archived succesfully");

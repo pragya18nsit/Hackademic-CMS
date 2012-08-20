@@ -50,7 +50,6 @@ class AddClassController extends HackademicBackendController {
 				}
 				else{
 				Classes::addClass($classname,$date_created);
-				$this->addSuccessMessage("Class has been created succesfully");
 				header('Location: '.SOURCE_ROOT_PATH."admin/pages/manageclass.php?source=addclass");
 			    }
 			}
