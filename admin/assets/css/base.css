@@ -91,3 +91,12 @@ body {height:95%;}
 .article_main {width:90%; margin: auto; height:850px;}
 #upload_container {width: 90%; margin: auto;}
 .add_form {width:90%; margin: auto;}
+
+.width_auto {width: auto;}
+.width_100 {width: 100;}
+.width_90 {width: 90%;}
+.width_50 {width: 50%;}
+.width_40 {width: 40%;}
+.width_25 {width: 25%;}
+.width_20 {width: 20%;}
+.width_10 {width: 10%;}

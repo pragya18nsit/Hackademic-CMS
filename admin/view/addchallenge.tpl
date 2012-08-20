@@ -59,7 +59,7 @@ tinyMCE.init({
             <form id="form" name="form" method="post">
                 <table class="article_main">
                     <tr>
-                        <td>
+                        <td colspan="2">
                             <label>Enter Challenge Details (or <a href="{$site_root_path}admin/pages/addchallenge.php">Upload Challenge</a> directly)</label><br/><br/>
                         </td>
                     </tr>

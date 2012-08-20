@@ -7,17 +7,17 @@
     </div><br/>
     <div id="input_form">
 	<form method ="get">
-	    <table class="add_form">
+	    <table class="add_form center">
 		<tr>
-		    <td><input type="text" name="search" id="search"/></td>
-		    <td>
-			<select name="category">
+		    <td class="width_40"><input class="width_90" type="text" name="search" id="search"/></td>
+		    <td class="width_25">
+			<select name="category" class="width_90">
 			    <option value="title">Title</option>
 			</select>
 		    </td>
 		    
-			<td>
-			   <select name="limit" style="width:200px">
+			<td class="width_25">
+			   <select name="limit" class="width_90">
 	                          <option value="">Results Per Page</option>
                                   <option value="5">5</option>
 				  <option value="10">10</option>
@@ -32,7 +32,7 @@
         	         </select>
 		     </td>
 		     
-			<td class="submit_btn">
+			<td class="submit_btn width_10">
 			<p class="submit"><input type="submit" name="submit" id="submit" value="search" /></p>
 		    </td>
 		</tr>
