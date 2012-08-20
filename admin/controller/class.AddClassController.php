@@ -43,11 +43,16 @@ class AddClassController extends HackademicBackendController {
 				$this->addErrorMessage("Name of the class should not be empty");
 			} else {
 				// $this->created_by= Session::getLoggedInUser();
-				$this->classname =$_POST['classname'];
-				$this->date_created = date("Y-m-d H:i:s");
-				Classes::addClass($this->classname,$this->date_created);
+				$classname =$_POST['classname'];
+				$date_created = date("Y-m-d H:i:s");
+				if (Classes::doesClassExist($classname)) {
+				$this->addErrorMessage(" This Classname already exists");
+				}
+				else{
+				Classes::addClass($classname,$date_created);
 				$this->addSuccessMessage("Class has been created succesfully");
-				header('Location: '.SOURCE_ROOT_PATH."admin/pages/usermanager.php?source=addclass");
+				header('Location: '.SOURCE_ROOT_PATH."admin/pages/manageclass.php?source=addclass");
+			    }
 			}
 		}
 		$this->generateView();

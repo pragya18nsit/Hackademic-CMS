@@ -51,8 +51,8 @@
 		    </td>
 			<td class="width_25">
 			  <select name="limit" class="width_90">
-	                         <option value="">Results Per Page</option>
-                                 <option value="5">5</option>
+	             <option value="">Results Per Page</option>
+                 <option value="5">5</option>
 				 <option value="10">10</option>
 				 <option value="15">15</option>
 				 <option value="20">20</option>
@@ -62,8 +62,8 @@
 				 <option value="50">50</option>
 				 <option value="75">75</option>
 				 <option value="100">100</option>
-        	        </select>
-		      </td>
+        	   </select>
+		     </td>
 		    <td class="submit_btn width_10">
 			<p class="submit"><input type="submit" name="submit" id="submit" value="search" /></p>
 		    </td>

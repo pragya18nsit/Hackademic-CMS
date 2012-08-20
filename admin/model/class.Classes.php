@@ -163,6 +163,21 @@ class Classes {
 			return false;
 		}
 	}
+	
+	public function doesClassExist($classname){
+		global $db;
+		$sql = "SELECT * FROM classes WHERE name = :classname";
+		$params = array(
+				':classname' => $classname
+			       );
+		$query = $db->query($sql, $params);
+		$result = $db->numRows($query);
+		if ($result) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public static function archiveClass($id){
 		global $db;
