@@ -77,14 +77,14 @@
     
     <table class="manager_table">
 	<thead>
-	    <th> Username </th>
-	    <th>Full Name</th>
-	    <th>Email</th>
-	    <th>Classes</th>
-	    <th>Joined</th>
-	    <th>Last Visit</th>
-	    <th>Activated</th>
-	    <th>Type Of User</th>
+	    <th align = "left"> Username </th>
+	    <th align = "left">Full Name</th>
+	    <th align = "left">Email</th>
+	    <th align = "left">Classes</th>
+	    <th align = "left">Joined</th>
+	    <th align = "left">Last Visit</th>
+	    <th align = "left">Activated</th>
+	    <th align = "left">Type Of User</th>
 	</thead>
 	{foreach from=$users item=user}
 	    <tr>

@@ -59,10 +59,10 @@
     
     <table class="manager_table">
 	<thead> 
-	    <th>Class name</th>
-	    <th>Date created</th>
-	    <th>Archive?</th>
-	    <th>Delete?</th>
+	    <th align = "left">Class name</th>
+	    <th align = "left">Date created</th>
+	    <th align = "left">Archive?</th>
+	    <th align = "left">Delete?</th>
 	</thead>
 	{foreach from=$classes item=class}
 	    <tr>

@@ -18,8 +18,8 @@
 		    
 			<td class="width_25">
 			   <select name="limit" class="width_90">
-	                          <option value="">Results Per Page</option>
-                                  <option value="5">5</option>
+	              <option value="">Results Per Page</option>
+                  <option value="5">5</option>
 				  <option value="10">10</option>
 				  <option value="15">15</option>
 				  <option value="20">20</option>
@@ -29,7 +29,7 @@
 				  <option value="50">50</option>
 				  <option value="75">75</option>
 				  <option value="100">100</option>
-        	         </select>
+        	   </select>
 		     </td>
 		     
 			<td class="submit_btn width_10">
@@ -46,12 +46,12 @@
     
     <table class="manager_table">
 	<thead> 
-	    <th>Challenge Title</th>
-	    <th>Date posted</th>
-	    <th>Visibility</th>
-	    <th>Classes</th>
-	    <th>Published</th>
-	    <th>DELETE?</th>
+	    <th align = "left">Challenge Title</th>
+	    <th align = "left">Date posted</th>
+	    <th align = "left">Visibility</th>
+	    <th align = "left">Classes</th>
+	    <th align = "left">Published</th>
+	    <th align = "left">DELETE?</th>
 	</thead>
 	{foreach from=$challenges item=challenge}
 	    <tr>

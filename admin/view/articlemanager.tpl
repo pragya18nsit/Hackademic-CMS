@@ -48,12 +48,12 @@
 	
     <table class="manager_table">
 	<thead> 
-	    <th>Title</th>
-	    <th>Date posted</th>
-	    <th>Author</th>
-	    <th>Last Modified</th>
-	    <th>Last modified by</th>
-	    <th>Published</th>
+	    <th align = "left">Title</th>
+	    <th align = "left">Date posted</th>
+	    <th align = "left">Author</th>
+	    <th align = "left">Last Modified</th>
+	    <th align = "left">Last modified by</th>
+	    <th align = "left">Published</th>
 	</thead>
 	{foreach from=$articles item=article}
 	    <tr>
