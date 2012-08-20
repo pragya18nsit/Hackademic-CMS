@@ -185,8 +185,8 @@ class AddChallengeController extends HackademicBackendController {
 		if (isset($_SESSION['challenge_arr'])) {
 		    $this->addToView('step', 'step2');
 		} else {
-			$this->addToView('type', $add_type);
-		    }
+		    $this->addToView('type', $add_type);
+		}
 
 		$this->addErrorMessage("Please choose a zip file!");
 		return $this->generateView();

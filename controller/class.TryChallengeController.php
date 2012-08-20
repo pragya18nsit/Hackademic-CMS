@@ -1,10 +1,10 @@
 <?php
 /**
  *
- * Hackademic-CMS/controller/class.ShowChallengeController.php
+ * Hackademic-CMS/controller/class.LandingPageController.php
  *
- * Hackademic Show Challenge Controller
- * Class for the Show Challenge page in Frontend
+ * Hackademic Landing Page Controller
+ * Class for generating the home page of the website
  *
  * Copyright (c) 2012 OWASP
  *
@@ -34,28 +34,36 @@ require_once(HACKADEMIC_PATH."model/common/class.Challenge.php");
 require_once(HACKADEMIC_PATH."model/common/class.User.php");
 require_once(HACKADEMIC_PATH."admin/model/class.ClassMemberships.php");
 require_once(HACKADEMIC_PATH."admin/model/class.ClassChallenges.php");
-require_once(HACKADEMIC_PATH."controller/class.HackademicController.php");
+require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
 
-class ShowChallengeController extends HackademicController {
+class TryChallengeController extends HackademicController {
 
 	public function go() {
 		if (isset($_GET['id'])) {
 		    $id=$_GET['id'];
+		    $this->addToView('id', $id);
 		    $challenge=Challenge::getChallenge($id);
-		    $this->setViewTemplate('showChallenge.tpl');
-		    $this->addToView('challenge', $challenge[0]);
-		    if (!$this->isLoggedIn()) {
-			    $this->addErrorMessage("You must login to be able to take the challenge");
-		    } else if ($this->isAdmin() || self::IsAllowed($this->getLoggedInUser(), $challenge[0]->id)) {
-			    $this->addToView('is_allowed', true);
+		    if ($this->isLoggedIn() && ($this->isAdmin() || self::IsAllowed($this->getLoggedInUser(), $challenge[0]->id))) {
+			$challenge_path = HACKADEMIC_PATH."challenges/".$challenge[0]->pkg_name."/";
+			$this->addToView('pkg_name', $challenge[0]->pkg_name);
+			$solution = $challenge[0]->solution;
+			if (isset($_POST) && count($_POST)!=0) {
+				echo '<div style = "color:red">CHALLENGE WAS SUBMITTED</div>';
+			}
+			if (!isset($_GET["path"])) {
+				$url = $challenge_path."index.php";
+			} else {
+				$url = $challenge_path.$_GET['path'];
+			}
+			require_once($url);
 		    } else {
-			    $this->addErrorMessage('You cannot take the challenge as you are not a member
-					    of any class to which this challenge is assigned.');
+			die();
 		    }
-		    $this->generateView();
 		}
+		$this->setViewTemplate("trychallenge.tpl");
+		$this->generateView();
 	}
-
+	
 	protected static function isAllowed($username, $challenge_id) {
 		$user = User::findByUserName($username);
 		$classes = ClassMemberships::getMembershipsOfUser($user->id);

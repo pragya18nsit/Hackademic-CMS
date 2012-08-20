@@ -42,6 +42,7 @@ class Challenge {
 	public $category;
 	public $visibility;
 	public $publish;
+	public $solution;
 
 	public function doesChallengeExist($name){
 		global $db;
