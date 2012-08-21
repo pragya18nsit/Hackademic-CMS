@@ -39,8 +39,9 @@ class ChallengeAttempts {
 	public $status;
 
 
-	public static function addChallengeAttempt($user_id,$challenge_id,$time,$status){
+	public static function addChallengeAttempt($user_id,$challenge_id,$status){
 		global $db;
+		$time = date("Y-m-d H:i:s");
 		$params=array(':user_id' => $user_id,
 				':challenge_id' => $challenge_id,
 				':time' => $time,

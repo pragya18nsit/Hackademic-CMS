@@ -24,13 +24,18 @@
 <h2>
 <hr>
 <?php
+session_start();
+require_once($_SESSION['hackademic_path']."pages/challenge_monitor.php");
 	$try_xss = $_POST['try_xss'];
 	if  ( ($try_xss == '<script>alert("XSS!");</script>') OR
 		  ($try_xss == "<script>alert('XSS!');</script>") ) {
     		echo 'Thank you'.' '.($_POST['try_xss']).'!';
-			echo "<H1>Congratulations!</H1>";    		
+			echo "<H1>Congratulations!</H1>";
+			$monitor->update(CHALLENGE_SUCCESS);
+	
     } 
 	else {
+		$monitor->update(CHALLENGE_FAILURE);
 ?>
 	Try to XSS me using the straight forward way... <br />
 	<form method="POST">

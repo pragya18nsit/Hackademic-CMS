@@ -25,7 +25,7 @@
                             break;
                         }
                     }
-                    new_action = "{$site_root_path}pages/trychallenge.php?id={$id}&path="+action.substring(i, length);
+                    new_action = path+action.substring(i, length);
                     $(this).attr("action", new_action);
                 }
             }

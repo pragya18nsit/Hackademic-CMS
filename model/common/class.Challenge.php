@@ -67,6 +67,17 @@ class Challenge {
 		// return !empty($result_array)?array_shift($result_array):false;
 		return $result_array;
 	}
+	
+	public static function getChallengeByPkgName($pkg_name) {
+		global $db;
+		$params = array(
+				':pkg_name' => $pkg_name
+			       );
+		$sql = "SELECT * FROM challenges WHERE pkg_name= :pkg_name LIMIT 1";
+		$result_array=self::findBySQL($sql,$params);
+		// return !empty($result_array)?array_shift($result_array):false;
+		return $result_array;
+	}
 
 	public static function getChallengesFrontend() {
 		global $db;

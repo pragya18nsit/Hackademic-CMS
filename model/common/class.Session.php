@@ -71,6 +71,7 @@ class Session {
 		User::updateLastVisit($owner->username);
 		$_SESSION['hackademic_user'] = $owner->username;
 		$_SESSION['hackademic_user_type'] = $owner->type;
+		$_SESSION['hackademic_path'] = HACKADEMIC_PATH;
 	}
 	/**
 	 * Check password

@@ -44,18 +44,18 @@ class TryChallengeController extends HackademicController {
 		    $this->addToView('id', $id);
 		    $challenge=Challenge::getChallenge($id);
 		    if ($this->isLoggedIn() && ($this->isAdmin() || self::IsAllowed($this->getLoggedInUser(), $challenge[0]->id))) {
-			$challenge_path = HACKADEMIC_PATH."challenges/".$challenge[0]->pkg_name."/";
+			$challenge_path = SOURCE_ROOT_PATH."challenges/".$challenge[0]->pkg_name."/";
 			$this->addToView('pkg_name', $challenge[0]->pkg_name);
 			$solution = $challenge[0]->solution;
 			if (isset($_POST) && count($_POST)!=0) {
-				echo '<div style = "color:red">CHALLENGE WAS SUBMITTED</div>';
+				//echo '<div style = "color:red">CHALLENGE WAS SUBMITTED</div>';
 			}
 			if (!isset($_GET["path"])) {
 				$url = $challenge_path."index.php";
 			} else {
 				$url = $challenge_path.$_GET['path'];
 			}
-			require_once($url);
+			header("Location: ".$url);
 		    } else {
 			die();
 		    }
