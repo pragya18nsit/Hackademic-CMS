@@ -65,6 +65,25 @@ class ClassChallenges {
 		}
 		return $result_array;
 	}
+	
+	public static function getChallengesOfClasses($classes) {
+	    global $db;
+	    $where_clause = "";
+	    foreach ($classes as $class) {
+		if ($where_clause != "") {
+		    $where_clause .= " OR ";
+		}
+		$id = $class['class_id'];
+		$where_clause .= "class_id = $id";
+	    }
+	    $sql = "SELECT challenge_id FROM class_challenges WHERE $where_clause";
+	    $result_array = array();
+	    $query = $db->query($sql);
+	    while ($row = $db->fetchArray($query)) {
+			array_push($result_array, $row);
+		}
+		return $result_array;
+	}
 
 	public static function doesMembershipExist($challenge_id,$class_id) {
 		global $db;

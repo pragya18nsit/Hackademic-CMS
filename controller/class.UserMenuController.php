@@ -81,16 +81,14 @@ class UserMenuController{
 					$link8
 				     );
 		} else {
-			$link1 = array ('title'=>'See Your Progress', 'url'=>'admin/pages/addarticle.php');
-			$link2 = array ('title'=>'Current Score', 'url'=>'admin/pages/articlemanager.php');
-			$link3 = array ('title'=>'Ranking', 'url'=>'admin/pages/usermanager.php');
-			$link4 = array ('title'=>'Logout', 'url'=>'pages/logout.php');
+			$link1 = array ('title'=>'Progress Report', 'url'=>'pages/progress.php');
+			$link2 = array ('title'=>'Ranking', 'url'=>'admin/pages/usermanager.php');
+			$link3 = array ('title'=>'Logout', 'url'=>'pages/logout.php');
 
 			$menu = array(
 					$link1,
 					$link2,
-					$link3,
-					$link4
+					$link3
 				     );
 		}
 		return $menu;

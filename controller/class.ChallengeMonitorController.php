@@ -44,17 +44,21 @@ class ChallengeMonitorController {
     }
     
     public function update($status) {
-        $username = Session::getLoggedInUser();
-        $url = $_SERVER['REQUEST_URI'];
-        $url_components = explode("/", $url);
-        $count_url_components = count($url_components);
-        for ($i=0; $url_components[$i] != "challenges"; $i++);
-        $pkg_name = $url_components[$i+1];
-        $user = User::findByUserName($username);
-        $challenge = Challenge::getChallengeByPkgName($pkg_name);
-        $user_id = $user->id;
-        $challenge_id = $challenge[0]->id;
-        ChallengeAttempts::addChallengeAttempt($user_id, $challenge_id, $status);
+        if (!Session::isAdmin() && !Session::isTeacher()) {
+            $username = Session::getLoggedInUser();
+            $url = $_SERVER['REQUEST_URI'];
+            $url_components = explode("/", $url);
+            $count_url_components = count($url_components);
+            for ($i=0; $url_components[$i] != "challenges"; $i++);
+            $pkg_name = $url_components[$i+1];
+            $user = User::findByUserName($username);
+            $challenge = Challenge::getChallengeByPkgName($pkg_name);
+            $user_id = $user->id;
+            $challenge_id = $challenge[0]->id;
+            if (!ChallengeAttempts::isTaskCleared($user_id, $challenge_id)) {
+                ChallengeAttempts::addChallengeAttempt($user_id, $challenge_id, $status);
+            }
+        }
     }
     
 }

@@ -56,15 +56,11 @@ class ChallengeAttempts {
 			return false;
 		}
 	}
-
-	public static function updateChallengeAttempt($id,$time,$status){
+	
+	public static function deleteChallengeAttemptByUser($user_id){
 		global $db;
-		$params=array(':id' => $id,
-				':time' => $time,
-				':status' => $status
-			     );
-		$sql="UPDATE challenge_attempts SET time=:time, status=:status";
-		$sql .= " WHERE id=:id";
+		$params=array(':user_id' => $user_id);
+		$sql = "DELETE FROM challenge_attempts WHERE user_id=:user_id";
 		$query = $db->query($sql,$params);
 		if ($db->affectedRows($query)) {
 			return true;
@@ -72,10 +68,11 @@ class ChallengeAttempts {
 			return false;
 		}
 	}
-	public static function deleteChallengeAttempt($id){
+	
+	public static function deleteChallengeAttemptByChallenge($challenge_id){
 		global $db;
-		$params=array(':id' => $id);
-		$sql = "DELETE FROM challenge_attempts WHERE id=:id";
+		$params=array(':challenge_id' => $challenge_id);
+		$sql = "DELETE FROM challenge_attempts WHERE challenge_id=:challenge_id";
 		$query = $db->query($sql,$params);
 		if ($db->affectedRows($query)) {
 			return true;
@@ -83,6 +80,7 @@ class ChallengeAttempts {
 			return false;
 		}
 	}
+	
 	public static function getChallengeAttemptDetails($user_id) {
 		global $db;
 		$params=array(':user_id' => $user_id);
@@ -91,6 +89,22 @@ class ChallengeAttempts {
 		$result_array=self::findBySQL($sql,$params);
 		// return !empty($result_array)?array_shift($result_array):false;
 		return $result_array;
+	}
+	
+	public static function isTaskCleared($user_id, $challenge_id) {
+		global $db;
+		$params = array(
+			':user_id' => $user_id,
+			':challenge_id' => $challenge_id
+		);
+		$sql = "SELECT * FROM challenge_attempts WHERE user_id = :user_id AND ";
+		$sql .= "challenge_id = :challenge_id AND status = 1;";
+		$query = $db->query($sql, $params);
+		if ($db->numRows($query)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private static function findBySQL($sql,$params=NULL) {
