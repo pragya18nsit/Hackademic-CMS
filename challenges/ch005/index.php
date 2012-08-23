@@ -34,13 +34,16 @@
 
 
 <?php
-
+session_start();
+require_once($_SESSION['hackademic_path']."pages/challenge_monitor.php");
 if ( ($_SERVER['HTTP_USER_AGENT'] === 'p0wnBrowser') )
 {
 			echo "<H1>Congratulations!</H1>";
+			$monitor->update(CHALLENGE_SUCCESS);
 }
 else
 {
+	$monitor->update(CHALLENGE_FAILURE);
 	echo "<h2><br><br>Unfortunately, you cannot access the contents of this site...<br>
 In order to do this, you must buy p0wnBrowser. It only costs 3500 euros.";
 }

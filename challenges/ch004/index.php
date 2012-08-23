@@ -25,15 +25,18 @@
 <h2>
 <hr>
 <?php
-	
+	session_start();
+        require_once($_SESSION['hackademic_path']."pages/challenge_monitor.php");
 	// <script>alert(String.fromCharCode(88,88,83,33))</script>
 	$try_xss = $_POST['try_xss'];
 	if($try_xss == '<script>alert(String.fromCharCode(88,83,83,33))</script>') {
     		echo 'Thank you '.$try_xss.'';
 			echo "<H1>Congratulations!</H1>";
+			$monitor->update(CHALLENGE_SUCCESS);
     		
     } 
 	else {
+		$monitor->update(CHALLENGE_FAILURE);
 ?>
 	Try to XSS me...Again! <br />
 	<form method="POST">
