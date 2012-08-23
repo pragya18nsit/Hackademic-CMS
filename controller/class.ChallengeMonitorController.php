@@ -55,7 +55,7 @@ class ChallengeMonitorController {
             $challenge = Challenge::getChallengeByPkgName($pkg_name);
             $user_id = $user->id;
             $challenge_id = $challenge[0]->id;
-            if (!ChallengeAttempts::isTaskCleared($user_id, $challenge_id)) {
+            if (!ChallengeAttempts::isChallengeCleared($user_id, $challenge_id)) {
                 ChallengeAttempts::addChallengeAttempt($user_id, $challenge_id, $status);
             }
         }

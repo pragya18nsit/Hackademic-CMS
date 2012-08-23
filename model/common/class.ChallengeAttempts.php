@@ -91,7 +91,7 @@ class ChallengeAttempts {
 		return $result_array;
 	}
 	
-	public static function isTaskCleared($user_id, $challenge_id) {
+	public static function isChallengeCleared($user_id, $challenge_id) {
 		global $db;
 		$params = array(
 			':user_id' => $user_id,
@@ -105,6 +105,30 @@ class ChallengeAttempts {
 		} else {
 			return false;
 		}
+	}
+	
+	public static function getTotalAttempts($user_id) {
+		global $db;
+		$sql = "SELECT challenge_id, count(*) as count FROM challenge_attempts ";
+		$sql .= " WHERE user_id = $user_id GROUP BY challenge_id;";
+		$query = $db->query($sql);
+		$result_array = array();
+		while($row=$db->fetchArray($query)) {
+			$result_array[$row['challenge_id']] = $row['count'];
+		}
+		return $result_array;
+	}
+	
+	public static function getClearedChallenges($user_id) {
+		global $db;
+		$sql = "SELECT DISTINCT challenge_id, date_added FROM challenge_attempts ";
+		$sql .= " WHERE user_id = $user_id AND status = 1;";
+		$query = $db->query($sql);
+		$result_array = array();
+		while($row=$db->fetchArray($query)) {
+			$result_array[$row['challenge_id']] = array('cleared' => true, 'cleared_on' => $row['date_added']);
+		}
+		return $result_array;
 	}
 
 	private static function findBySQL($sql,$params=NULL) {

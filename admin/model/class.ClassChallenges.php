@@ -66,23 +66,18 @@ class ClassChallenges {
 		return $result_array;
 	}
 	
-	public static function getChallengesOfClasses($classes) {
+	public static function getChallengesOfUser($user_id) {
 	    global $db;
-	    $where_clause = "";
-	    foreach ($classes as $class) {
-		if ($where_clause != "") {
-		    $where_clause .= " OR ";
-		}
-		$id = $class['class_id'];
-		$where_clause .= "class_id = $id";
-	    }
-	    $sql = "SELECT challenge_id FROM class_challenges WHERE $where_clause";
+	    $sql = "SELECT challenge_id, challenges.title FROM class_challenges ";
+	    $sql .= " LEFT join challenges ON challenges.id = class_challenges.challenge_id ";
+	    $sql .= " WHERE (SELECT class_memberships.class_id as class_id FROM class_memberships";
+	    $sql .= " WHERE class_memberships.user_id = $user_id) ORDER BY challenges.date_posted DESC;";
 	    $result_array = array();
 	    $query = $db->query($sql);
 	    while ($row = $db->fetchArray($query)) {
-			array_push($result_array, $row);
+			$result_array[$row['challenge_id']] = $row['title'];
 		}
-		return $result_array;
+	    return $result_array;
 	}
 
 	public static function doesMembershipExist($challenge_id,$class_id) {
