@@ -140,4 +140,26 @@ class ChallengeAttempts {
 		}
 		return $object_array;
 	}
+	
+	public static function getUniversalRankings($class_id = NULL) {
+		global $db;
+		$sql = "SELECT user_id, time, count(*) as count, users.username ";
+		$sql .= "FROM challenge_attempts LEFT JOIN users ON ";
+		$sql .= "users.id = user_id WHERE status = 1 ";
+		if ($class_id) {
+			$sql .= "AND challenge_id IN (SELECT id as challenge_id ";
+			$sql .= "FROM class_challenges WHERE class_id = $class_id) ";
+		}
+		$sql .= "GROUP BY user_id ORDER BY count(*) DESC, time;";
+		$query = $db->query($sql);
+		$result_array = array();
+		while($row=$db->fetchArray($query)) {
+			array_push($result_array, $row);
+		}
+		return $result_array;
+	}
+	
+	public static function getClasswiseRankings($class_id) {
+		return self::getUniversalRankings($class_id);
+	}
 }

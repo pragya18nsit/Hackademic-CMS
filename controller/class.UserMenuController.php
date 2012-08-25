@@ -82,7 +82,7 @@ class UserMenuController{
 				     );
 		} else {
 			$link1 = array ('title'=>'Progress Report', 'url'=>'pages/progress.php');
-			$link2 = array ('title'=>'Ranking', 'url'=>'admin/pages/usermanager.php');
+			$link2 = array ('title'=>'Ranking', 'url'=>'pages/ranking.php');
 			$link3 = array ('title'=>'Logout', 'url'=>'pages/logout.php');
 
 			$menu = array(

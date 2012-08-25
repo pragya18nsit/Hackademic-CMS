@@ -36,6 +36,7 @@ require_once(HACKADEMIC_PATH."/model/common/class.Session.php");
 require_once(HACKADEMIC_PATH."/model/common/class.User.php");
 require_once(HACKADEMIC_PATH."/model/common/class.ChallengeAttempts.php");
 require_once(HACKADEMIC_PATH."/controller/class.HackademicController.php");
+
 class ProgressReportController extends HackademicController{
 	public function go() {
 		$this->setViewTemplate('progressreport.tpl');

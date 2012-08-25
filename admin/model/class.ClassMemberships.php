@@ -30,6 +30,7 @@
  * @copyright 2012 OWASP
  *
  */
+require_once(HACKADEMIC_PATH."admin/model/class.Classes.php");
 require_once(HACKADEMIC_PATH."model/common/class.HackademicDB.php");
 
 class ClassMemberships {
@@ -50,6 +51,20 @@ class ClassMemberships {
 		} else {
 			return false;
 		}
+	}
+	
+	public static function getMembershipsOfUserObjects($user_id) {
+	    $classes = self::getMembershipsOfUser($user_id);
+	    $object_array = array();
+	    foreach ($classes as $class) {
+		$temp = array(
+		    'id' => $class['class_id'],
+		    'name' => $class['name']
+		);
+		$obj = Classes::instantiate($temp);
+		array_push($object_array, $obj);
+	    }
+	    return $object_array;
 	}
 
 	public static function getMembershipsOfUser($user_id) {
