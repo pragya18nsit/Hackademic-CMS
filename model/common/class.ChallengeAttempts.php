@@ -150,7 +150,7 @@ class ChallengeAttempts {
 			$sql .= "AND challenge_id IN (SELECT id as challenge_id ";
 			$sql .= "FROM class_challenges WHERE class_id = $class_id) ";
 		}
-		$sql .= "GROUP BY user_id ORDER BY count(*) DESC, time;";
+		$sql .= "GROUP BY user_id ORDER BY count(*) DESC, time LIMIT 100;";
 		$query = $db->query($sql);
 		$result_array = array();
 		while($row=$db->fetchArray($query)) {

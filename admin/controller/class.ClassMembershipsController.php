@@ -33,12 +33,14 @@
 require_once(HACKADEMIC_PATH."admin/model/class.ClassMemberships.php");
 require_once(HACKADEMIC_PATH."admin/model/class.Classes.php");
 require_once(HACKADEMIC_PATH."admin/controller/class.HackademicBackendController.php");
+require_once(HACKADEMIC_PATH."model/common/class.User.php");
 
 class ClassMembershipsController extends HackademicBackendController {
 
 	public function go() {
 		$this->setViewTemplate('classmembership.tpl');
 		$user_id=$_GET['id'];
+		$user= User::getUser($user_id);
 		if (isset($_POST['submit'])) {
 			$class_id=$_POST['class_id'];
 			if(ClassMemberships::doesMembershipExist($user_id, $class_id))
@@ -60,6 +62,7 @@ class ClassMembershipsController extends HackademicBackendController {
 		$classes = Classes::getAllClasses();
 		$this->addToView('classes', $classes);
 		$this->addToView('class_memberships', $class_memberships);
+		$this->addToView('user', $user);
 		$this->setViewTemplate('classmembership.tpl');
 		$this->generateView();
 	}

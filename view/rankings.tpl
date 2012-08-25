@@ -14,7 +14,7 @@
 			    <select name="class" style="width:100%">
 				<option value="">Overall</option>
 				{foreach from=$classes item=cls}
-				    <option value="{$cls->id}" {if $cls->id == $smarty.get.class}selected="selected"{/if}>{$cls->name}</option>
+				    <option value="{$cls->id}" {if isset($smarty.get.class) && $cls->id == $smarty.get.class}selected="selected"{/if}>{$cls->name}</option>
 				{/foreach}
 			    </select>
 			</td>
@@ -30,13 +30,13 @@
         <tr>
             <th>Username</th>
             <th>Challenges Cleared</th>
-            <th>Last Cleared On</th>
+			<th>Rank</th>
         </tr>
     {foreach from=$rankings item=foo}
         <tr>
             <td>{$foo['username']}</a></td>
             <td>{$foo['count']}</td>
-            <td>{$foo['time']}</td>
+			<td>{$foo['rank']}</td>
         </tr>
     {/foreach}
     </table>

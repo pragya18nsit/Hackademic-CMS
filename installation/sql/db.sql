@@ -66,7 +66,7 @@ CREATE TABLE challenge_attempts (
     id int(11) PRIMARY KEY AUTO_INCREMENT,
     user_id int(11) NOT NULL,
     challenge_id int(11) NOT NULL,
-    time time NOT NULL,
+    time datetime NOT NULL,
     status varchar(255) NOT NULL
 );
 

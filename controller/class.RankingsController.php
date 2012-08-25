@@ -61,8 +61,20 @@ class RankingsController extends HackademicController {
                 $rankings = ChallengeAttempts::getClasswiseRankings($class_id);
             }
         }
-        $this->addToView('rankings', $rankings);
+        $final=array();
+        $counter=1;
+        $rank=1;
+        $rankcount=1;
+        $prevcount=null;
+        foreach($rankings as $ranking){
+			if ($counter !=1 && $prevcount == $ranking['count']) { $rankcount++;} 
+			if  ($counter !=1 && $prevcount != $ranking['count']) {$rankcount++; $rank=$rankcount;}
+                        $prevcount=$ranking['count'];
+                        $counter++;
+                        $temp=array('user_id'=>$ranking['user_id'],'time'=>$ranking['time'],'count' =>$ranking['count'],'username'=>$ranking['username'],'rank'=>$rank);
+                        array_push($final,$temp);
+        }
+        $this->addToView('rankings', $final);
         return $this->generateView();
     }
-    
 }

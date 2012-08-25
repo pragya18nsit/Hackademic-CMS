@@ -58,14 +58,18 @@ if (isset($com))
 }
 if(isset($root,$password))
 {
+	 session_start();
+         require_once($_SESSION['hackademic_path']."pages/challenge_monitor.php");
 	if ($root=="root" && $password=="g0tr00t")
 	{
 		echo "<p><font color=red>uid=0(root) gid=0(root) groups=0(root)</font>";
-		echo "<center><p><h3><font color=green>Congratulations!</font></h3>";		
+		echo "<center><p><h3><font color=green>Congratulations!</font></h3>";
+		$monitor->update(CHALLENGE_SUCCESS);
 	}
 	else 
 	{
 		echo "incorrect username or password";
+		$monitor->update(CHALLENGE_FAILURE);
 	}
 }
 else

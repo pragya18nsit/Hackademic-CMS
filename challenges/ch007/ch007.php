@@ -12,6 +12,8 @@
  
 ?>
 <?php
+ session_start();
+ require_once($_SESSION['hackademic_path']."pages/challenge_monitor.php");
 $mystring = $_POST["name"]; 
 if ($mystring === 'Irene'){
 
@@ -22,6 +24,7 @@ if ($mystring === 'Irene'){
 	setcookie("userlevel", 'user'); // set the cookie for 1 hour
 	if ($_COOKIE["userlevel"] ==='admin' ){
 			echo "<H1>Congratulations!</H1>";
+			$monitor->update(CHALLENGE_SUCCESS);
 	}
 
 
@@ -148,6 +151,7 @@ body {
 <?php 
 }
 else{
+               $monitor->update(CHALLENGE_FAILURE);
 ?>
 <p>******************************************************** 
 <p> ERRONEOUS IMPORT OF DATA!

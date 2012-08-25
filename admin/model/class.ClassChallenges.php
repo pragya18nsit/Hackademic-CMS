@@ -70,7 +70,7 @@ class ClassChallenges {
 	    global $db;
 	    $sql = "SELECT challenge_id, challenges.title FROM class_challenges ";
 	    $sql .= " LEFT join challenges ON challenges.id = class_challenges.challenge_id ";
-	    $sql .= " WHERE challenges.publish = 1 AND class_id = (SELECT class_memberships.class_id as class_id FROM class_memberships";
+	    $sql .= " WHERE challenges.publish = 1 AND class_id IN (SELECT class_memberships.class_id as class_id FROM class_memberships";
 	    $sql .= " WHERE class_memberships.user_id = $user_id) ORDER BY challenges.date_posted DESC;";
 	    $result_array = array();
 	    $query = $db->query($sql);

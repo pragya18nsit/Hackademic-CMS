@@ -18,6 +18,8 @@
 <meta http-equiv="Content-Language" content="en-us">
 </head>
 <?php
+ session_start();
+ require_once($_SESSION['hackademic_path']."pages/challenge_monitor.php");
 if(isset($_POST['login']))
 {
 	$state = $_POST['LetMeIn'];
@@ -66,10 +68,12 @@ if(isset($_POST['login']))
 				</html>';
 	
 	echo $login;
+	$monitor->update(CHALLENGE_SUCCESS);
 	exit();
 	
 	} 
 	else {
+		 $monitor->update(CHALLENGE_FAILURE);
 	?>
 	<script type="text/javascript">
 	alert('Wrong Password!!\nTry harder if you wanna be a member of n1nJ4.h4x0r.CreW')

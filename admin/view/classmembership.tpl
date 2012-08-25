@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{$site_root_path}assets/css/pagination.css"/>
 <div class="main_content">
     <div class="header_bar">
-	<div class="page_title"><h3 class="left">Class Membership - Users</h3></div>
+	<div class="page_title"><h3 class="left">Class Membership - Users {$user[0]->username}</h3></div>
     </div><br/>
     <div id="usermessage">{include file="_usermessage.tpl"}</div>
     

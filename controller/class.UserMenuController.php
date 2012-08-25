@@ -67,8 +67,7 @@ class UserMenuController{
 			$link4 = array ('title'=>'Create Class', 'url'=>'admin/pages/manageclass.php');
 			$link5 = array ('title'=>'Add Challenge', 'url'=>'admin/pages/addchallenge.php');
 			$link6 = array ('title'=>'Monitor Students', 'url'=>'pages/progress.php');
-			$link7 = array ('title'=>'Clone Challenge', 'url'=>'admin/pages/addchallenge.php');
-			$link8 = array ('title'=>'Logout', 'url'=>'pages/logout.php');
+			$link7 = array ('title'=>'Logout', 'url'=>'pages/logout.php');
 
 			$menu = array(
 					$link1,
@@ -77,8 +76,7 @@ class UserMenuController{
 					$link4,
 					$link5,
 					$link6,
-					$link7,
-					$link8
+					$link7
 				     );
 		} else {
 			$link1 = array ('title'=>'Progress Report', 'url'=>'pages/progress.php');
