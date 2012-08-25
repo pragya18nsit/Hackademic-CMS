@@ -30,13 +30,17 @@
  * @copyright 2012 OWASP
  *
  */
-require_once(HACKADEMIC_PATH."controller/class.ChallengeMenuController.php");
 require_once(HACKADEMIC_PATH."controller/class.HackademicController.php");
 class ChallengeListController extends HackademicController {
 
 	public function go() {
-		$list = ChallengeMenuController::go();
-		$this->addToView('list', $list);
+		$challenges=Challenge::getChallengesFrontend();
+		$menu=array();
+		foreach( $challenges as $challenge){
+			$link = array ('id'=>$challenge->id, 'title'=>$challenge->title, 'url'=>'challenges/'.$challenge->pkg_name.'/index.php');
+			array_push($menu,$link);
+		}
+		$this->addToView('list', $menu);
 		$this->setViewTemplate('challenge_list.tpl');
 		return $this->generateView();
 	}

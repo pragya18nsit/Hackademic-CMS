@@ -31,6 +31,7 @@
  *
  */
 require_once(HACKADEMIC_PATH."model/common/class.HackademicDB.php");
+require_once(HACKADEMIC_PATH."admin/model/class.ClassChallenges.php");
 
 class Challenge {
 	public $id;
@@ -86,6 +87,17 @@ class Challenge {
 		$result_array=self::findBySQL($sql,$params);
 		// return !empty($result_array)?array_shift($result_array):false;
 		return $result_array;
+	}
+	
+	public static function getChallengesAssigned($user) {
+		global $db;
+		$challenge_ids = ClassChallenges::getChallengesOfUser($user);
+		$challenges = array();
+		foreach ($challenge_ids as $id => $title) {
+    		    $challenge = self::getChallenge($id);
+		    array_push($challenges, $challenge[0]);
+		}
+		return $challenges;
 	}
 
 	public static function insertId() {

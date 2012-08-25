@@ -35,7 +35,16 @@ require_once(HACKADEMIC_PATH."/controller/class.HackademicController.php");
 class ChallengeMenuController {
 
 	public function go() {
-		$challenges=Challenge::getChallengesFrontend();
+		$username = $this->getLoggedInUser();
+		$user = User::findByUserName($username);
+		if (!$user) {
+		    return;
+		}
+		if (Session::isAdmin() || Session::isTeacher()) {
+		    $challenges=Challenge::getChallengesFrontend();
+		} else {
+		    $challenges=Challenge::getChallengesAssigned($user->id);
+		}
 		$menu=array();
 		foreach( $challenges as $challenge){
 			$link = array ('id'=>$challenge->id, 'title'=>$challenge->title, 'url'=>'challenges/'.$challenge->pkg_name.'/index.php');

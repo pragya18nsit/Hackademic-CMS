@@ -121,12 +121,12 @@ class ChallengeAttempts {
 	
 	public static function getClearedChallenges($user_id) {
 		global $db;
-		$sql = "SELECT DISTINCT challenge_id, date_added FROM challenge_attempts ";
+		$sql = "SELECT DISTINCT challenge_id, time FROM challenge_attempts ";
 		$sql .= " WHERE user_id = $user_id AND status = 1;";
 		$query = $db->query($sql);
 		$result_array = array();
 		while($row=$db->fetchArray($query)) {
-			$result_array[$row['challenge_id']] = array('cleared' => true, 'cleared_on' => $row['date_added']);
+			$result_array[$row['challenge_id']] = array('cleared' => true, 'cleared_on' => $row['time']);
 		}
 		return $result_array;
 	}

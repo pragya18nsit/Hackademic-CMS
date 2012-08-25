@@ -4,20 +4,28 @@
 	<div class="page_title"><h3 class="left">Progress Report</h3></div>
     </div><br/>
     {if isset($search_box)}
-        <form type="GET">
-            <label>Enter a name to search:</label>
-            <input type="text" name="username" />
-            <input type="submit" value="Search" />
-        </form>
+	<div class="center">
+	    <div id="input_form" style="width: 80%; margin:auto;">
+		<form type="GET">
+		    <table class="add_form center">
+			<tr>
+			    <td style="width:25%"><label>Enter a name to search:</label></td>
+			    <td><input type="text" name="username" style="width:80%" value="{if isset($smarty.get.username)}{$smarty.get.username}{/if}"/></td>
+			    <td class="submit_btn"><p class="submit"><input class="try_me" type="submit" value="Search" /></p></td>
+			</tr>
+		    </table>
+		</form>
+	    </div>
+	</div>
     {/if}
     {if (isset($data))}
-    <table>
-        <th>
-            <td>Title</td>
-            <td>No. Of Attempts</td>
-            <td>Cleared</td>
-            <td>Cleared On</td>
-        </th>
+    <table class="manager_table">
+        <tr>
+            <th>Title</th>
+            <th>No. Of Attempts</th>
+            <th>Cleared</th>
+            <th>Cleared On</th>
+        </tr>
     {foreach from=$data item=foo}
         <tr>
             <td><a href="{$site_root_path}pages/showchallenge.php?id={$foo['id']}">{$foo['title']}</a></td>
